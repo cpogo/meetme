@@ -3,25 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MeetMe | Dashboard</title>
+    <title>New Meeting</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <!-- fullCalendar 2.2.5-->
     <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.print.css" media="print">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,22 +32,22 @@
     <div class="wrapper">
 
       <header class="main-header">
-
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="../index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Admin</b>LTE</span>
         </a>
-
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </a>
-          <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
@@ -66,7 +64,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Support Team
@@ -78,7 +76,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -90,7 +88,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Developers
@@ -102,7 +100,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Sales Department
@@ -114,7 +112,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Reviewers
@@ -154,6 +152,7 @@
                           <i class="fa fa-users text-red"></i> 5 new members joined
                         </a>
                       </li>
+
                       <li>
                         <a href="#">
                           <i class="fa fa-shopping-cart text-green"></i> 25 sales made
@@ -242,13 +241,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                  <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                   <span class="hidden-xs">Alexander Pierce</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
                       Alexander Pierce - Web Developer
                       <small>Member since Nov. 2012</small>
@@ -277,13 +276,8 @@
                   </li>
                 </ul>
               </li>
-              <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
             </ul>
           </div>
-
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -293,7 +287,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p>Alexander Pierce</p>
@@ -314,12 +308,12 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="active">
-              <a href="#">
+              <a href="dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
             <li>
-              <a href="new-meeting">
+              <a href="#">
                 <i class="fa fa-calendar"></i> <span>New Meeting</span>
                 <small class="label pull-right bg-red"></small>
               </a>
@@ -340,69 +334,85 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
+            Calendar
+            <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+            <li class="active">Calendar</li>
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
           <div class="row">
-            <!-- Profile -->
             <div class="col-md-3">
-
-              <!-- Profile -->
-              <div class="box box-primary">
-                <div class="box-body box-profile">
-                  <h3 class="profile-username text-center">Name User Example</h3>
-                  <p class="text-muted text-center">Software Engineer</p>
-                  <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                      <b>Friends</b> <a class="pull-right">45</a>
-                    </li>
-                  </ul>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-              <!-- About Me Box -->
-              <div class="box box-primary">
+              <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">About Me</h3>
-                </div><!-- /.box-header -->
+                  <h3 class="box-title">Create Event</h3>
+                </div>
                 <div class="box-body">
-                  <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
-                  <p class="text-muted">
-                    B.S. in Computer Science from the University of Tennessee at Knoxville
-                  </p>
-
+                  <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                    <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                    <ul class="fc-color-picker" id="color-chooser">
+                      <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                    </ul>
+                  </div><!-- /btn-group -->
+                  <div id="external-mails">
+                    <div class="table-responsive">
+                      <table id="tableEmails" class="table no-margin">
+                        <thead>
+                          <tr>
+                            <th>Emails</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div><!-- /.table-responsive -->
+                  </div>
+                  <div class="input-group">
+                    <input id="new-email" type="text" class="form-control" placeholder="Add Email">
+                    <div class="input-group-btn">
+                      <button id="add-new-email" type="button" class="btn btn-primary btn-flat">Add</button>
+                    </div><!-- /btn-group -->
+                  </div><!-- /input-group -->
                   <hr>
-
-                  <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                  <p class="text-muted">Guayaquil, Ecuador</p>
-
-                  <hr>
-
-                  <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-                  <p>
-                    <span class="label label-danger">UI Design</span>
-                    <span class="label label-success">Coding</span>
-                    <span class="label label-info">Javascript</span>
-                    <span class="label label-warning">PHP</span>
-                    <span class="label label-primary">Node.js</span>
-                  </p>
-
-                  <hr>
-
-                  <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                  <div class="input-group">
+                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+                    <div class="input-group-btn">
+                      <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
+                    </div><!-- /btn-group -->
+                  </div><!-- /input-group -->
+                </div>
+              </div>
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h4 class="box-title">Draggable Events</h4>
+                </div>
+                <div class="box-body">
+                  <!-- the events -->
+                  <div id="external-events">
+                    <div class="checkbox">
+                      <label for="drop-remove">
+                        <input type="checkbox" id="drop-remove">
+                        remove after drop
+                      </label>
+                    </div>
+                  </div>
                 </div><!-- /.box-body -->
-              </div><!-- /.box -->
+              </div><!-- /. box -->
             </div><!-- /.col -->
-            <!-- Calendar -->
             <div class="col-md-9">
               <div class="box box-primary">
                 <div class="box-body no-padding">
@@ -412,7 +422,6 @@
               </div><!-- /. box -->
             </div><!-- /.col -->
           </div><!-- /.row -->
-
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -523,7 +532,8 @@
             </ul><!-- /.control-sidebar-menu -->
 
           </div><!-- /.tab-pane -->
-
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
           <!-- Settings tab content -->
           <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
@@ -587,36 +597,53 @@
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
-
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="../plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <script src="../plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="dist/js/app.min.js"></script>
-    <!-- Sparkline -->
-    <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
-    <!-- jvectormap -->
-    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <!-- SlimScroll 1.3.0 -->
-    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- ChartJS 1.0.1 -->
-    <script src="plugins/chartjs/Chart.min.js"></script>
-
+    <script src="../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+    <script src="../dist/js/demo.js"></script>
     <!-- fullCalendar 2.2.5 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="../plugins/fullcalendar/fullcalendar.min.js"></script>
-
-        <!-- Page specific script -->
+    <!-- Page specific script -->
     <script>
       $(function () {
+
+        /* initialize the external events
+         -----------------------------------------------------------------*/
+        function ini_events(ele) {
+          ele.each(function () {
+
+            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // it doesn't need to have a start or end
+            var eventObject = {
+              title: $.trim($(this).text()) // use the element's text as the event title
+            };
+
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+              zIndex: 1070,
+              revert: true, // will cause the event to go back to its
+              revertDuration: 0  //  original position after the drag
+            });
+
+          });
+        }
+        ini_events($('#external-events div.external-event'));
 
         /* initialize the calendar
          -----------------------------------------------------------------*/
@@ -711,6 +738,54 @@
             }
 
           }
+        });
+
+        /* ADDING EVENTS */
+        var currColor = "#3c8dbc"; //Red by default
+        //Color chooser button
+        var colorChooser = $("#color-chooser-btn");
+        $("#color-chooser > li > a").click(function (e) {
+          e.preventDefault();
+          //Save color
+          currColor = $(this).css("color");
+          //Add color effect to button
+          $('#add-new-event').css({"background-color": currColor, "border-color": currColor});
+        });
+        $("#add-new-event").click(function (e) {
+          e.preventDefault();
+          //Get value and make sure it is not null
+          var val = $("#new-event").val();
+          if (val.length == 0) {
+            return;
+          }
+
+          //Create events
+          var event = $("<div />");
+          event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
+          event.html(val);
+          $('#external-events').prepend(event);
+
+          //Add draggable funtionality
+          ini_events(event);
+
+          //Remove event from text input
+          $("#new-event").val("");
+        });
+        $("#add-new-email").click(function (e) {
+          e.preventDefault();
+          //Get value and make sure it is not null
+          var val = $("#new-email").val();
+          if (val.length == 0) {
+            return;
+          }
+          console.log(val);
+          //Create mails
+          var event = $("<tr />");
+          event.html(val);
+          $('#tableEmails').prepend(event);
+
+          //Remove mail from text input
+          $("#new-mail").val("");
         });
       });
     </script>

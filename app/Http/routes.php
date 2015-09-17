@@ -22,3 +22,14 @@ Route::get('sign-in', function () {
 Route::get('dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('profile', function () {
+    return view('profile');
+});
+
+Route::get('new-meeting', function () {
+    return view('new-meeting');
+});
+
+Route::post('crearUsuario', 'usuarioController@crear');
+
