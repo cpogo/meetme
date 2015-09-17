@@ -15,14 +15,19 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('login', function () {
-    return view('login');
-});
+//Route::get('login', function () {
+//    return view('login');
+//});
+//
+//Route::get('register', function () {
+//    return view('register');
+//});
+//
+//Route::get('dashboard', function () {
+//    return view('dashboard');
+//});
 
-Route::get('register', function () {
-    return view('register');
-});
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-});
+Route::resource('dashboard', 'DashboardController');
+Route::resource('login',     'LoginController');
+Route::resource('register',  'RegisterController');

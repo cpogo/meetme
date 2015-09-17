@@ -52,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="#"><span class="fa fa-calendar-check-o"></span> MeetMe</a>
+                <a class="navbar-brand topnav" href="/"><span class="fa fa-calendar-check-o"></span> MeetMe</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
 <!--
