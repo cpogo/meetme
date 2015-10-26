@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'loginController@logout');
 
 Route::get('login', 'loginController@index');
 
@@ -22,8 +20,6 @@ Route::post('loginUser', 'loginController@login');
 Route::post('registerUser', 'registerController@store');
 
 Route::get('register', 'registerController@index');
-
-//Route::get('dashboard/{user}', 'dashboardController@index');
 
 Route::get('dashboard', 'dashboardController@index');
 

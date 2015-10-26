@@ -41,6 +41,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Be right back.</div>
+                <strong>{{$error}}</strong>
             </div>
         </div>
     </body>

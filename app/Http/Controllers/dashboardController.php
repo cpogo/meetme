@@ -15,11 +15,19 @@ class dashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     //public function index($user)
-     public function index()	
+     public function index()
     {
-        //session_start();
-        //return view('dashboard')->with('user', $user);
-	return view('dashboard');
+        session_start();
+        if ( isset( $_SESSION['key'] ) ) {
+            $user = User::getUserById( $_SESSION[ 'key' ] );
+            if( isset( $user ) ){
+                return view( 'dashboard' , [ 'user' => $user ] );
+            }else{
+                return view('errors/503' , [ 'error' => 'no se encontro el usuario en dashboardController@index' ]);
+            }            
+        }else{
+            return view('index');
+        }
     }
 
     /**

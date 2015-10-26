@@ -87,14 +87,29 @@ class loginController extends Controller
         //
     }
 
+    public function logout(){
+        session_start();
+        if( isset( $_SESSION['key'] ) ){
+            session_unset();
+            session_destroy();
+            return view('index');
+        }else{
+            return view('index');            
+        }       
+    }
+
     public function login(Request $request)
     {
         session_start();
         if(User::isUserExists($request->input_username) != -1)
             if(User::isCorrectPassword($request->input_username, $request->input_password) != -1){
                 $user = User::getUserByUsername($request->input_username);
+                if ( isset( $_SESSION['key'] ) ) {
+                    session_unset();
+                }
                 $_SESSION['key'] = $user->id;
-                return redirect()->action('dashboardController@index',[$user]);
+                //return redirect()->action('dashboardController@index');
+                return redirect('dashboard');
             }
         return redirect('login');
     }

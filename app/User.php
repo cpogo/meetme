@@ -84,6 +84,13 @@ class User extends Model implements AuthenticatableContract,
         return -1;
     }
 
+    public static function getUserById($id){
+        $user = User::where('id' , $id)->first();
+        if(isset($user))
+            return $user;
+        return -1;
+    }
+
     public function groups(){
         return $this->belongsToMany('App\Group')->withTimestamps();
     }

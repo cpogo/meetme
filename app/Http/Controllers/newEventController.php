@@ -6,6 +6,7 @@ use App\Reunion;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class newEventController extends Controller
 {
@@ -16,7 +17,17 @@ class newEventController extends Controller
      */
     public function index()
     {
-        return view ("newEvent");
+        session_start();
+        if ( isset( $_SESSION['key'] ) ) {
+            $user = User::getUserById( $_SESSION[ 'key' ] );
+            if( isset( $user ) ){
+                return view( 'newEvent' , [ 'user' => $user ] );
+            }else{
+                return view('errors/503' , [ 'error' => 'no se encontro el usuario en newEventController@index' ] );
+            }            
+        }else{
+            return view('index');
+        }
     }
 
     /**
