@@ -22,6 +22,24 @@ class Group extends Model
 
   public $timestamps = false;
 
+	//public static function existeGrupo($ngrupo){
+        //$group = Grupo::where('name', $ngrupo)->first();
+        //if(isset($group))
+        //    return 1;
+        //return -1;
+    //}
+
+
+    public static function crearGrupo($req){
+        //if (existeGrupo($req->nombre_grupo))
+        //    dd("Grupo existe");
+        //else
+        $grupo = new Group;
+        $grupo->name = $req->nombre_grupo;
+        $grupo->description = $req->grupo_descripcion;
+        $grupo->save();
+    }
+
   public function users(){
       return $this->belongsToMany('App\User')->withTimestamps();
   }

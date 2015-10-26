@@ -23,7 +23,9 @@ Route::post('registerUser', 'registerController@store');
 
 Route::get('register', 'registerController@index');
 
-Route::get('dashboard/{user}', 'dashboardController@index');
+//Route::get('dashboard/{user}', 'dashboardController@index');
+
+Route::get('dashboard', 'dashboardController@index');
 
 Route::get('new_event', 'newEventController@index');
 

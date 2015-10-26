@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Grupo;
+use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class groupController extends Controller
 
     public function store(Request $request)
     {
-        Grupo::crearGrupo($request);
+        Group::crearGrupo($request);
         return view('dashboard');
     }
 

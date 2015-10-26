@@ -14,10 +14,12 @@ class dashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user)
+    //public function index($user)
+     public function index()	
     {
-        session_start();
-        return view('dashboard')->with('user', $user);
+        //session_start();
+        //return view('dashboard')->with('user', $user);
+	return view('dashboard');
     }
 
     /**
