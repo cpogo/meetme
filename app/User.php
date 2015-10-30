@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Hash;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -43,7 +44,8 @@ class User extends Model implements AuthenticatableContract,
         $user = new User;
         $user->name = $newUser->input_name;
         $user->username = $newUser->input_username;
-        $user->password = $newUser->input_password;
+        $password = Hash::make($newUser->input_password); 
+        $user->password = $password;
         $user->email = $newUser->input_email;
         $time = strtotime($newUser->input_dbirth);
         $date_birth = date('Y-m-d', $time);
@@ -75,13 +77,8 @@ class User extends Model implements AuthenticatableContract,
         return -1;
     }
 
-    public static function isCorrectPassword($usuario, $password){
-        $user = User::where('username', $usuario)
-                       ->where('password', $password)
-                       ->first();
-        if(isset($user))
-            return 1;
-        return -1;
+    public static function isCorrectPassword($new_password, $password){
+        if( Hash::check($password , $new_password) ){ return 1; } else{ return 0; }        
     }
 
     public static function getUserById($id){
