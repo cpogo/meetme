@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Mail;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class registerController extends Controller
 {
@@ -39,11 +41,12 @@ class registerController extends Controller
     public function store(Request $request)
     {
         User::createUser($request);
-        $email = $request->input_email
-        Mail::send( 'email.bienvenido' , ['name'=>$request->input_name] , function($msj){
-            $msj->to($email , 'Grupo Meetme')->subject('que mas caoon...');
-        } );
-        return redirect('/');
+        $email = $request->input_email;
+        Mail::send( 'email.bienvenido' , ['name'=>$request->input_name] , function($msj) use($email){
+            $msj->to($email , 'Grupo Meetme')->from('metacris93@gmail.com')->subject('que mas caoon...');
+            /*OJO EN EL FROM COLOQUEN SUS CORREOS DE GMAIL*/
+        });
+        return redirect('/');        
     }
 
     /**
