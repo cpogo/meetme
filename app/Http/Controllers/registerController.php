@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -37,8 +38,9 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
+        session_start();
         User::createUser($request);
-        return redirect('/');
+        return redirect('login');
     }
 
     /**

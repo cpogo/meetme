@@ -102,26 +102,15 @@ class loginController extends Controller
     public function login(Request $request)
     {
         session_start();
-        //if(User::isUserExists($request->input_username) != -1)
-            //$password = Hash::make($request->input_password);
-            if ( User::isUserExists($request->input_username) ) {
-                $user = User::getUserByUsername($request->input_username);
-                if ( User::isCorrectPassword( $user->password , $request->input_password ) ) {                    
-                    $_SESSION['key'] = $user->id; 
-                    return redirect('dashboard');   
+        if ( User::isUserExists($request->input_username) ) 
+        {
+            $user = User::getUserByUsername($request->input_username);
+            if ( User::isCorrectPassword( $user->password , $request->input_password ) ) {                    
+                $_SESSION['key'] = $user->id; 
+                return redirect('dashboard');   
 
-                }else{ return redirect('login'); }
-            } 
-            return redirect('login');           
-            /*if(User::isCorrectPassword($request->input_username, $password) != -1){
-                $user = User::getUserByUsername($request->input_username);
-                if ( isset( $_SESSION['key'] ) ) {
-                    session_unset();
-                }
-                $_SESSION['key'] = $user->id;
-                //return redirect()->action('dashboardController@index');
-                return redirect('dashboard');
-            }
-        return redirect('login');*/
+            }else{ return redirect('login'); }
+        } 
+        return redirect('login');                 
     }
 }

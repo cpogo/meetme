@@ -18,7 +18,8 @@ class dashboardController extends Controller
      public function index()
     {
         session_start();
-        if ( isset( $_SESSION['key'] ) ) {
+        if ( isset( $_SESSION['key'] ) ) 
+        {
             $user = User::getUserById( $_SESSION[ 'key' ] );
             if( isset( $user ) ){
                 return view( 'dashboard' , [ 'user' => $user ] );

@@ -47,17 +47,20 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row uniform">
                 <div class="6u$ 12u$(xsmall)" style="width: 100%;">
-                    <input type="text" placeholder="Name" value="" id="name" name="input_name">
+                    <input type="text" placeholder="First Name..." value="" id="fname" name="first_name" required>
                 </div>
                 <div class="6u$ 12u$(xsmall)" style="width: 100%;">
-                    <input type="text" placeholder="User" value="" id="username" name="input_username">
+                    <input type="text" placeholder="Last Name..." value="" id="lname" name="last_name" required>
                 </div>
                 <div class="6u$ 12u$(xsmall)" style="width: 100%;">
-                    <input type="password" placeholder="Password" value="" id="password" name="input_password">
+                    <input type="email" placeholder="Email..." value="" id="email" name="input_email" required>
                 </div>
                 <div class="6u$ 12u$(xsmall)" style="width: 100%;">
-                    <input type="email" placeholder="Email" value="" id="email" name="input_email">
+                    <input type="text" placeholder="Username..." value="" id="username" name="input_username" required>
                 </div>
+                <div class="6u$ 12u$(xsmall)" style="width: 100%;">
+                    <input type="password" placeholder="Password" value="" id="password" name="input_password" required>
+                </div>                
                 <div class="12u$">
                     <div class="select-wrapper" style="color: rgba(255, 255, 255, 0.5) !important;">
                         <select id="demo-category" name="sexOption">
@@ -66,18 +69,7 @@
                             <option class="optionSelect" value="1"> Female </option>
                         </select>
                     </div>
-                </div>
-                <!--<div class="6u$ 12u$(xsmall)" style="width: 100%;">
-                    <input type="text" placeholder="Occupation" value="" id="occupation" name="input_occupation">
-                </div>-->
-                <div class="12u$">
-                    <textarea name="input_addinfo" id="demo-message" placeholder="Additional Information" rows="4"></textarea>
-                </div>
-                <div class="6u$ 12u$(xsmall)" style="width: 100%;">
-                    <label>Date of Birth</label>
-                    <input type="date" value="" id="datebirth" name="input_dbirth" style="color: rgba(255, 255, 255, 0.5) !important;">
-                </div>
-
+                </div>              
                 <div class="12u$">
                     <ul class="actions">
                         <li><input type="submit" class="special" value="Register"></li>
