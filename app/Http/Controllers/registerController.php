@@ -46,7 +46,7 @@ class registerController extends Controller
             $msj->to($email , 'Grupo Meetme')->from('metacris93@gmail.com')->subject('que mas caoon...');
             /*OJO EN EL FROM COLOQUEN SUS CORREOS DE GMAIL*/
         });
-        return redirect('/');        
+        return redirect('login');        
     }
 
     /**

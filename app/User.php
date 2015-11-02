@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'username', 'email', 'password', 'birthdate', 'sex', 'information'];
+protected $fillable = ['first_name', 'last_name', 'full_name', 'username', 'email', 'password', 'sex'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -42,16 +42,17 @@ class User extends Model implements AuthenticatableContract,
 
     public static function createUser($newUser){
         $user = new User;
-        $user->name = $newUser->input_name;
+        $user->first_name = $newUser->first_name;
+        $user->last_name = $newUser->last_name;
+        $user->full_name = "$newUser->first_name $newUser->last_name";
         $user->username = $newUser->input_username;
         $password = Hash::make($newUser->input_password); 
         $user->password = $password;
         $user->email = $newUser->input_email;
-        $time = strtotime($newUser->input_dbirth);
+        /*$time = strtotime($newUser->input_dbirth);
         $date_birth = date('Y-m-d', $time);
-        $user->birthdate = $date_birth;
+        $user->birthdate = $date_birth;*/
         $user->sex = $newUser->sexOption;
-        $user->information = $newUser->input_addinfo;
         $user->save();
     }
 

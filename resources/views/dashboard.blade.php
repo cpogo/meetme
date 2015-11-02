@@ -247,14 +247,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="{{ asset('images/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                  <span class="hidden-xs">{{$user->name}}</span>
+                  <span class="hidden-xs">{{$user->full_name}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="{{ asset('images/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                     <p>
-                      {{$user->name}}
+                      {{$user->full_name}}
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -295,7 +295,7 @@
               <img src="{{ asset('images/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{{$user->name}}</p>
+              <p>{{$user->full_name}}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -467,7 +467,7 @@
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                        {{$user->name}}
+                        {{$user->full_name}}
                       </a>
                       I would like to meet you to discuss the latest news about
                       the arrival of the new theme. They say it is going to be one the
