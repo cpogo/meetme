@@ -28,13 +28,5 @@ class groupController extends Controller
 
     }
 
-    public function store(Request $request)
-    {
-        session_start();
-        if(Group::existeGrupo($request->nombre_grupo)!=1)
-        Group::crearGrupo($request);
-        $user = User::getUserById( $_SESSION[ 'key' ] );
-        return view('dashboard')->with('user',$user);
-    }
-
+    
 }

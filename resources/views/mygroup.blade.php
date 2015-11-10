@@ -76,7 +76,6 @@
                           <div class="pull-left">
                             <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image">
                           </div>
-
                           <h4>
                             Support Team
                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
@@ -301,7 +300,7 @@
               <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{{$user->first_name}} {{$user->last_name}}</p>
+              <p>{{$user->name}}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -333,7 +332,7 @@
             <li class="active treeview">
               <a href="new_group">
                 <i class="fa fa-group"></i>
-                <span>Groups Info</span>
+                <span>New Group</span>
               </a>
             </li>
             </li>
@@ -358,7 +357,7 @@
 
         <!-- Main content -->
         <section class="content">
-          <div>
+          <div class="row">
             <div class="col-md-3">
               <div class="box box-primary">
                 <div class="box-header">
@@ -432,18 +431,8 @@
 
                 </div><!-- /.box-body -->
               </div>
-
-
-
             </div><!-- /.col -->
-            <div >
-                <h3 align="center">Your groups are:</h3><br/>
-              @forelse ($grupos as $grupo)
-                <h4 align="center"><a href="#">{{ $grupo->name }}</a></h4>
-              @empty
-                <h4 align="center">You do not have groups created yet :(</h4>
-              @endforelse
-            </div>
+
           </div>
         </section>
       </div>

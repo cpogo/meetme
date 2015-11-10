@@ -3,6 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use Hash;
+use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
 
 class Group extends Model
 {
@@ -18,26 +32,32 @@ class Group extends Model
    *
    * @var array
    */
-  protected $fillable = ['name', 'description'];
+  protected $fillable = ['name', 'description', 'owner'];
 
   public $timestamps = false;
 
-	//public static function existeGrupo($ngrupo){
-        //$group = Grupo::where('name', $ngrupo)->first();
-        //if(isset($group))
-        //    return 1;
-        //return -1;
-    //}
 
+    public static function existeGrupo($ngrupo){
+        $group = Group::where('name', $ngrupo)->first();
+        if(isset($group))
+            return 1;
+        return -1;
+    }
 
     public static function crearGrupo($req){
-        //if (existeGrupo($req->nombre_grupo))
-        //    dd("Grupo existe");
-        //else
-        $grupo = new Group;
-        $grupo->name = $req->nombre_grupo;
-        $grupo->description = $req->grupo_descripcion;
-        $grupo->save();
+            $grupo = new Group;
+            $grupo->name = $req->nombre_grupo;
+            $grupo->description = $req->grupo_descripcion;
+            $grupo->owner = $_SESSION['key'];
+            $grupo->save();
+
+    }
+
+
+    public static function GetGruposByOwner($id){
+
+         $grupos= Group::where('owner', $id)->get();
+         return $grupos;
     }
 
   public function users(){
