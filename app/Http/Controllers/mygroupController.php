@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 
-class groupController extends Controller
+class mygroupController extends Controller
 {
 
     public function index()
@@ -18,7 +18,7 @@ class groupController extends Controller
             $user = User::getUserById( $_SESSION[ 'key' ] );
             $grupos=Group::GetGruposByOwner($_SESSION[ 'key' ]);
             if( isset( $user ) ){
-                return view( 'newgroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
+                return view( 'mygroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
             }else{
                 return view('errors/503' , [ 'error' => 'no se encontro el usuario en groupController@index' ] );
             }            
@@ -28,5 +28,5 @@ class groupController extends Controller
 
     }
 
-    
+
 }

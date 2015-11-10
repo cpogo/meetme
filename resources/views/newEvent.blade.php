@@ -332,7 +332,7 @@
             <li class="treeview">
               <a href="new_group">
                 <i class="fa fa-group"></i>
-                <span>New Group</span>
+                <span>Groups Info</span>
               </a>
             </li>
             </li>

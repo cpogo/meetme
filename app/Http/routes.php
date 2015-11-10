@@ -27,7 +27,7 @@ Route::get('new_event', 'newEventController@index');
 
 Route::get('new_group', 'groupController@index');
 
-Route::get('mygroup','mygroupController@index');
+Route::get('mygroup', 'mygroupController@index');
 
 Route::post('createEvent', 'newEventController@store');
 

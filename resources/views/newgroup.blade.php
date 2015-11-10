@@ -439,7 +439,7 @@
             <div >
                 <h3 align="center">Your groups are:</h3><br/>
               @forelse ($grupos as $grupo)
-                <h4 align="center"><a href="#">{{ $grupo->name }}</a></h4>
+                <h4 align="center"><a href="mygroup">{{ $grupo->name }}</a></h4>
               @empty
                 <h4 align="center">You do not have groups created yet :(</h4>
               @endforelse
