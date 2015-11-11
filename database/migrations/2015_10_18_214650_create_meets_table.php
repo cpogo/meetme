@@ -15,9 +15,11 @@ class CreateMeetsTable extends Migration
         Schema::create('meets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('objetive');
             $table->string('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->string('suggestion');
             //$table->timestamps();
         });
         Schema::create('meet_user', function (Blueprint $table) {
@@ -25,6 +27,7 @@ class CreateMeetsTable extends Migration
           $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
           $table->integer('meet_id')->unsigned()->index();
           $table->foreign('meet_id')->references('id')->on('meets')->onDelete('cascade');
+          $table->boolean('owner');
           //$table->timestamps();
         });
     }

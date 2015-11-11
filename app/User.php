@@ -90,11 +90,11 @@ class User extends Model implements AuthenticatableContract,
     }
 
     public function groups(){
-        return $this->belongsToMany('App\Group')->withTimestamps();
+        return $this->belongsToMany('App\Group');
     }
 
     public function meets(){
-        return $this->belongsToMany('App\Meet')->withTimestamps();
+        return $this->belongsToMany('App\Meet');
     }
 
 }

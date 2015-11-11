@@ -16,6 +16,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\User;
 
 
 class Group extends Model
@@ -32,7 +33,7 @@ class Group extends Model
    *
    * @var array
    */
-  protected $fillable = ['name', 'description', 'owner'];
+  protected $fillable = ['name', 'description'];//, 'owner'
 
   public $timestamps = false;
 
@@ -45,23 +46,30 @@ class Group extends Model
     }
 
     public static function crearGrupo($req){
+            //session_start();
             $grupo = new Group;
             $grupo->name = $req->nombre_grupo;
             $grupo->description = $req->grupo_descripcion;
-            $grupo->owner = $_SESSION['key'];
-            $grupo->save();
+            $grupo->save();            
+            $user = User::getUserById($_SESSION['key']);
+            $grupo->users()->save( $user , ['owner'=>1] );
+            //$grupo->owner = $_SESSION['key'];            
+            
 
     }
 
 
     public static function GetGruposByOwner($id){
 
-         $grupos= Group::where('owner', $id)->get();
-         return $grupos;
+         /*$grupos= Group::where('owner', $id)->get();
+         return $grupos;*/
+         $user = User::getUserById($_SESSION['key']);
+         $groups = $user->groups()->get();
+         return $groups;
     }
 
   public function users(){
-      return $this->belongsToMany('App\User')->withTimestamps();
+      return $this->belongsToMany('App\User');
   }
 
 }
