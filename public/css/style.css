@@ -1,0 +1,37 @@
+#display{
+    width:210px;
+    position:absolute;
+    display:none;
+    overflow:hidden;
+    z-index:10;
+    border:solid 1px #666;
+    background-color: #FFFFFF;
+}
+.display_box{
+    padding-left:8px;
+    font-size: 14px;
+    height: 25px;
+    text-decoration: none;
+    color: #3b5999;
+}
+.display_box:hover{
+    background: #7f93bc;
+    color: #FFF;
+}
+li{
+	list-style: none;
+}
+.user:hover{
+	background: #7f93bc;
+    color: #FFF;
+}
+.group:hover{
+	background: #7f93bc;
+    color: #FFF;
+}
+.headerbox{
+	background-color: #cafca0;
+}
+.textbox{
+	color: #395dff;
+}
