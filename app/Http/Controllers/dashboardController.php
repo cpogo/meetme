@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Group;
 
 class dashboardController extends Controller
 {
@@ -31,6 +32,27 @@ class dashboardController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $html = "";
+        $users = User::members($request->buscar)->get();
+        $groups = Group::groups($request->buscar)->get();
+        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
+        foreach ( $users as $user ) {            
+            $html .="<li class='user' title='".$user->full_name."'><a href='#' style='text-decoration:none;'>
+                             <span class='display_box'>".$user->full_name."</span>
+                             </a>
+                        </li>"; 
+        }
+        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Groups</span></a></li>";
+        foreach ($groups as $group) {
+            $html .= "<li class='group' title='".$group->name."'><a href='#' style='text-decoration:none;'>
+                          <span class='display_box'>".$group->name."</span></a>
+                      </li>"; 
+        }
+        //return [$users,$groups];       
+        return $html;        
+    }
     /**
      * Show the form for creating a new resource.
      *

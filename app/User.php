@@ -89,6 +89,14 @@ class User extends Model implements AuthenticatableContract,
         return -1;
     }
 
+    public function scopeMembers($query , $full_name)
+    {
+        if( trim($full_name) != "" )
+        {
+            return $query->where( 'full_name' , 'LIKE' , '%$full_name%' );
+        }        
+    }
+
     public function groups(){
         return $this->belongsToMany('App\Group');
     }
@@ -96,5 +104,4 @@ class User extends Model implements AuthenticatableContract,
     public function meets(){
         return $this->belongsToMany('App\Meet');
     }
-
 }

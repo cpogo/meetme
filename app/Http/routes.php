@@ -33,4 +33,6 @@ Route::post('createEvent', 'newEventController@store');
 
 Route::post('createGroup','groupController@store');
 
+Route::get('searching','dashboardController@search');
+
 

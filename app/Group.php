@@ -68,6 +68,14 @@ class Group extends Model
          return $groups;
     }
 
+  public function scopeGroups($query,$group)
+  {
+      if( trim($group) != "" )
+      {
+          return $query->where('name','LIKE','%$group%');  
+      }     
+  }
+
   public function users(){
       return $this->belongsToMany('App\User');
   }

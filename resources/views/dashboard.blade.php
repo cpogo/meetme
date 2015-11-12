@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-
+    <!--style.css-->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,7 +45,7 @@
         <!-- Logo -->
         <a href="dashboard" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>M</b>ME</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Meet</b>Me</span>
         </a>
@@ -302,11 +303,12 @@
           <!-- search form -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <input type="text" name="buscar" id="busqueda" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
+            <div id="display"></div>
           </form>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -986,5 +988,6 @@
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('js/demo.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
   </body>
 </html>
