@@ -40,6 +40,7 @@ class registerController extends Controller
     {
         session_start();
         User::createUser($request);
+
         return redirect('login');
     }
 

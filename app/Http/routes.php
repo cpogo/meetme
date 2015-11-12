@@ -36,3 +36,7 @@ Route::post('createGroup','groupController@store');
 Route::get('searching','dashboardController@search');
 
 
+//Route::get('profile', 'ProfileController@index');
+//Route::get('profile/{username?}', 'ProfileController@index')->where('username', '[A-Za-z0-9]+');
+Route::get('profile/{username?}', ['uses' =>'ProfileController@index'])->where('username', '[A-Za-z0-9]+');
+Route::post('profile_settings', 'ProfileController@settings');
