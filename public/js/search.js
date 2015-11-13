@@ -6,7 +6,7 @@ $('#busqueda').keyup(function (){
     {
         $.ajax({//metodo ajax
 	        type: "GET",//aqui puede  ser get o post
-	        url: 'searching',//la url adonde se va a mandar la cadena a buscar
+	        url: '/searching',//la url adonde se va a mandar la cadena a buscar
 	        data: dataString,
 	        cache: false,
 	        success: function(data)//funcion que se activa al recibir un dato
@@ -15,7 +15,7 @@ $('#busqueda').keyup(function (){
 	        	$(".display").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
 	        }
         });
-    }return false;  
+    }return false;
 });
 
 $(document).mouseup(function (e)
