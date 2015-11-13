@@ -288,19 +288,19 @@
 											<div class="form-group">
 												<label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name">
+													<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" value="{{ $user->first_name }}" autofocus="autofocus">
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name">
+													<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" value="{{ $user->last_name }}">
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputUserName" class="col-sm-2 control-label">Username</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="inputUserName" name="inputUserName" placeholder="Username">
+													<input type="text" class="form-control" id="inputUserName" name="inputUserName" placeholder="Username" value="{{ $user->username }}">
 												</div>
 											</div>
 {{--
