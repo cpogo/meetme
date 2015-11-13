@@ -97,12 +97,13 @@
 							</div>
 						</div><!-- /.col -->
 						<div >
-							<h3 align="center">Your groups are:</h3><br/>
+							<h3 align="center">Your groups are bellow:</h3><br/>
 
 								<table align="center">
 									@forelse ($grupos as $grupo)
+
 									<tr>
-										<td><a href="mygroup">{{ $grupo->name }}&nbsp;&nbsp;</a></td>
+										<td><a href="mygroup" style="font-size:20px">"{{ $grupo->name }}"&nbsp;&nbsp;</a></td>
 										<td>&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Edit </button></td>
 										<td>&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Delete </button></td>
 									</tr>
