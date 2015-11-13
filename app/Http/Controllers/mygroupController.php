@@ -13,15 +13,17 @@ use File;
 class mygroupController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
     	session_start();
         if ( isset( $_SESSION['key'] ) ) {
+            $_SESSION['group'] = $id;
             $user = User::getUserById( $_SESSION[ 'key' ] );
-            $grupos=Group::GetGruposByOwner($_SESSION[ 'key' ]);
+            //$grupos=Group::GetGruposByOwner($_SESSION[ 'key' ]);
+            $grupo = Group::getGroupById($id);
 			$user->photo_url = (File::exists( public_path('img/user' . $user->id . '.jpg') )) ? asset('img/user' . $user->id . '.jpg') : asset('img/user.png');
             if( isset( $user ) ){
-                return view( 'mygroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
+                return view( 'mygroup' , [ 'user' => $user ],[ 'grupo' => $grupo ] );
             }else{
                 return view('errors/503' , [ 'error' => 'no se encontro el usuario en groupController@index' ] );
             }
@@ -31,5 +33,45 @@ class mygroupController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $html = "<ul class='sidebar-menu'>";
+        $users = User::members( $request->agregarMiembro )->get();
+        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
+        foreach ($users as $user) {
+            $html .="<li class='usergroup' data-name='".$user->id."'><a href='#' style='text-decoration:none;'>
+                             <span>".$user->full_name."</span>
+                             </a>
+                        </li>";
+        }
+        $html .= "</ul>";
+        return $html;
+        //return $users;
+    }
 
+    public function store(Request $request)
+    {
+        $userId = $_POST['usuario'];
+        session_start();
+        if($request->ajax()) {
+            dd("hola mundo");
+        }
+        $html = "";
+        /*$group = Group::getGroupById( $_SESSION['group'] );
+        $user = User::getUserById($userId);
+        $nombre = $user->full_name;
+        $group->users()->save( $user , ['owner'=>0] );
+        $html.= "<div class='col-sm-6 col-md-4'>
+                    <div class='thumbnail'>
+                        <img src='{{asset('images/avatar3.png')}}' class='img-circle img-responsive' alt='owner' width='140' height='140'>
+                        <div class='caption'>
+                            <h3 style='text-align: center;'>".$nombre."</h3>
+                            <h4 style='text-align: center;'>Member</h4>
+                        </div>
+                    </div>
+                </div>";*/
+        return $html;
+        //$user = User::getUserById($userId);
+        //$user->groups()->where('id', $_SESSION['group'])->save();
+    }
 }

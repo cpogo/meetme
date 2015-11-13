@@ -27,15 +27,19 @@ Route::get('new_event', 'newEventController@index');
 
 Route::get('new_group', 'groupController@index');
 
-Route::get('mygroup', 'mygroupController@index');
+Route::get('mygroup/{id}', ['uses' =>'mygroupController@index'])->where('id', '[0-9]+');
 
 Route::post('createEvent', 'newEventController@store');
 
 Route::post('createGroup','groupController@store');
 
-Route::get('searching','dashboardController@search');
+Route::get('/searching','dashboardController@search');
 
+Route::get('/lfmember','mygroupController@search');
 
+Route::get('showuser','ProfileController@userProfile');
+
+Route::post('/addmember','mygroupController@store');
 //Route::get('profile', 'ProfileController@index');
 //Route::get('profile/{username?}', 'ProfileController@index')->where('username', '[A-Za-z0-9]+');
 Route::get('profile/{username?}', ['uses' =>'ProfileController@index'])->where('username', '[A-Za-z0-9]+');

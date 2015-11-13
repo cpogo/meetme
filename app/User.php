@@ -93,7 +93,7 @@ class User extends Model implements AuthenticatableContract,
     {
         if( trim($full_name) != "" )
         {
-            return $query->where( 'full_name' , 'LIKE' , '%$full_name%' );
+            return $query->where( 'full_name' , 'LIKE' , '%$full_name' );
         }        
     }
 

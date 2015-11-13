@@ -6,7 +6,7 @@ $('#busqueda').keyup(function (){
     {
         $.ajax({//metodo ajax
 	        type: "GET",//aqui puede  ser get o post
-	        url: 'searching',//la url adonde se va a mandar la cadena a buscar
+	        url: '/searching',//la url adonde se va a mandar la cadena a buscar
 	        data: dataString,
 	        cache: false,
 	        success: function(data)//funcion que se activa al recibir un dato
@@ -18,13 +18,59 @@ $('#busqueda').keyup(function (){
     }return false;  
 });
 
+$('input').keyup(function (){
+    var texto = $(this).val();
+    var dataString = ''+ texto;
+    if( $(this).is('#addmember') ){
+        //evento( dataString , $('#addmember') , 'addmember' );
+        if( texto != '' )//si no tiene ningun valor la caja de texto no realiza ninguna accion
+        {
+            $.ajax({//metodo ajax
+                type: "GET",//aqui puede  ser get o post
+                url: '/lfmember',//la url adonde se va a mandar la cadena a buscar
+                data: dataString,
+                cache: false,
+                success: function(data)//funcion que se activa al recibir un dato
+                {
+                    //console.log(data);
+                    $(".displaygroup").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+                }
+            });
+        }return false;
+    }
+});
+
 $(document).mouseup(function (e)
 {
     var container = $(".display");
+    var container2 = $('.displaygroup');
 
     if (!container.is(e.target) // if the target of the click isn't the container...
         && container.has(e.target).length === 0) // ... nor a descendant of the container
     {
         container.hide();
     }
+    if(!container2.is(e.target) && container2.has(e.target).length === 0)
+    {
+        container2.hide();
+    }
 });
+
+//$(document).ready(function(){
+   $('.displaygroup').on('click', 'li.usergroup', function (event){
+        $.ajax({
+            type:"POST",
+            url: '/addmember',//la url adonde se va a mandar la cadena a buscar
+            data: { "usuario": $(this).data('name') },
+            cache: false,
+            asign:false,
+            success: function(data)//funcion que se activa al recibir un dato
+            {
+                 console.log(data);
+                //$(".membersgroup").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+            }
+        });
+        return false;
+    }); 
+//});
+

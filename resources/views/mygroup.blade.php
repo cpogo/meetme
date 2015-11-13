@@ -24,6 +24,13 @@
 						<div class="box box-primary">
 							<div class="box-header with-border">
 								<h3 class="box-title">Group name</h3>
+								<form class="navbar-form navbar-right" role="search">
+			                        <div class="input-group">
+			                            <input type="text" name="agregarMiembro" id="addmember" class="form-control" placeholder="Add a member...">                          
+			                            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>                         
+			                        </div>
+			                        <div class="displaygroup"></div>
+			                    </form>
 							</div>
 							<div class="box-body">
 								<div class="box-header with-border">
@@ -35,7 +42,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row membersgroup">
 									<div class="col-sm-6 col-md-4">
 										<div class="thumbnail">
 											<img src="{{asset('images/avatar3.png')}}" class="img-circle img-responsive" alt="owner" width="140" height="140">

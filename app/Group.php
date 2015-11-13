@@ -76,6 +76,11 @@ class Group extends Model
       }     
   }
 
+  public static function getGroupById($id)
+    {
+        return Group::find($id);   
+    }
+
   public function users(){
       return $this->belongsToMany('App\User');
   }
