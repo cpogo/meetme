@@ -4,6 +4,7 @@
 		@include('app.styles_pages')
 @endsection
 @section('main')
+
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
 				<!-- Content Header (Page header) -->
@@ -97,11 +98,22 @@
 						</div><!-- /.col -->
 						<div >
 							<h3 align="center">Your groups are:</h3><br/>
-						@forelse ($grupos as $grupo)
-							<h4 align="center"><a href="mygroup">{{ $grupo->name }}</a></h4>
-						@empty
-							<h4 align="center">You do not have groups created yet :(</h4>
-						@endforelse
+
+								<table align="center">
+									@forelse ($grupos as $grupo)
+									<tr>
+										<td><a href="mygroup">{{ $grupo->name }}&nbsp;&nbsp;</a></td>
+										<td>&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Edit </button></td>
+										<td>&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Delete </button></td>
+									</tr>
+										<tr>
+											<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+										</tr>
+
+									@empty
+										<h4 align="center">You do not have groups created yet :(</h4>
+									@endforelse
+								</table>
 						</div>
 					</div>
 				</section>
