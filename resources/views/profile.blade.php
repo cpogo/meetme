@@ -86,7 +86,9 @@
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
 {{--									<li><a href="#timeline" data-toggle="tab">Timeline</a></li>--}}
+@if ($user->id == $profile->id)
 									<li><a href="#settings" data-toggle="tab">Settings</a></li>
+@endif
 								</ul>
 								<div class="tab-content">
 									<div class="active tab-pane" id="activity">
@@ -271,7 +273,7 @@
 										</ul>
 									</div><!-- /.tab-pane -->
 --}}
-
+@if ($user->id == $profile->id)
 									<div class="tab-pane" id="settings">
 										<form class="form-horizontal" action="{{ url('profile_settings') }}" method="post">
 											{{ csrf_field() }}
@@ -286,19 +288,19 @@
 											<div class="form-group">
 												<label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name">
+													<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" value="{{ $user->first_name }}" autofocus="autofocus">
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name">
+													<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" value="{{ $user->last_name }}">
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputUserName" class="col-sm-2 control-label">Username</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="inputUserName" name="inputUserName" placeholder="Username">
+													<input type="text" class="form-control" id="inputUserName" name="inputUserName" placeholder="Username" value="{{ $user->username }}">
 												</div>
 											</div>
 {{--
@@ -331,6 +333,7 @@
 											</div>
 										</form>
 									</div><!-- /.tab-pane -->
+@endif
 								</div><!-- /.tab-content -->
 							</div><!-- /.nav-tabs-custom -->
 						</div><!-- /.col -->
@@ -340,15 +343,5 @@
 			</div><!-- /.content-wrapper -->
 @endsection
 @section('scripts')
-		<!-- jQuery 2.1.4 -->
-		<script src="{{ asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-		<!-- Bootstrap 3.3.5 -->
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-		<!-- FastClick -->
-		<script src="{{ asset('plugins/fastclick/fastclick.min.js') }}"></script>
-		<!-- AdminLTE App -->
-		<script src="{{ asset('js/app.min.js') }}"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="{{ asset('js/demo.js') }}"></script>
-		<script src="{{ asset('js/search.js') }}"></script>
+		@include('app.scripts_page_')
 @endsection

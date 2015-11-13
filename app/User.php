@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract,
         $user->last_name = $newUser->last_name;
         $user->full_name = "$newUser->first_name $newUser->last_name";
         $user->username = $newUser->input_username;
-        $password = Hash::make($newUser->input_password); 
+        $password = Hash::make($newUser->input_password);
         $user->password = $password;
         $user->email = $newUser->input_email;
         /*$time = strtotime($newUser->input_dbirth);
@@ -66,8 +66,8 @@ class User extends Model implements AuthenticatableContract,
     public static function isUserExists($usuario){
         $user = User::where('username', $usuario)->first();
         if(isset($user))
-            return 1;
-        return -1;
+            return true;
+        return false;
     }
 
     public static function getUserByUsername($username){
@@ -75,26 +75,26 @@ class User extends Model implements AuthenticatableContract,
         if(isset($user)){
             return $user;// return object user
         }
-        return -1;
+        return false;
     }
 
     public static function isCorrectPassword($new_password, $password){
-        if( Hash::check($password , $new_password) ){ return 1; } else{ return 0; }        
+        if( Hash::check($password , $new_password) ){ return 1; } else{ return 0; }
     }
 
     public static function getUserById($id){
         $user = User::where('id' , $id)->first();
         if(isset($user))
             return $user;
-        return -1;
+        return false;
     }
 
     public function scopeMembers($query , $full_name)
     {
         if( trim($full_name) != "" )
-        {
-            return $query->where( 'full_name' , 'LIKE' , '%$full_name' );
-        }        
+        {       
+            return $query->where( 'full_name' , 'LIKE' , '%$full_name%' );
+        }
     }
 
     public function groups(){

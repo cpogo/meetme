@@ -43,7 +43,7 @@ class dashboardController extends Controller
 		$groups = Group::groups($request->buscar)->get();
 		$html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
 		foreach ($users as $user) {
-			$html .="<li class='user'><a href='profile/" . $user->username . "' style='text-decoration:none;'>
+			$html .="<li class='user' title='" . $user->full_name . "'><a href='". url('profile/' . $user->username) ."' style='text-decoration:none;'>
                              <span class='display_box'>" . $user->full_name . "</span>
                              </a>
                         </li>";

@@ -15,7 +15,7 @@ $('#busqueda').keyup(function (){
 	        	$(".display").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
 	        }
         });
-    }return false;  
+    }return false;
 });
 
 $('input').keyup(function (){
