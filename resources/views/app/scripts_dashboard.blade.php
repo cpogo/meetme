@@ -38,3 +38,4 @@
 		<script src="{{ asset('js/dashboard.js') }}"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="{{ asset('js/demo.js') }}"></script>
+		<script src="{{ asset('js/search.js') }}"></script>

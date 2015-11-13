@@ -29,6 +29,7 @@
 		<script src="{{ asset('js/app.min.js') }}"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="{{ asset('js/demo.js') }}"></script>
+		<script src="{{ asset('js/search.js') }}"></script>
 		<!-- fullCalendar 2.2.5 -->
 {{--		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>--}}
 		<script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
