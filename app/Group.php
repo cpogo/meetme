@@ -50,11 +50,11 @@ class Group extends Model
             $grupo = new Group;
             $grupo->name = $req->nombre_grupo;
             $grupo->description = $req->grupo_descripcion;
-            $grupo->save();            
+            $grupo->save();
             $user = User::getUserById($_SESSION['key']);
             $grupo->users()->save( $user , ['owner'=>1] );
-            //$grupo->owner = $_SESSION['key'];            
-            
+            //$grupo->owner = $_SESSION['key'];
+
 
     }
 
@@ -72,13 +72,13 @@ class Group extends Model
   {
       if( trim($group) != "" )
       {
-          return $query->where('name','LIKE','%$group%');  
-      }     
+          return $query->where('name','LIKE',"%$group%");
+      }
   }
 
   public static function getGroupById($id)
     {
-        return Group::find($id);   
+        return Group::find($id);
     }
 
   public function users(){

@@ -7,7 +7,7 @@ $('#busqueda').keyup(function (){
         $.ajax({//metodo ajax
 	        type: "GET",//aqui puede  ser get o post
 	        url: '/searching',//la url adonde se va a mandar la cadena a buscar
-	        data: dataString,
+	        data: { 'buscar' : dataString },
 	        cache: false,
 	        success: function(data)//funcion que se activa al recibir un dato
 	        {
@@ -28,7 +28,7 @@ $('input').keyup(function (){
             $.ajax({//metodo ajax
                 type: "GET",//aqui puede  ser get o post
                 url: '/lfmember',//la url adonde se va a mandar la cadena a buscar
-                data: dataString,
+                data: { 'agregarMiembro' : dataString },
                 cache: false,
                 success: function(data)//funcion que se activa al recibir un dato
                 {
@@ -57,7 +57,7 @@ $(document).mouseup(function (e)
 });
 
 //$(document).ready(function(){
-   $('.displaygroup').on('click', 'li.usergroup', function (event){
+   $('.displaygroup').on('click', '.usergroup', function (event){
         $.ajax({
             type:"POST",
             url: '/addmember',//la url adonde se va a mandar la cadena a buscar
@@ -71,6 +71,6 @@ $(document).mouseup(function (e)
             }
         });
         return false;
-    }); 
+    });
 //});
 

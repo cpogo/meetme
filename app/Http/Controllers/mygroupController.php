@@ -21,7 +21,7 @@ class mygroupController extends Controller
             $user = User::getUserById( $_SESSION[ 'key' ] );
             //$grupos=Group::GetGruposByOwner($_SESSION[ 'key' ]);
             $grupo = Group::getGroupById($id);
-			$user->photo_url = (File::exists( public_path('img/user' . $user->id . '.jpg') )) ? asset('img/user' . $user->id . '.jpg') : asset('img/user.png');
+
             if( isset( $user ) ){
                 return view( 'mygroup' , [ 'user' => $user ],[ 'grupo' => $grupo ] );
             }else{
@@ -35,16 +35,40 @@ class mygroupController extends Controller
 
     public function search(Request $request)
     {
-        $html = "<ul class='sidebar-menu'>";
-        $users = User::members( $request->agregarMiembro )->get();
-        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
-        foreach ($users as $user) {
-            $html .="<li class='usergroup' data-name='".$user->id."'><a href='#' style='text-decoration:none;'>
-                             <span>".$user->full_name."</span>
-                             </a>
-                        </li>";
-        }
-        $html .= "</ul>";
+		$html = '';
+
+		$users = User::members( $request->agregarMiembro )->get();
+
+		$html .= '<div class="list-group">';
+		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
+
+		foreach ($users as $user) {
+			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->first_name . ' ' . $user->last_name . '" class="list-group-item usergroup" data-name="' . $user->id . '">';
+			$html .= '		<div class="media">';
+			$html .= '			<div class="media-left media-middle">';
+			$html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
+			$html .= '			</div>';
+			$html .= '			<div class="media-body">';
+			$html .= '				<h4 class="media-heading">' . $user->first_name . ' ' . $user->last_name . '</h4>';
+			$html .= '				<div>' . $user->username . '</div>';
+			$html .= '			</div>';
+			$html .= '		</div>';
+			$html .= '	</a>';
+		}
+
+		$html .= '</div>';
+
+//        $html = "<ul class='sidebar-menu'>";
+//        $users = User::members( $request->agregarMiembro )->get();
+//        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
+//        foreach ($users as $user) {
+//            $html .="<li class='usergroup' data-name='".$user->id."'><a href='#' style='text-decoration:none;'>
+//                             <span>".$user->full_name."</span>
+//                             </a>
+//                        </li>";
+//        }
+//        $html .= "</ul>";
+
         return $html;
         //return $users;
     }

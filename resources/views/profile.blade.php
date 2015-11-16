@@ -23,9 +23,9 @@
 							<!-- Profile Image -->
 							<div class="box box-primary">
 								<div class="box-body box-profile">
-									<img class="profile-user-img img-responsive img-circle" src="{{ $profile->photo_url }}" alt="User profile picture">
+									<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $profile->id .'.jpg') }}" alt="{{$profile->first_name}} {{$profile->last_name}}">
 									<h3 class="profile-username text-center">{{$profile->first_name}} {{$profile->last_name}}</h3>
-									<p class="text-muted text-center">{{$profile->username}} {{-- $profile->temp --}} {{-- $user->temp --}}</p>
+									<p class="text-muted text-center">{{$profile->username}}</p>
 
 {{--
 									<ul class="list-group list-group-unbordered">

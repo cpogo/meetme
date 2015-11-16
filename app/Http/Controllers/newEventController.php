@@ -22,7 +22,7 @@ class newEventController extends Controller
         session_start();
         if ( isset( $_SESSION['key'] ) ) {
             $user = User::getUserById( $_SESSION[ 'key' ] );
-			$user->photo_url = (File::exists( public_path('img/user' . $user->id . '.jpg') )) ? asset('img/user' . $user->id . '.jpg') : asset('img/user.png');
+
             if( isset( $user ) ){
                 return view( 'newEvent' , [ 'user' => $user ] );
             }else{

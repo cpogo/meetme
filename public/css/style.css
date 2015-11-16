@@ -1,3 +1,4 @@
+/*
 .display, .displaygroup{
     width:210px;
     position:absolute;
@@ -35,3 +36,33 @@ li{
 .textbox{
 	color: #395dff;
 }
+*/
+
+
+.display {position: absolute; display: none; z-index:10; margin-top: -10px; right: 10px; left: 10px;}
+.display .list-group {margin-bottom: 0}
+.display .list-group-item {padding-top: 8px; padding-bottom: 8px;}
+.display a.list-group-item,
+.display button.list-group-item {color: #555;}
+.display .list-group-item {background-color: #fff;}
+.display a.list-group-item-success,
+.display button.list-group-item-success {color: #3c763d;}
+.display a.list-group-item-danger,
+.display button.list-group-item-danger {color: #a94442;}
+.display .list-group-item-success {color: #3c763d; background-color: #dff0d8;}
+.display .list-group-item-danger {color: #a94442; background-color: #f2dede;}
+.display .media-body {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+
+.displaygroup {position: absolute; display: none; z-index:10; right: 10px; width: 210px;}
+.displaygroup .list-group {margin-bottom: 0}
+.displaygroup .list-group-item {padding-top: 8px; padding-bottom: 8px;}
+.displaygroup a.list-group-item,
+.displaygroup button.list-group-item {color: #555;}
+.displaygroup .list-group-item {background-color: #fff;}
+.displaygroup a.list-group-item-success,
+.displaygroup button.list-group-item-success {color: #3c763d;}
+.displaygroup a.list-group-item-danger,
+.displaygroup button.list-group-item-danger {color: #a94442;}
+.displaygroup .list-group-item-success {color: #3c763d; background-color: #dff0d8;}
+.displaygroup .list-group-item-danger {color: #a94442; background-color: #f2dede;}
+.displaygroup .media-body {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}

@@ -73,6 +73,7 @@ class User extends Model implements AuthenticatableContract,
     public static function getUserByUsername($username){
         $user = User::where('username', $username)->first();
         if(isset($user)){
+//			$user->photo_url = asset('img/user' . $user->id . '.jpg');
             return $user;// return object user
         }
         return false;
@@ -84,16 +85,18 @@ class User extends Model implements AuthenticatableContract,
 
     public static function getUserById($id){
         $user = User::where('id' , $id)->first();
-        if(isset($user))
-            return $user;
+        if(isset($user)){
+//			$user->photo_url = asset('img/user' . $user->id . '.jpg');
+			return $user;
+		}
         return false;
     }
 
     public function scopeMembers($query , $full_name)
     {
         if( trim($full_name) != "" )
-        {       
-            return $query->where( 'full_name' , 'LIKE' , '%$full_name%' );
+        {
+            return $query->where( 'full_name' , 'LIKE' , "%$full_name%" );
         }
     }
 

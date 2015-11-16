@@ -24,7 +24,6 @@ class dashboardController extends Controller
         if ( isset( $_SESSION['key'] ) )
         {
             $user = User::getUserById( $_SESSION[ 'key' ] );
-			$user->photo_url = (File::exists( public_path('img/user' . $user->id . '.jpg') )) ? asset('img/user' . $user->id . '.jpg') : asset('img/user.png');
 
             if( isset( $user ) ){
                 return view( 'dashboard' , [ 'user' => $user ] );
@@ -38,22 +37,62 @@ class dashboardController extends Controller
 
     public function search(Request $request)
 	{
-		$html = "";
+		$html = '';
+
 		$users = User::members($request->buscar)->get();
 		$groups = Group::groups($request->buscar)->get();
-		$html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
+
+//		$html .= '<li class="headerbox"><a href="#"><span class="textbox">Users</span></a></li>';
+
+		$html .= '<div class="list-group">';
+		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
+
 		foreach ($users as $user) {
-			$html .="<li class='user' title='" . $user->full_name . "'><a href='". url('profile/' . $user->username) ."' style='text-decoration:none;'>
-                             <span class='display_box'>" . $user->full_name . "</span>
-                             </a>
-                        </li>";
+//			$html .= '<li class="user" title="' . $user->full_name . '">';
+//			$html .= '	<a href="'. url('profile/' . $user->username) .'" style="text-decoration:none;">';
+//			$html .= '		<span class="display_box">' . $user->full_name . '</span>';
+//			$html .= '	</a>';
+//			$html .= '</li>';
+
+			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->first_name . ' ' . $user->last_name . '" class="list-group-item">';
+			$html .= '		<div class="media">';
+			$html .= '			<div class="media-left media-middle">';
+			$html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
+			$html .= '			</div>';
+			$html .= '			<div class="media-body">';
+			$html .= '				<h4 class="media-heading">' . $user->first_name . ' ' . $user->last_name . '</h4>';
+			$html .= '				<div>' . $user->username . '</div>';
+			$html .= '			</div>';
+			$html .= '		</div>';
+			$html .= '	</a>';
 		}
-		$html .= "<li class='headerbox'><a href='#'><span class='textbox'>Groups</span></a></li>";
+
+//		$html .= '<li class="headerbox"><a href="#"><span class="textbox">Groups</span></a></li>';
+
+		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($groups->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . count($groups) . '</span><i class="fa fa-group"></i> Groups</a>';
+
 		foreach ($groups as $group) {
-			$html .= "<li class='group' title='" . $group->name . "'><a href='#' style='text-decoration:none;'>
-                          <span class='display_box'>" . $group->name . "</span></a>
-                      </li>";
+//			$html .= '<li class="group" title="' . $group->name . '">';
+//			$html .= '	<a href="#" style="text-decoration:none;">';
+//			$html .= '		<span class="display_box">' . $group->name . '</span>';
+//			$html .= '	</a>';
+//			$html .= '</li>';
+
+			$html .= '	<a href="' . url('mygroup/' . $group->id) . '" title="' . $group->name . '" class="list-group-item">';
+			$html .= '		<div class="media">';
+			$html .= '			<div class="media-left media-middle">';
+			$html .= '				<div class="media-object img-circle img-sm"></div>';
+			$html .= '			</div>';
+			$html .= '			<div class="media-body">';
+			$html .= '				<h4 class="media-heading">' . $group->name . '</h4>';
+			$html .= '				<div>' . $group->description . '</div>';
+			$html .= '			</div>';
+			$html .= '		</div>';
+			$html .= '	</a>';
 		}
+
+		$html .= '</div>';
+
 		//return [$users,$groups];
 		return $html;
 	}

@@ -29,12 +29,6 @@ class ProfileController extends Controller
 			if(!isset($username) || empty($username)) $username = $user->username;
 			$profile = User::getUserByUsername($username);
 
-			$user->photo_url = (File::exists( public_path('img/user' . $user->id . '.jpg') )) ? asset('img/user' . $user->id . '.jpg') : asset('img/user.png');
-			$profile->photo_url = (File::exists( public_path('img/user' . $profile->id . '.jpg') )) ? asset('img/user' . $profile->id . '.jpg') : asset('img/user.png');
-
-			$user->temp = asset( 'img/user' . $user->id . '-160x160.jpg');
-			$profile->temp = asset( 'img/user' . $profile->id . '-160x160.jpg');
-
 			if (isset($user)) {
 				return view( 'profile' , [ 'user' => $user, 'profile' => $profile ] );
 			}
@@ -130,12 +124,6 @@ class ProfileController extends Controller
 			if(!isset($username) || empty($username)) $username = $user->username;
 			$profile = User::getUserByUsername($username);
 
-			$user->photo_url = (File::exists( public_path('img/user' . $user->id . '.jpg') )) ? asset('img/user' . $user->id . '.jpg') : asset('img/user.png');
-			$profile->photo_url = (File::exists( public_path('img/user' . $profile->id . '.jpg') )) ? asset('img/user' . $profile->id . '.jpg') : asset('img/user.png');
-
-			$user->temp = asset( 'img/user' . $user->id . '-160x160.jpg');
-			$profile->temp = asset( 'img/user' . $profile->id . '-160x160.jpg');
-
 			if (isset($user)) {
 				return view( 'profile' , [ 'user' => $user, 'profile' => $profile ] );
 			}
@@ -143,4 +131,10 @@ class ProfileController extends Controller
 			return view('index');
 		}
     }
+
+	public function photo($id){
+		//$photo_url = (File::exists( public_path('img/user' . $id . '.jpg') )) ? asset('img/user' . $id. '.jpg') : asset('img/user.png');
+		$photo_url = (File::exists( public_path('img/user' . $id . '.jpg') )) ? 'img/user' . $id. '.jpg' : 'img/user.png';
+		return redirect($photo_url, 302);
+	}
 }

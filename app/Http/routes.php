@@ -40,7 +40,14 @@ Route::get('/lfmember','mygroupController@search');
 Route::get('showuser','ProfileController@userProfile');
 
 Route::post('/addmember','mygroupController@store');
+
+
+
 //Route::get('profile', 'ProfileController@index');
 //Route::get('profile/{username?}', 'ProfileController@index')->where('username', '[A-Za-z0-9]+');
-Route::get('profile/{username?}', ['uses' =>'ProfileController@index'])->where('username', '[A-Za-z0-9]+');
+Route::get('profile/{username?}', ['uses' =>'ProfileController@index'])
+		->where('username', '[A-Za-z0-9]+');
 Route::post('profile_settings', 'ProfileController@settings');
+
+Route:get('img/user{id}.jpg', 'ProfileController@photo')
+		->where('id', '[0-9]+');
