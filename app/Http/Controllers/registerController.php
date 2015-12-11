@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Mail;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Socialite;
 
