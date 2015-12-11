@@ -53,7 +53,6 @@ class User extends Model implements AuthenticatableContract,
         /*$time = strtotime($newUser->input_dbirth);
         $date_birth = date('Y-m-d', $time);
         $user->birthdate = $date_birth;*/
-        //$user->sex = $newUser->sexOption;
         $user->save();
     }
 

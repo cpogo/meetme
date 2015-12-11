@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('site.layout')
 @section('title', 'Register')
 @section('form')

@@ -179,7 +179,6 @@
 								</div>
 							</div><!-- /.box (chat box) -->
 --}}
-
 							<!-- TO DO List -->
 							<div class="box box-primary">
 								<div class="box-header">
@@ -354,7 +353,6 @@
 								</div>
 							</div>
 							<!-- /.box -->
-
 							<!-- solid sales graph -->
 							<div class="box box-solid bg-teal-gradient">
 								<div class="box-header">
@@ -422,7 +420,6 @@
 											<div class="progress xs">
 												<div class="progress-bar progress-bar-green" style="width: 90%;"></div>
 											</div>
-
 											<div class="clearfix">
 												<span class="pull-left">Task #2</span>
 												<small class="pull-right">70%</small>
