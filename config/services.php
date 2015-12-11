@@ -34,5 +34,10 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'google' => [
+        'client_id' => '404653044604-b8l65dkb29t0l7bsdaf5trv4enb99t99.apps.googleusercontent.com',
+        'client_secret' => 'sItkYwQprVpI1GtrQIGvB8Xe',
+        'redirect' => 'http://localhost:8000/registerGoogle',
+    ],
 
 ];

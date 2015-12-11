@@ -8,6 +8,8 @@ use Illuminate\Routing\Redirector;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Mail;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Socialite;
 
 class registerController extends Controller
 {
@@ -19,6 +21,28 @@ class registerController extends Controller
     public function index()
     {
         return view('register');
+    }
+
+    public function googleAuth()
+    {
+        session_start();
+        $user = Socialite::driver('google')->user();
+        $newUser = User::getUserByEmail($user->email);
+        if( !$newUser )
+        {
+            User::registerGoogleAccount($user->name, $user->email);
+            return redirect()->route('loginSocial', $user->email);
+        }
+        else
+        {
+            $_SESSION['key'] = $newUser->id;
+            return redirect('dashboard');
+        }
+    }
+
+    public function signIn()
+    {
+        return Socialite::driver('google')->redirect();
     }
 
     /**
@@ -43,7 +67,7 @@ class registerController extends Controller
         User::createUser($request);
         $email = $request->input_email;
         Mail::send( 'email.bienvenido' , ['name'=>$request->input_name] , function($msj) use($email){
-            $msj->to($email , 'Grupo Meetme')->from('metacris93@gmail.com')->subject('que mas caoon...');
+            $msj->to($email , 'Grupo Meetme')->from('metacris93@gmail.com')->subject('Welcome to MeetMe');
             /*OJO EN EL FROM COLOQUEN SUS CORREOS DE GMAIL*/
         });
         return redirect('login');

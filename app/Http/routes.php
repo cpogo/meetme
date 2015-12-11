@@ -17,9 +17,15 @@ Route::get('login', 'loginController@index');
 
 Route::post('loginUser', 'loginController@login');
 
+Route::get('login/{email}', ['as' => 'loginSocial', 'uses' => 'loginController@loginSocial']);
+
 Route::post('registerUser', 'registerController@store');
 
 Route::get('register', 'registerController@index');
+
+Route::get('signIn', 'registerController@signIn');
+
+Route::get('registerGoogle', 'registerController@googleAuth');
 
 Route::get('dashboard', 'dashboardController@index');
 
@@ -41,12 +47,11 @@ Route::get('showuser','ProfileController@userProfile');
 
 Route::post('/addmember','mygroupController@store');
 
-
-
 //Route::get('profile', 'ProfileController@index');
 //Route::get('profile/{username?}', 'ProfileController@index')->where('username', '[A-Za-z0-9]+');
 Route::get('profile/{username?}', ['uses' =>'ProfileController@index'])
 		->where('username', '[A-Za-z0-9]+');
+
 Route::post('profile_settings', 'ProfileController@settings');
 
 Route:get('img/user{id}.jpg', 'ProfileController@photo')

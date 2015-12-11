@@ -24,7 +24,7 @@
 							<div class="box box-primary">
 								<div class="box-body box-profile">
 									<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $profile->id .'.jpg') }}" alt="{{$profile->first_name}} {{$profile->last_name}}">
-									<h3 class="profile-username text-center">{{$profile->first_name}} {{$profile->last_name}}</h3>
+									<h3 class="profile-username text-center">{{$profile->full_name}}</h3>
 									<p class="text-muted text-center">{{$profile->username}}</p>
 
 {{--
@@ -285,7 +285,7 @@
 												</div>
 											</div>
 --}}
-											<div class="form-group">
+											<!--<div class="form-group">
 												<label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
 												<div class="col-sm-10">
 													<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" value="{{ $user->first_name }}" autofocus="autofocus">
@@ -295,6 +295,12 @@
 												<label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
 												<div class="col-sm-10">
 													<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" value="{{ $user->last_name }}">
+												</div>
+											</div>-->
+											<div class="form-group">
+												<label for="inputFirstName" class="col-sm-2 control-label">Full Name</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control" id="FullName" name="inputFullName" placeholder="Full name" value="{{ $user->full_name }}" autofocus="autofocus">
 												</div>
 											</div>
 											<div class="form-group">

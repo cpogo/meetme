@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['first_name', 'last_name', 'full_name', 'username', 'email', 'password', 'sex'];
+    protected $fillable = ['full_name', 'username', 'email', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -42,9 +42,10 @@ class User extends Model implements AuthenticatableContract,
 
     public static function createUser($newUser){
         $user = new User;
-        $user->first_name = $newUser->first_name;
-        $user->last_name = $newUser->last_name;
-        $user->full_name = "$newUser->first_name $newUser->last_name";
+        //$user->first_name = $newUser->first_name;
+        //$user->last_name = $newUser->last_name;
+        //$user->full_name = "$newUser->first_name $newUser->last_name";
+        $user->full_name = $newUser->full_name;
         $user->username = $newUser->input_username;
         $password = Hash::make($newUser->input_password);
         $user->password = $password;
@@ -52,7 +53,7 @@ class User extends Model implements AuthenticatableContract,
         /*$time = strtotime($newUser->input_dbirth);
         $date_birth = date('Y-m-d', $time);
         $user->birthdate = $date_birth;*/
-        $user->sex = $newUser->sexOption;
+        //$user->sex = $newUser->sexOption;
         $user->save();
     }
 
@@ -79,6 +80,15 @@ class User extends Model implements AuthenticatableContract,
         return false;
     }
 
+    public static function getUserByEmail($email)
+    {
+        $user = User::where('email',$email)->first();
+        if(isset($user)){
+            return $user;
+        }
+        return false;
+    }
+
     public static function isCorrectPassword($new_password, $password){
         if( Hash::check($password , $new_password) ){ return 1; } else{ return 0; }
     }
@@ -98,6 +108,17 @@ class User extends Model implements AuthenticatableContract,
         {
             return $query->where( 'full_name' , 'LIKE' , "%$full_name%" );
         }
+    }
+
+    public static function registerGoogleAccount($fullname, $mail)
+    {
+        $user = new User;
+        $user->full_name = $fullname;
+        $user->email = $mail;
+        $username = explode('@', $user->email);
+        $user->username = $username[0];
+        $user->password = '';
+        $user->save();
     }
 
     public function groups(){

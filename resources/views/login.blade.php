@@ -21,6 +21,11 @@
 						</div>
 					</div>
 				</form>
+				<div class="col-xs-12 col-sm-6 col-lg-3">
+					<div class="box">
+						<a href="{{ url('signIn') }}" class="button fit">Join with Google</a>
+					</div>
+				</div>				
 			</section>
 		</div>
 @endsection

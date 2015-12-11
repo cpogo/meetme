@@ -95,22 +95,31 @@ class loginController extends Controller
             session_destroy();
             return view('index');
         }else{
-            return view('index');            
-        }       
+            return view('index');
+        }
     }
 
     public function login(Request $request)
     {
         session_start();
-        if ( User::isUserExists($request->input_username) ) 
+        if ( User::isUserExists($request->input_username) )
         {
             $user = User::getUserByUsername($request->input_username);
-            if ( User::isCorrectPassword( $user->password , $request->input_password ) ) {                    
-                $_SESSION['key'] = $user->id; 
-                return redirect('dashboard');   
+            if ( User::isCorrectPassword( $user->password , $request->input_password ) ) {
+                $_SESSION['key'] = $user->id;
+                return redirect('dashboard');
 
             }else{ return redirect('login'); }
-        } 
-        return redirect('login');                 
+        }
+        return redirect('login');
     }
+
+    public function loginSocial($email)
+    {
+        session_start();
+        $user = User::getUserByEmail($email);
+        $_SESSION['key'] = $user->id;
+        return redirect('dashboard');
+    }
+
 }
