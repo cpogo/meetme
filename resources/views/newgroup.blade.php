@@ -1,11 +1,10 @@
 @extends('app.layout')
-@section('title', 'New Group')
+@section('title', 'Group Info')
 @section('stylesheet_pages')
 		@include('app.styles_pages')
 @endsection
 @section('main')
 
-			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
 				<!-- Content Header (Page header) -->
 				<section class="content-header">
@@ -40,17 +39,8 @@
 												<input name="nombre_grupo" type="text" class="form-control" placeholder="Your group's name">
 											</div>
 										</div>
-										<!-- Event Objective -->
-										<!--<div class="form-group">
-										  <label>Objective</label>
-										  <div class="input-group">
-											<div class="input-group-addon">
-											  <i class="fa fa-hand-o-right"></i>
-											</div>
-											<input name="event_objective" type="text" class="form-control" placeholder="Event objective">
-										  </div>
-										</div>-->
-										<!-- Event Description -->
+
+
 										<div class="form-group">
 											<label>Description</label>
 											<div class="input-group">
@@ -61,28 +51,7 @@
 											</div>
 										</div>
 
-										<!-- Event Time -->
-										{{--<div class="bootstrap-timepicker"><div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-up"></i></a></td></tr><tr><td><span class="bootstrap-timepicker-hour">02</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>--}}
-										{{--<div class="form-group">--}}
-										{{--<label>Time</label>--}}
-										{{--<div class="input-group">--}}
-										{{--<div class="input-group-addon">--}}
-										{{--<i class="fa fa-clock-o"></i>--}}
-										{{--</div>--}}
-										{{--<input type="text" class="form-control timepicker">--}}
-										{{--</div><!-- /.input group -->--}}
-										{{--</div><!-- /.form group -->--}}
-										{{--</div>--}}
-										<!-- Event Suggestions -->
-										<!--<div class="form-group">
-										  <label>Suggestions</label>
-										  <div class="input-group">
-											<div class="input-group-addon">
-											  <i class="fa fa-commenting-o"></i>
-											</div>
-											<textarea name="event_suggestion" class="form-control" rows="3" placeholder="Event Suggestions"></textarea>
-										  </div>
-										</div>-->
+
 
 										<div class="form-group">
 											<div class="input-group">
@@ -96,16 +65,23 @@
 								</div><!-- /.box-body -->
 							</div>
 						</div><!-- /.col -->
-						<div >
+						<div id="Misgrupos">
 							<h3 align="center">Your groups are bellow:</h3><br/>
 
 								<table align="center">
 									@forelse ($grupos as $grupo)
 
 									<tr>
-										<td><a href="mygroup/{{ $grupo->id }}" style="font-size:20px">"{{ $grupo->name }}"&nbsp;&nbsp;</a></td>
-										<td>&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Edit </button></td>
-										<td>&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Delete </button></td>
+
+										<td><a href="mygroup/{{ $grupo->id }}" style="...">"{{ $grupo->name }}"&nbsp;&nbsp;</a></td>
+										<form>
+											<input type="hidden" value="{{ $grupo->id }}" name="nGrAeditar">
+										<td>&nbsp;&nbsp;&nbsp;<button type="submit" id="btnEdit" class="btn btn-primary"><i class="fa fa-edit"></i> Edit </button></td>
+										</form>
+										<form>
+											<input type="hidden" value="{{ $grupo->id }}" name="nGrABorrar">
+											<td>&nbsp;&nbsp;&nbsp;<button type="submit" id="btnDelete" class="btn btn-danger"><i class="fa fa-remove"></i> Delete </button></td>
+										</form>
 									</tr>
 										<tr>
 											<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
@@ -115,9 +91,13 @@
 										<h4 align="center">You do not have groups created yet :(</h4>
 									@endforelse
 								</table>
+
 						</div>
+
 					</div>
+
 				</section>
+				<!--<div id="modal" class="overlayDesaparece";" ></div>-->
 			</div>
 @endsection
 @section('scripts')
