@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Mail;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Socialite;
 
@@ -65,7 +64,7 @@ class registerController extends Controller
     public function store(Request $request)
     {
         session_start();
-        User::createUser($request);
+        //User::createUser($request);
         $email = $request->input_email;
         Mail::send( 'email.bienvenido' , ['name'=>$request->input_name] , function($msj) use($email){
             $msj->to($email , 'Grupo Meetme')->from('metacris93@gmail.com')->subject('Welcome to MeetMe');

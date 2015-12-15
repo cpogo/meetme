@@ -9,8 +9,8 @@
 					<ul class="actions">
 						<li><a href="{{ url('login') }}" class="button special">Log In</a></li>
 						<li><a href="{{ url('register') }}" class="button">Sign Up</a></li>
-						<li><a href="{{ url('signIn') }}" class="button fit">Sign in with Google</a></li>
-						<li><a href="{{ url('') }}" class="button fit">Join with Google</a></li>
+						{{--<li><a href="{{ url('signIn') }}" class="button fit">Sign in with Google</a></li>
+						<li><a href="{{ url('') }}" class="button fit">Join with Google</a></li>}--}}
 					</ul>
 				</div>
 				<a href="#one" class="more scrolly">Learn More</a>
@@ -104,9 +104,9 @@
 					</header>
 					<ul class="actions vertical">
 						<li><a href="{{ url('login') }}" class="button fit special">Log In</a></li>
-						<li><a href="{{ url('register') }}" class="button fit">Sign Up</a></li>
-						<li><a href="{{ url('signIn') }}" class="button fit">Sign in with Google</a></li>
-						<!--<li><a href="{{ url('') }}" class="button fit">Join with Google</a></li>-->
+					  <li><a href="{{ url('register') }}" class="button fit">Sign Up</a></li>
+						{{--<!--<li><a href="{{ url('signIn') }}" class="button fit">Sign in with Google</a></li>-->
+						<!--<li><a href="{{ url('') }}" class="button fit">Join with Google</a></li>-->--}}
 					</ul>
 				</div>
 			</section>
