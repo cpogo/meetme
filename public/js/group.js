@@ -1,10 +1,13 @@
-$(document).ready(
-    function(){
-      $('h1').click(
-          function(){
-            $(this).css('font-size','40px'); // prueba de jquery
+$(document).ready(function(){
 
-          }
-      );
+    $('td #btnEdit').on('click',function(){
+        $('#modalEditGrupo').modal('show');
+        $(this).html($(this).data('botonEdit'));
+    });
+
+    $('td #btnDelete').on('click',function(){
+        $('#modalDeleteGrupo').modal('show');
+    });
 
     });
+
