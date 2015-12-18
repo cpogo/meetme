@@ -13,6 +13,8 @@
 
 Route::get('/', 'loginController@logout');
 
+Route::get('oauth', 'loginController@create');
+
 Route::get('login', 'loginController@index');
 
 Route::post('loginUser', 'loginController@login');

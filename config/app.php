@@ -137,6 +137,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        google\apiclient\src\Google\Client::class,
 
         /*
          * Application Service Providers...
@@ -145,6 +146,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Terceros\o365\Office365Service::class,
+        App\Terceros\o365\ClientReg::class,
 
     ],
 
