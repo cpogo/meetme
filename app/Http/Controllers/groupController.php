@@ -40,4 +40,22 @@ class groupController extends Controller
         return view('dashboard')->with('user',$user);
     }
 
+    public function update(Request $req)
+    {
+        session_start();
+        if(Group::existeGrupo($req->nombre_grupo)!=1)
+            Group::UpdateGrupo($req);
+        $user = User::getUserById( $_SESSION[ 'key' ] );
+        return view('dashboard')->with('user',$user);
+
+    }
+
+    public function delete(Request $req)
+    {
+        session_start();
+        Group::DeleteGrupo($req);
+        $user = User::getUserById( $_SESSION[ 'key' ] );
+        return view('dashboard')->with('user',$user);
+
+    }
 }

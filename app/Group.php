@@ -53,11 +53,21 @@ class Group extends Model
             $grupo->save();
             $user = User::getUserById($_SESSION['key']);
             $grupo->users()->save( $user , ['owner'=>1] );
-            //$grupo->owner = $_SESSION['key'];
-
 
     }
 
+    public static function UpdateGrupo($req){
+        Group::where('id', $req->grupoid)
+            ->update(['name' => $req->nombre_grupo,'description' => $req->grupo_descripcion]);
+
+    }
+
+    public static function DeleteGrupo($req){
+        //session_start();
+        Group::where('id', $req->grupoidd)
+        ->delete();
+
+    }
 
     public static function GetGruposByOwner($id){
 
@@ -66,6 +76,14 @@ class Group extends Model
          $user = User::getUserById($_SESSION['key']);
          $groups = $user->groups()->get();
          return $groups;
+    }
+
+    public static function GetGruposByMember($id,$idgrupo){
+
+        $user = User::getUserById($_SESSION['key']);
+        $grupo=Group::getGroupById($idgrupo);
+        return $grupo->users()->where('owner',0)->get();
+
     }
 
   public function scopeGroups($query,$group)

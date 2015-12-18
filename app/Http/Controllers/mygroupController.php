@@ -19,11 +19,16 @@ class mygroupController extends Controller
         if ( isset( $_SESSION['key'] ) ) {
             $_SESSION['group'] = $id;
             $user = User::getUserById( $_SESSION[ 'key' ] );
-            //$grupos=Group::GetGruposByOwner($_SESSION[ 'key' ]);
             $grupo = Group::getGroupById($id);
+            $grupoconintegrantes=Group::GetGruposByMember($_SESSION[ 'key' ],$_SESSION['group']);
 
+            $abc=array($grupo, $grupoconintegrantes);
+           // dd($abc);
             if( isset( $user ) ){
-                return view( 'mygroup' , [ 'user' => $user ],[ 'grupo' => $grupo ] );
+
+                //return view( 'mygroup' , [ 'user' => $user ],[ 'grupoi' => $grupoconintegrantes ],[ 'grupo' => $grupo ]);
+                return view( 'mygroup' , [ 'user' => $user ],[ 'grupoi' => $abc ]);
+
             }else{
                 return view('errors/503' , [ 'error' => 'no se encontro el usuario en groupController@index' ] );
             }
@@ -57,18 +62,19 @@ class mygroupController extends Controller
 		}
 
 		$html .= '</div>';
-
-//        $html = "<ul class='sidebar-menu'>";
-//        $users = User::members( $request->agregarMiembro )->get();
-//        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
-//        foreach ($users as $user) {
-//            $html .="<li class='usergroup' data-name='".$user->id."'><a href='#' style='text-decoration:none;'>
-//                             <span>".$user->full_name."</span>
-//                             </a>
-//                        </li>";
-//        }
-//        $html .= "</ul>";
-
+/////
+        /*
+        $html = "<ul class='sidebar-menu'>";
+        $users = User::members( $request->agregarMiembro )->get();
+        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
+        foreach ($users as $user) {
+            $html .="<li class='usergroup' data-name='".$user->id."'><a href='#' style='text-decoration:none;'>
+                             <span>".$user->full_name."</span>
+                             </a>
+                        </li>";
+        }
+        $html .= "</ul>";*/
+///     */
         return $html;
         //return $users;
     }
@@ -80,8 +86,9 @@ class mygroupController extends Controller
         if($request->ajax()) {
             dd("hola mundo");
         }
-        $html = "";
-        /*$group = Group::getGroupById( $_SESSION['group'] );
+        $html = "";//
+/*
+        $group = Group::getGroupById( $_SESSION['group'] );
         $user = User::getUserById($userId);
         $nombre = $user->full_name;
         $group->users()->save( $user , ['owner'=>0] );
@@ -93,7 +100,8 @@ class mygroupController extends Controller
                             <h4 style='text-align: center;'>Member</h4>
                         </div>
                     </div>
-                </div>";*/
+                </div>";  //
+*/
         return $html;
         //$user = User::getUserById($userId);
         //$user->groups()->where('id', $_SESSION['group'])->save();
