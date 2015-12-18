@@ -33,7 +33,7 @@ class loginController extends Controller
     { // Get the API client and construct the service object.
       $client = self::getClient();
       $service = new \Google_Service_Calendar($client);
-
+      $datos = array();
       // Print the next 10 events on the user's calendar.
       $calendarId = 'primary';
       $optParams = array(
@@ -50,13 +50,44 @@ class loginController extends Controller
         print "Upcoming events:\n";
         foreach ($results->getItems() as $event) {
           $start = $event->start->dateTime;
+          $end = $event->end->dateTime;
           if (empty($start)) {
             $start = $event->start->date;
           }
-          printf("%s (%s)\n", $event->getSummary(), $start);
+          //printf(" %s (%s) (%s)\n", $event->getSummary(), $start, $end);
+
+          list($fechaInicio, $zonaHorariaInicio) = array_pad( explode('T', $start) , 2, null);
+          list($anioInicio, $mesInicio, $diaInicio) = explode("-", $fechaInicio);
+          list($horarioInicio, $timeZone) = explode("-", $zonaHorariaInicio);
+          list($horaInicio, $minutoInicio, $segundoInicio) = explode(":", $horarioInicio);
+
+          list($fechaFin, $zonaHorariaFin) = array_pad( explode('T', $end) , 2, null);
+          list($anioFin, $mesFin, $diaFin) = explode("-", $fechaFin);
+          list($horarioFin, $timeZone) = explode("-", $zonaHorariaFin);
+          list($horaFin, $minutoFin, $segundoFin) = explode(":", $horarioFin);
+
+          array_push($datos , array(
+              "eventName"  => $event->getSummary(),
+              "startEvent" => array(
+                                    "anio"=>$anioInicio,
+                                    "mes"=>$mesInicio,
+                                    "dia"=>$diaInicio,
+                                    "hora"=>$horaInicio,
+                                    "minuto"=>$minutoInicio,
+                                    "segundo"=>$segundoInicio
+              ),
+              "endEvent"   => array(
+                                    "anio"=>$anioFin,
+                                    "mes"=>$mesFin,
+                                    "dia"=>$diaFin,
+                                    "hora"=>$horaFin,
+                                    "minuto"=>$minutoFin,
+                                    "segundo"=>$segundoFin
+              ),
+          ));          
         }
+        dd($datos);
       }
-      dd($results);
     }
 
     private static function getClient() {
@@ -75,7 +106,7 @@ class loginController extends Controller
           $authUrl = $client->createAuthUrl();
           printf("Open the following link in your browser:\n%s\n", $authUrl);
           print 'Enter verification code: ';
-          $authCode = '4/S5dwdC4c3jNEvpAXZ6dhqGbAWoRjT94gtW1NJ72Gx9U#';
+          $authCode = '4/jqsUXq4JmPHNCwy5yHXSkPjUVMJgcNlStc3HTOp02bs#';
 
           // Exchange authorization code for an access token.
           $accessToken = $client->authenticate($authCode);
