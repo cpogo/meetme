@@ -56,7 +56,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<div class="input-group-btn">
-											<!--<button type="submit" class="btn btn-primary">Create Group</button>-->
+											<button type="submit" class="btn btn-primary">Create Group</button>
 										</div><!-- /btn-group -->
 									</div>
 								</div>
@@ -95,9 +95,6 @@
 
 				</div>
 			</div>
-			<!--<div id="modal">
-				<div class="centrado"></div>
-			</div>-->
 
 		</section>
 
@@ -111,8 +108,9 @@
 							</div>
 							<div class='modal-body'>
 
-								<form action="createGroup" method="post">
+								<form action="UpdateGroup" method="post">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<input type="hidden" name="grupoid">
 									<!-- Event Title -->
 									<div class="form-group">
 										<label>Group Name</label>
@@ -133,6 +131,7 @@
 											</div>
 											<textarea name="grupo_descripcion" class="form-control" rows="3" placeholder="Short description of your group ..."></textarea>
 										</div>
+
 									</div>
 
 
@@ -140,15 +139,15 @@
 									<div class="form-group">
 										<div class="input-group">
 											<div class="input-group-btn">
-												<button type="submit" class="btn btn-primary">Create Group</button>
+												<button type="submit" class="btn btn-primary">Update Group</button>
 											</div><!-- /btn-group -->
 										</div>
 									</div>
 								</form>
 							</div>
 							<div class='modal-footer'>
-								<button id ="cancelarAventon" type='button' class='btn btn-primary'>Guardar</button>
-								<button id='aceptarAventon' type='button' class='btn btn-danger'>Cancelar</button>
+								<!--<button id ="cancelarAventon" type='button' class='btn btn-primary'>Guardar</button>
+								<button id='aceptarAventon' type='button' class='btn btn-danger'>Cancelar</button>-->
 							</div>
 						</div>
 					</div>
@@ -163,11 +162,20 @@
 					</div>
 					<div class='modal-body'>
 	                   <h3>Esta seguro de eliminar el grupo ??</h3>
+						<form action="DeleteGroup" method="post">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="grupoidd">
+
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-danger">Delete !!</button>
+									</div><!-- /btn-group -->
+								</div>
+							</div>
+						</form>
 					</div>
-					<div class='modal-footer'>
-						<button id ="cancelarAventon" type='button' class='btn btn-primary'>Eliminar</button>
-						<button id='aceptarAventon' type='button' class='btn btn-danger'>Cancelar</button>
-					</div>
+
 				</div>
 			</div>
 		</div>

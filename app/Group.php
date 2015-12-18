@@ -58,6 +58,18 @@ class Group extends Model
 
     }
 
+    public static function UpdateGrupo($req){
+        Group::where('id', $req->grupoid)
+            ->update(['name' => $req->nombre_grupo,'description' => $req->grupo_descripcion]);
+
+    }
+
+    public static function DeleteGrupo($req){
+        //session_start();
+        Group::where('id', $req->grupoidd)
+        ->delete();
+
+    }
 
     public static function GetGruposByOwner($id){
 

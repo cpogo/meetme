@@ -39,6 +39,10 @@ Route::post('createEvent', 'newEventController@store');
 
 Route::post('createGroup','groupController@store');
 
+Route::post('UpdateGroup','groupController@update');
+
+Route::post('DeleteGroup','groupController@delete');
+
 Route::get('/searching','dashboardController@search');
 
 Route::get('/lfmember','mygroupController@search');
