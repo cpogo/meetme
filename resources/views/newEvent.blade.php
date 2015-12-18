@@ -133,47 +133,7 @@
             </section><!-- /.content -->
 
 
-
-            <!-- CALENDARIO -->
-            <div class="container" style="float: left; width:300px">
-            <div class="row" style="float: left">
-                
-                <!-- .col -->
-                <div class="col-md-10 col-sm-10 col-xs-12">
-                    <div class="panel panel-danger" id="result-panel">
-                        <div class="panel-heading">
-                            <h1>
-                                My Calendar</h1>
-                            <h3 class="panel-title" id="result-title">
-                                Application Not Authorized</h3>
-                            &nbsp;
-                            <p>
-                                Insert Event into Public Calendar&hellip;</p>
-                        </div>
-                    </div>
-                    <!--  <input id="txtEventDetails" type="text" /> -->
-                    <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
-                        Create Events</button>
-                    <button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
-                        Delete Events</button>
-                    <div id="event-response">
-                    </div>
-                    <div id="divifm">
-
-                        <iframe id="ifmCalendar" src="https://calendar.google.com/calendar/embed?src=marcoxavibsc%40gmail.com&ctz=America/Guayaquil" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
-                        </iframe>
-            
-                    </div>
-                    <!--
-                    <div id="divifm">
-                        <iframe id="ifmCalendar" src="https://calendar.google.com/calendar/embed?src=mmendozaquelal%40gmail.com&ctz=America/Guayaquil" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
-                        </iframe>
-                    </div>
-                    -->
-
-                    
-                </div>
-                <div class="row">
+            <div class="row">
                 <!-- CALENDARIO 2 -->
                     <section class="col-lg-5 connectedSortable">
 {{--
@@ -312,6 +272,48 @@
 
 						</section><!-- right col -->
 						</div>
+
+
+            <!-- CALENDARIO -->
+            <div class="container" style="float: left; width:300px">
+            <div class="row" style="float: left">
+                
+                <!-- .col -->
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="panel panel-danger" id="result-panel">
+                        <div class="panel-heading">
+                            <h1>
+                                My Calendar</h1>
+                            <h3 class="panel-title" id="result-title">
+                                Application Not Authorized</h3>
+                            &nbsp;
+                            <p>
+                                Insert Event into Public Calendar&hellip;</p>
+                        </div>
+                    </div>
+                    <!--  <input id="txtEventDetails" type="text" /> -->
+                    <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
+                        Create Events</button>
+                    <button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
+                        Delete Events</button>
+                    <div id="event-response">
+                    </div>
+                    <div id="divifm">
+
+                        <iframe id="ifmCalendar" src="https://calendar.google.com/calendar/embed?src=marcoxavibsc%40gmail.com&ctz=America/Guayaquil" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
+                        </iframe>
+            
+                    </div>
+                    <!--
+                    <div id="divifm">
+                        <iframe id="ifmCalendar" src="https://calendar.google.com/calendar/embed?src=mmendozaquelal%40gmail.com&ctz=America/Guayaquil" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
+                        </iframe>
+                    </div>
+                    -->
+
+                    
+                </div>
+                
 
             </div>
         </div>
