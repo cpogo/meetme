@@ -23,7 +23,8 @@
 					<div class="box">
 						<div class="box box-primary">
 							<div class="box-header with-border">
-								<h3 class="box-title">Group name</h3>
+								<h1 class="box-title">{{$grupoi[0]->name }} group,</h1> <h6 style="display: inline"><i>{{$grupoi[0]->description }}</i></h6><br>
+
 								<form class="navbar-form navbar-right" role="search">
 			                        <div class="input-group">
 			                            <input type="text" name="agregarMiembro" id="addmember" class="form-control" placeholder="Add a member...">
@@ -32,6 +33,22 @@
 									<div class="displaygroup"></div>
 			                    </form>
 							</div>
+							<h3>Members:</h3>
+
+							@forelse ($grupoi[1] as $grupoii)
+								<table>
+								<tr>
+
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $grupoii->full_name }}, ({{ $grupoii->username }})</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+								</tr>
+
+							@empty
+								<h4 align="center">You do not have members created yet :(</h4>
+							@endforelse
+								</table>
 							<div class="box-body">
 								<div class="box-header with-border">
 									<div class="thumbnail">

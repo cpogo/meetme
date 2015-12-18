@@ -53,8 +53,6 @@ class Group extends Model
             $grupo->save();
             $user = User::getUserById($_SESSION['key']);
             $grupo->users()->save( $user , ['owner'=>1] );
-            //$grupo->owner = $_SESSION['key'];
-
 
     }
 
@@ -78,6 +76,14 @@ class Group extends Model
          $user = User::getUserById($_SESSION['key']);
          $groups = $user->groups()->get();
          return $groups;
+    }
+
+    public static function GetGruposByMember($id,$idgrupo){
+
+        $user = User::getUserById($_SESSION['key']);
+        $grupo=Group::getGroupById($idgrupo);
+        return $grupo->users()->where('owner',0)->get();
+
     }
 
   public function scopeGroups($query,$group)
