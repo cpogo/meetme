@@ -15,11 +15,27 @@
 		<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}">
 			<!-- bootstrap wysihtml5 - text editor -->
 		<link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+
 @endsection
 @section('main')
 <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://apis.google.com/js/client:platform.js" async defer></script>
         <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+	$(function() {
+	$( "#datepicker" ).datepicker();
+	});
+	$(function() {
+	$( "#eventDateI" ).datepicker();
+	});
+	$(function() {
+	$( "#eventDateF" ).datepicker();
+	});
+</script>
+
 <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -36,14 +52,14 @@
                     <div class="col-md-3" style="float: left; width:350px">
                         <div class="box box-primary">
                             <div class="box-header">
-                                <h3 class="box-title">Create Event</h3>
+                                <h3 class="box-title">Crear Evento</h3>
                             </div>
                             <div class="box-body">
                                 <form action="createEvent" method="post">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <!-- Event Title -->
                                     <div class="form-group">
-                                        <label>Title</label>
+                                        <label>Título</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-tasks"></i>
@@ -53,7 +69,7 @@
                                     </div>
                                     <!-- Event Objective -->
                                     <div class="form-group">
-                                        <label>Objective</label>
+                                        <label>Objetivo</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-hand-o-right"></i>
@@ -63,7 +79,7 @@
                                     </div>
                                     <!-- Event Description -->
                                     <div class="form-group">
-                                        <label>Description</label>
+                                        <label>Descripción</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-justify"></i>
@@ -73,29 +89,51 @@
                                     </div>
                                     <!-- Event Date -->
                                     <div class="form-group">
-                                        <label>Date</label>
+                                        <label>Fecha de Inicio</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input id="eventDate" name="event_date" type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask="">
+                                            <input id="eventDateI" name="event_date" type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask="">
+                                        </div>
+                                    </div>
+                                    <!-- Event Date -->
+                                    <div class="form-group">
+                                        <label>Fecha Final</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input id="eventDateF" name="event_date" type="text" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask="">
                                         </div>
                                     </div>
                                     <!-- Event Time -->
                                     <div class="bootstrap-timepicker"><div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-up"></i></a></td></tr><tr><td><span class="bootstrap-timepicker-hour">02</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
                                         <div class="form-group">
-                                            <label>Time</label>
+                                            <label>Hora de Inicio</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
-                                                <input id="eventTime" type="text" class="form-control timepicker">
+                                                <input id="eventTimeI" type="text" class="form-control timepicker">
+                                            </div><!-- /.input group -->
+                                        </div><!-- /.form group -->
+                                    </div>
+                                    <!-- Event Time -->
+                                    <div class="bootstrap-timepicker"><div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-up"></i></a></td></tr><tr><td><span class="bootstrap-timepicker-hour">02</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
+                                        <div class="form-group">
+                                            <label>Hora Final</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                                <input id="eventTimeF" type="text" class="form-control timepicker">
                                             </div><!-- /.input group -->
                                         </div><!-- /.form group -->
                                     </div>
                                     <!-- Event Suggestions -->
                                     <div class="form-group">
-                                        <label>Suggestions</label>
+                                        <label>Sugerencias</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-commenting-o"></i>
@@ -107,7 +145,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-primary">Create</button>
+                                                <button type="submit" class="btn btn-primary">Crear</button>
                                             </div><!-- /btn-group -->
                                         </div>
                                     </div>
@@ -132,9 +170,9 @@
                 </div><!-- /.row -->
             </section><!-- /.content -->
 
-
+            <!--  _______________________________CALENDARIO 2_____________________________________  -->
             <div class="row">
-                <!-- CALENDARIO 2 -->
+                
                     <section class="col-lg-5 connectedSortable">
 {{--
 							<!-- Map box -->
@@ -273,8 +311,8 @@
 						</section><!-- right col -->
 						</div>
 
-
-            <!-- CALENDARIO -->
+<p>Date: <input type="text" id="datepicker"></p>
+            <!--  _______________________________CALENDARIO 1_____________________________________  -->
             <div class="container" style="float: left; width:300px">
             <div class="row" style="float: left">
                 
@@ -446,17 +484,26 @@
                 var tituloE = document.getElementById("eventTittle").value;
                 var objetiveE = document.getElementById("eventObjective").value;
                 var descriptionE = document.getElementById("eventDescription").value;
-                var dateE = document.getElementById("eventDate").value;
-                var timeE = document.getElementById("eventTime").value;
+                var dateEI = document.getElementById("eventDateI").value;
+                var dateEF = document.getElementById("eventDateF").value;
+                var timeEI = document.getElementById("eventTimeI").value;
+                var timeEF = document.getElementById("eventTimeF").value;
                 var suggestionE = document.getElementById("eventSuggestion").value;
+				var diaI = dateEI.substring(3, 5);
+				var diaF = dateEF.substring(3, 5);
+				var mesI = dateEI.substring(0, 2);
+				var mesF = dateEF.substring(0, 2);
+				var anioI = dateEI.substring(6);
+				var anioF = dateEF.substring(6);
+
                 
                 resource = {
                     "summary": tituloE,
                     "start": {
-                        "dateTime": "2015-12-20T09:00:00-07:00"
+                        "dateTime": anioI+"-"+mesI+"-"+diaI+"T"+"09:00:00-07:00"   //"2015-12-20T09:00:00-07:00"
                     },
                     "end": {
-                        "dateTime": "2015-12-26T17:00:00-10:00"
+                        "dateTime": anioF+"-"+mesF+"-"+diaF+"T"+"09:00:00-07:00" //"2015-12-26T17:00:00-10:00"
                     },
                     "description":descriptionE,
                     "location":"EC",
