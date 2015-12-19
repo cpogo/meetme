@@ -103,7 +103,7 @@ class newEventController extends Controller
         $client->setAccessType('offline');
 
         // Load previously authorized credentials from a file.
-        $credentialsPath = self::expandHomeDirectory('~/credentials/calendar-php-quickstart.json');
+        $credentialsPath = self::expandHomeDirectory(__DIR__.'/calendar-php-quickstart.json');
         if (file_exists($credentialsPath)) {
           $accessToken = file_get_contents($credentialsPath);
         } else {
