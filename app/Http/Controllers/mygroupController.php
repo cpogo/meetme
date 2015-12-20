@@ -44,6 +44,7 @@ class mygroupController extends Controller
 
 		$users = User::members( $request->agregarMiembro )->get();
 
+
 		$html .= '<div class="list-group">';
 		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
 
@@ -58,10 +59,13 @@ class mygroupController extends Controller
 			$html .= '				<div>' . $user->username . '</div>';
 			$html .= '			</div>';
 			$html .= '		</div>';
-			$html .= '	</a>';
-		}
+			$html .= '	</a><button type="button" class="anade" data-idbotun="' . $user->id . '"> Add <i class="glyphicon glyphicon-plus-sign"></i></button><br/>';
+		} //Aqui arriba puse el button que contiene como data el id del usuario a agregar
 
 		$html .= '</div>';
+
+
+
 /////
         /*
         $html = "<ul class='sidebar-menu'>";

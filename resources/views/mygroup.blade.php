@@ -8,7 +8,7 @@
 			<div class="content-wrapper">
 				<!-- Content Header (Page header) -->
 				<section class="content-header">
-					<h1>
+					<h1 id="gg">
 						My Group:
 						<small>Configure your group</small>
 					</h1>
