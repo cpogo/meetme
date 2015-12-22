@@ -566,7 +566,7 @@
             function appendPre(message) {
                 var pre = document.getElementById('output');
                 var textContent = document.createTextNode(message + '\n');
-                //pre.appendChild(textContent);
+                pre.appendChild(textContent);
             }
             var eventos = [];
             // FUNCTION TO DELETE EVENT
@@ -622,7 +622,7 @@ se accede a la url y listo
             }
         </script>
         <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
-
+ <pre id="output"></pre>
         
 @endsection
 @section('scripts')
