@@ -7,7 +7,8 @@
 		<link rel="stylesheet" href="{{ asset('plugins/iCheck/all.css') }}">
 		<!-- Bootstrap Color Picker -->
 		<link rel="stylesheet" href="{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
-		<!-- Bootstrap time Picker -->
-		<link rel="stylesheet" href="{{ asset('plugins/timepicker/bootstrap-timepicker.min.css') }}">
+		<!-- Bootstrap datetime Picker -->
+		<link rel="stylesheet" href="{{ asset('plugins/datetimepicker/css/bootstrap-datetimepicker.min.css') }}" >
+		{{--<link rel="stylesheet" href="{{ asset('plugins/timepicker/bootstrap-timepicker.min.css') }}">--}}
 		<!-- Select2 -->
 		<link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">

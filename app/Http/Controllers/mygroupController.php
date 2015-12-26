@@ -20,15 +20,11 @@ class mygroupController extends Controller
             $_SESSION['group'] = $id;
             $user = User::getUserById( $_SESSION[ 'key' ] );
             $grupo = Group::getGroupById($id);
-            $grupoconintegrantes=Group::GetGruposByMember($_SESSION[ 'key' ],$_SESSION['group']);
-
-            $abc=array($grupo, $grupoconintegrantes);
-           // dd($abc);
+            $groupWithMembers = Group::GetGruposByMember($_SESSION[ 'key' ],$_SESSION['group']);
+            $groupWithOwner = Group::getOwnerByGroup($_SESSION['group']);
+            $groupInfo = array($grupo, $groupWithMembers, $groupWithOwner);
             if( isset( $user ) ){
-
-                //return view( 'mygroup' , [ 'user' => $user ],[ 'grupoi' => $grupoconintegrantes ],[ 'grupo' => $grupo ]);
-                return view( 'mygroup' , [ 'user' => $user ],[ 'grupoi' => $abc ]);
-
+                return view( 'mygroup' , [ 'user' => $user ],[ 'grupoInformation' => $groupInfo ]);
             }else{
                 return view('errors/503' , [ 'error' => 'no se encontro el usuario en groupController@index' ] );
             }
@@ -45,69 +41,45 @@ class mygroupController extends Controller
 		$users = User::members( $request->agregarMiembro )->get();
 
 
-		$html .= '<div class="list-group">';
+		$html .= '<div class="list-group" id="grupo">';
 		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
 
 		foreach ($users as $user) {
-			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->first_name . ' ' . $user->last_name . '" class="list-group-item usergroup" data-name="' . $user->id . '">';
+			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->full_name . '" class="list-group-item usergroup" >';
 			$html .= '		<div class="media">';
 			$html .= '			<div class="media-left media-middle">';
 			$html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
 			$html .= '			</div>';
 			$html .= '			<div class="media-body">';
-			$html .= '				<h4 class="media-heading">' . $user->first_name . ' ' . $user->last_name . '</h4>';
+			$html .= '				<strong>' . $user->full_name . '</strong>';
 			$html .= '				<div>' . $user->username . '</div>';
 			$html .= '			</div>';
 			$html .= '		</div>';
-			$html .= '	</a><button type="button" class="anade" data-idbotun="' . $user->id . '"> Add <i class="glyphicon glyphicon-plus-sign"></i></button><br/>';
+			$html .= '	</a><button type="button" data-id="' . $user->id . '"> Add <i data-id="' . $user->id . '" class="glyphicon glyphicon-plus-sign"></i></button><br/>';
 		} //Aqui arriba puse el button que contiene como data el id del usuario a agregar
 
 		$html .= '</div>';
-
-
-
-/////
-        /*
-        $html = "<ul class='sidebar-menu'>";
-        $users = User::members( $request->agregarMiembro )->get();
-        $html .= "<li class='headerbox'><a href='#'><span class='textbox'>Users</span></a></li>";
-        foreach ($users as $user) {
-            $html .="<li class='usergroup' data-name='".$user->id."'><a href='#' style='text-decoration:none;'>
-                             <span>".$user->full_name."</span>
-                             </a>
-                        </li>";
-        }
-        $html .= "</ul>";*/
-///     */
         return $html;
-        //return $users;
     }
 
     public function store(Request $request)
     {
-        $userId = $_POST['usuario'];
         session_start();
+        $html = "";
         if($request->ajax()) {
-            dd("hola mundo");
+          $group = Group::getGroupById( $_SESSION['group'] );
+          $user = User::getUserById($request->usuario);
+          $group->users()->save( $user , ['owner'=>0] );
+          $html.= '<div class="col-sm-6 col-md-4">
+                      <div class="thumbnail">
+                          <img src="'.asset("images/avatar3.png").'" class="img-circle img-responsive" alt="owner" width="140" height="140">
+                          <div class="caption">
+                              <h3 style="text-align: center;">'.$user->full_name.'</h3>
+                              <h4 style="text-align: center;">Member</h4>
+                          </div>
+                      </div>
+                  </div>';
         }
-        $html = "";//
-/*
-        $group = Group::getGroupById( $_SESSION['group'] );
-        $user = User::getUserById($userId);
-        $nombre = $user->full_name;
-        $group->users()->save( $user , ['owner'=>0] );
-        $html.= "<div class='col-sm-6 col-md-4'>
-                    <div class='thumbnail'>
-                        <img src='{{asset('images/avatar3.png')}}' class='img-circle img-responsive' alt='owner' width='140' height='140'>
-                        <div class='caption'>
-                            <h3 style='text-align: center;'>".$nombre."</h3>
-                            <h4 style='text-align: center;'>Member</h4>
-                        </div>
-                    </div>
-                </div>";  //
-*/
         return $html;
-        //$user = User::getUserById($userId);
-        //$user->groups()->where('id', $_SESSION['group'])->save();
     }
 }

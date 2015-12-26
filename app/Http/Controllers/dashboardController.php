@@ -61,7 +61,7 @@ class dashboardController extends Controller
 			$html .= '			</div>';
 			$html .= '			<div class="media-body">';
 			$html .= '				<h4 class="media-heading">' . $user->first_name . ' ' . $user->last_name . '</h4>';
-			$html .= '				<div>' . $user->username . '</div>';
+			$html .= '				<div>' . $user->full_name . '</div>';
 			$html .= '			</div>';
 			$html .= '		</div>';
 			$html .= '	</a>';

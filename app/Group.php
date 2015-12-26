@@ -81,16 +81,21 @@ class Group extends Model
     public static function GetGruposByMember($id,$idgrupo){
 
         $user = User::getUserById($_SESSION['key']);
-        $grupo=Group::getGroupById($idgrupo);
+        $grupo = Group::getGroupById($idgrupo);
         return $grupo->users()->where('owner',0)->get();
 
+    }
+
+    public static function getOwnerByGroup($idgrupo){
+        $grupo = Group::getGroupById($idgrupo);
+        return $grupo->users()->where('owner',1)->first();
     }
 
   public function scopeGroups($query,$group)
   {
       if( trim($group) != "" )
       {
-          return $query->where('name','LIKE',"%$group%");
+          return $query->where('name','LIKE',"$group%");
       }
   }
 

@@ -100,7 +100,7 @@ class newEventController extends Controller
         $client->setApplicationName('Meet me');
         $client->setScopes(implode(' ', array(\Google_Service_Calendar::CALENDAR) ) );
         $client->setAuthConfigFile(__DIR__.'/client_secret.json');
-        $client->setAccessType('offline');
+        $client->setAccessType('online');
 
         // Load previously authorized credentials from a file.
         $credentialsPath = self::expandHomeDirectory(__DIR__.'/calendar-php-quickstart.json');

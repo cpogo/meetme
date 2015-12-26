@@ -18,7 +18,7 @@ class groupController extends Controller
     	session_start();
         if ( isset( $_SESSION['key'] ) ) {
             $user = User::getUserById( $_SESSION[ 'key' ] );
-            $grupos=Group::GetGruposByOwner($_SESSION[ 'key' ]);
+            $grupos = Group::GetGruposByOwner($_SESSION[ 'key' ]);
 
             if( isset( $user ) ){
                 return view( 'newgroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
@@ -35,7 +35,7 @@ class groupController extends Controller
     {
         session_start();
         if(Group::existeGrupo($request->nombre_grupo)!=1)
-        Group::crearGrupo($request);
+            Group::crearGrupo($request);
         $user = User::getUserById( $_SESSION[ 'key' ] );
         return view('dashboard')->with('user',$user);
     }

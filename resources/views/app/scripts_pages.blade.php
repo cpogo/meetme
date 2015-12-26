@@ -14,8 +14,9 @@
 		<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 		<!-- bootstrap color picker -->
 		<script src="{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
-		<!-- bootstrap time picker -->
-		<script src="{{ asset('plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+		<!-- bootstrap datetime picker -->
+		<script src="{{ asset('plugins/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+		{{--<script src="{{ asset('plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>--}}
 		<!-- jQuery UI 1.11.4 -->
 {{--		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>--}}
 		<script src="{{ asset('plugins/jQueryUI/jquery-ui.min.js') }}"></script>
@@ -35,4 +36,3 @@
 {{--		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>--}}
 		<script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 		<!-- Page specific script -->
-		

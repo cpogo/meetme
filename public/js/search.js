@@ -18,7 +18,6 @@ $('#busqueda').keyup(function (){
     }return false;
 });
 
-
 $('input').keyup(function (){
     var texto = $(this).val();
     var dataString = ''+ texto;
@@ -35,21 +34,13 @@ $('input').keyup(function (){
                 data: { 'agregarMiembro' : dataString },
                 cache: false,
                 success: function(data)//funcion que se activa al recibir un dato
-                {
-                    //console.log(data);
-                    $(".displaygroup").html(data).show();
-
-
-
-
-                    // funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+                {   //console.log(data);
+                    $(".displaygroup").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
                 }
             });
         }return false;
     }
 });
-
-
 
 $(document).mouseup(function (e)
 {
@@ -71,57 +62,22 @@ $(document).mouseup(function (e)
 
 });
 
-//$('.usergroup').preventDefault();
-//$(document).ready(function(){
-//$('.displaygroup').on('click', '.usergroup', function (event){
-/*
-$('.loco').on('click', function (event){
-
-        $.ajax({
-            type:"POST",
-            url: '/addmember',//la url adonde se va a mandar la cadena a buscar
-            data: { "usuario": $(this).data('name') },
-            cache: false,
-            asign:false,
-            success: function(data)//funcion que se activa al recibir un dato
-            {
-                 //console.log(data);
-                alert('etyetyee');
-                //$(".membersgroup").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+$(document).on("click", "#grupo", function(evento){
+		//console.log($(evento.target).attr('data-id'));
+		$.ajax({
+				type:"POST",
+				url: '/addmember',//la url adonde se va a mandar la cadena a buscar
+				cache: false,
+				beforeSend: function (xhr) {
+            var token = $('meta[name="csrf-token"]').attr('content');
+            if (token) {
+                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
             }
-        });
-        return false;
-    });*/
-//});
-
-$(document).click(function (e)
-{
-
-    var boton=$('.anade'); //Aqui estoy haciendo pruebas para obtener el data-idbotun que contiene el id del usuario
-
-
-
-   if (boton.is(e.target))
-   {
-        var id= boton.attr('data-idbotun');
-        alert(id);
-            /*
-            $.ajax({
-                type:"POST",
-                url: '/addmember',//la url adonde se va a mandar la cadena a buscar
-                data: { "usuario": $(this).data('id') },
-                cache: false,
-                asign:false,
-                success: function(data)//funcion que se activa al recibir un dato
-                {
-                    //console.log(data);
-                    alert('etyetyee');
-                    //$(".membersgroup").html(data).show();// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
-                }
-            });
-            */
-
-   }
+        },
+				data: { "usuario": $(evento.target).attr('data-id') },
+				success: function(data)
+				{
+					$(".membersgroup").append(data);// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
+				}
+		});
 });
-
-
