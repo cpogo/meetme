@@ -65,11 +65,10 @@ class registerController extends Controller
     {
         session_start();
         //User::createUser($request);
-        $email = $request->input_email;
+        /*$email = $request->input_email;
         Mail::send( 'email.bienvenido' , ['name'=>$request->input_name] , function($msj) use($email){
             $msj->to($email , 'Grupo Meetme')->from('metacris93@gmail.com')->subject('Welcome to MeetMe');
-            /*OJO EN EL FROM COLOQUEN SUS CORREOS DE GMAIL*/
-        });
+        });*/
         return redirect('login');
     }
 
