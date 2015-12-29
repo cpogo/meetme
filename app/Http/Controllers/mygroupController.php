@@ -45,17 +45,26 @@ class mygroupController extends Controller
 		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
 
 		foreach ($users as $user) {
-			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->full_name . '" class="list-group-item usergroup" >';
-			$html .= '		<div class="media">';
-			$html .= '			<div class="media-left media-middle">';
-			$html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
-			$html .= '			</div>';
+            $html .= '		<div>';
+
+            $html .= '	<h5 class="list-group-item usergroup" >';
+
+            $html .= '	<a href="' . url('profile/' . $user->username) . ' " title=" ' . $user->full_name . '">';
+
+            $html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
+
+            $html .= '			</a>';
+
 			$html .= '			<div class="media-body">';
-			$html .= '				<strong>' . $user->full_name . '</strong>';
-			$html .= '				<div>' . $user->username . '</div>';
+			$html .= '				<strong> '.'&nbsp;&nbsp;' . $user->full_name . '</strong>';
+			$html .= '				<div> ' . '&nbsp;&nbsp;&nbsp;&nbsp;'. $user->username . '</div>';
+            $html .= '         <div class="media-right">
+              <button type="button" class="btn btn-info btn-xs" data-id="' . $user->id . '"> Add <i data-id="' . $user->id . '" class="glyphicon glyphicon-plus-sign"></i></button><br/>
+                                </div>';
 			$html .= '			</div>';
-			$html .= '		</div>';
-			$html .= '	</a><button type="button" data-id="' . $user->id . '"> Add <i data-id="' . $user->id . '" class="glyphicon glyphicon-plus-sign"></i></button><br/>';
+            $html .= '		</div>';
+			$html .= '	</h5>';
+
 		} //Aqui arriba puse el button que contiene como data el id del usuario a agregar
 
 		$html .= '</div>';
