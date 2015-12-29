@@ -76,14 +76,24 @@ class mygroupController extends Controller
         session_start();
         $html = "";
         $vecesenelgrupo=0;
+        $creadormiembro=0;
+
         if($request->ajax()) {
           $group = Group::getGroupById( $_SESSION['group'] );
           $user = User::getUserById($request->usuario);
-           $vecesenelgrupo= $group->users()->where('owner', 0)
+
+            $vecesenelgrupo= $group->users()->where('owner', 0)
                               ->where('user_id',$user->id)
                               ->where('group_id',$group->id)
                                ->count();
-            if($vecesenelgrupo<1) {
+
+            $creadormiembro= $group->users()->where('owner', 1)
+                ->where('user_id',$user->id)
+                ->where('group_id',$group->id)
+                ->count();
+
+
+            if($vecesenelgrupo<1 && $creadormiembro<1) {
                 $group->users()->save($user, ['owner' => 0]);
 
                 $html .= '<div class="col-sm-6 col-md-4">
@@ -96,9 +106,12 @@ class mygroupController extends Controller
                       </div>
                   </div>';
             }
-            else {
-                echo "<script type='text/javascript'>alert('The user is already a member of the group..');</script>";
-            }
+            else
+                if($creadormiembro>=1)
+                        echo "<script type='text/javascript'>alert('You can not add yourself, you are the owner.');</script>";
+                    else
+                        echo "<script type='text/javascript'>alert('The user is already a member of the group..');</script>";
+
         }
         return $html;
     }
