@@ -26,12 +26,12 @@
 									<h1 class="box-title">{{$grupoInformation[0]->name }} , </h1> <h6 style="display: inline"><i>{{$grupoInformation[0]->description }}</i></h6><br>
 
 									<form class="navbar-form navbar-right" role="search">
-				                <div class="input-group">
+				                		<div class="input-group">
 				                    <input type="text" name="agregarMiembro" id="addmember" class="form-control" placeholder="Add a member...">
 				                    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
-				                </div>
+				                		</div>
 												<div class="displaygroup"></div>
-				          </form>
+				          			</form>
 							</div>
 
 							<div class="box-body">
