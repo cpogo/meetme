@@ -147,6 +147,10 @@
 								</div><!-- /.box-body -->
 							</div>
 						</div><!-- /.col -->
+
+
+						<!-- CALENDARIO RESPONSIVE -->
+
 						<div class="col-md-9">
 							<div class="box box-primary">
 								<div class="box-body no-padding">
@@ -155,6 +159,8 @@
 								</div><!-- /.box-body -->
 							</div><!-- /. box -->
 						</div><!-- /.col -->
+
+
 					</div><!-- /.row -->
 <pre id="output"></pre>
 
@@ -211,35 +217,31 @@
 @section('scripts')
 		@include('app.scripts_pages')
         <script type="text/javascript">
-            // date variables
             var now = new Date();
             today = now.toISOString();
 
             var twoHoursLater = new Date(now.getTime() + (2 * 1000 * 60 * 60));
             twoHoursLater = twoHoursLater.toISOString();
-
-            // Google api console clientID and apiKey
-            //var CLIENT_ID = '952399997521-fv95fniurkli0gb3ldahffpfuje34i35.apps.googleusercontent.com';
+            var resource;
+            var eventos = [];
+            
             var apiKey = 'AIzaSyBfJKuCHTCGJWhGjsn6Lvtr0856WJVKU4o';
-            // enter the scope of current project (this API must be turned on in the Google console)
-            //var SCOPES2 = ["https://www.googleapis.com/auth/calendar.readonly"];
-            //var SCOPES = 'https://www.googleapis.com/auth/plus.me';
-            // OAuth2 functions
+            var CLIENT_ID = '952399997521-fv95fniurkli0gb3ldahffpfuje34i35.apps.googleusercontent.com';
+
+            var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+
             function handleClientLoad() {
                 gapi.client.setApiKey(apiKey);
                 window.setTimeout(checkAuth, 1);
             }
 
-            // Your Client ID can be retrieved from your project in the Google
-            // Developer Console, https://console.developers.google.com
-            var CLIENT_ID = '952399997521-fv95fniurkli0gb3ldahffpfuje34i35.apps.googleusercontent.com';
-
-            var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+            
 
             /**
-       * Check if current user has authorized this application.
-       */
-            function checkAuth() {
+	       * Check if current user has authorized this application.
+	       */
+			function checkAuth() {
                 gapi.auth.authorize(
                     {
                         'client_id': CLIENT_ID,
@@ -284,11 +286,12 @@
                     //'timeMin': (new Date()).toISOString(),
                     'showDeleted': false,
                     'singleEvents': true,
-                    'maxResults': 10,
+                    //'maxResults': 10,
                     'orderBy': 'startTime'
                 });
                 request.execute(function(resp) {
                     var events = resp.items;
+                    eventos = resp.items;
                     appendPre('Upcoming events:');
 
                     if (events.length > 0) {
@@ -303,8 +306,12 @@
                     } else {
                         appendPre('No upcoming events found.');
                     }
+
+                    parsearDatos();
+                	cargarCalendario();
                 });
-                llenarEventos();
+
+                
             }
 
             // function triggered when user authorizes app
@@ -378,7 +385,7 @@
                 };
             }
 
-            var resource;
+            
             
             // function load the calendar api and make the api call
             function makeApiCall() {
@@ -412,7 +419,7 @@
                 var textContent = document.createTextNode(message + '\n');
                 pre.appendChild(textContent);
             }
-            var eventos = [];
+            
             // FUNCTION TO DELETE EVENT
             function deleteEvent() {
                 gapi.client.load('calendar', 'v3', function() {
@@ -429,48 +436,11 @@
                         }
                     });
                 });
-   }
-            /*
-para ejecutar este script se levanta un servidor en este caso python: python -m SimpleHTTPServer 8000
-se accede a la url y listo
-*/
-            function llenarEventos(){
-                var requestList = gapi.client.calendar.events.list({
-                    'calendarId': 'primary',
-                    'timeMin': (new Date()).toISOString(),
-                    'showDeleted': false,
-                    'singleEvents': true,
-                    'maxResults': 10,
-                    'orderBy': 'startTime'
-                });
-
-                requestList.execute(function(resp) {
-                    var events = resp.items;
-                    eventos = resp.items;
-                    //appendPre('Upcoming events:');
-
-                    if (events.length > 0) {
-                        for (i = 0; i < events.length; i++) {
-                            var event = events[i];
-                            var when = event.start.dateTime;
-                            if (!when) {
-                                when = event.start.date;
-                            }
-                            //appendPre(event.summary + ' (' + when + ')')
-                        }
-                    } else {
-                        //appendPre('No upcoming events found.');
-                    }
-
-                });
-            }
-        </script>
-        <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
+   			}
+        
 <!-- CALENDARIO RESPONSIVE -->
 
-
-		<script>
-$(function () {
+function parsearDatos() {
 	var Json = '[';
 	var datos = "{{ json_encode($datos) }}";
 	var datosJson = JSON.parse(datos.replace(/&quot;/g,'"'));
@@ -576,9 +546,9 @@ $(function () {
 		//Remove event from text input
 		$("#new-event").val("");
 	});
-});
+}
 
-$(function () {
+function cargarCalendario() {
 	//Initialize Select2 Elements
 	$(".select2").select2();
 
@@ -637,6 +607,8 @@ $(function () {
 	$(".timepicker").timepicker({
 		showInputs: false
 	});
-});
+}
 		</script>
+
+		<script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
 @endsection
