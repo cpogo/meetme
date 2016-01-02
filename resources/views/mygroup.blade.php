@@ -57,7 +57,7 @@
 															</div>
 														</div>
 												@empty
-														<h4 align="center">There isn't a member</h4>
+														<h4 align="center">There aren't members yet </h4>
 												@endforelse
 										</div>
 							</div>

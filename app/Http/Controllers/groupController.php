@@ -18,8 +18,10 @@ class groupController extends Controller
     	session_start();
         if ( isset( $_SESSION['key'] ) ) {
             $user = User::getUserById( $_SESSION[ 'key' ] );
-            $grupos = Group::GetGruposByOwner($_SESSION[ 'key' ]);
-
+            //$grupos = Group::GetGruposByOwner($_SESSION[ 'key' ]); Envia todos los grupos asociados al user
+            $gruposProp = Group::getGruposDondeSoyProp($_SESSION[ 'key' ]);// Envia todos los grupos donde es propietario
+            $gruposMiem = Group::getGruposDondeSoyMiem($_SESSION[ 'key' ]);
+            $grupos=array($gruposProp,$gruposMiem);
             if( isset( $user ) ){
                 return view( 'newgroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
             }else{
@@ -57,5 +59,12 @@ class groupController extends Controller
         $user = User::getUserById( $_SESSION[ 'key' ] );
         return view('dashboard')->with('user',$user);
 
+    }
+
+    public static function leave(Request $req){
+        session_start();
+        Group::LeaveGrupo($req);
+        $user = User::getUserById( $_SESSION[ 'key' ] );
+        return view('dashboard')->with('user',$user);
     }
 }

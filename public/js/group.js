@@ -16,7 +16,11 @@ $(document).ready(function(){
         $('input[name=grupoidd]').val($idgrupodel);
     });
 
-
+    $('td #btnLeaveGroup').on('click',function(){
+        $('#modalLeaveGrupo').modal('show');
+        var $idgrupoleave=$(this).attr('data-botonLeave');
+        $('input[name=grupoLeave]').val($idgrupoleave);
+    });
 
 
 

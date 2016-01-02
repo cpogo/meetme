@@ -63,10 +63,12 @@
 
 
 				<div id="Misgrupos">
-					<h3 align="center">Your groups are bellow:</h3><br/>
+					<h3 align="center"><strong>Your groups are bellow:</strong></h3><br/>
 
+					<h4 align="center"><em>Groups created by myself</em></h4>
+					<br>
 					<table align="center">
-						@forelse ($grupos as $grupo)
+						@forelse ($grupos[0] as $grupo)
 
 							<tr>
 
@@ -78,13 +80,42 @@
 
 								    <td>&nbsp;&nbsp;&nbsp;<button type="button" id="btnDelete" data-botonDel="{{ $grupo->id }}"
 																  class="btn btn-danger"><i class="fa fa-remove"></i> Delete </button></td>
+
 								</tr>
 							<tr>
 								<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
 							</tr>
 
 						@empty
-							<h4 align="center">You do not have groups created yet :(</h4>
+							<br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>
+						@endforelse
+					</table> <br><br>
+
+					<h4 align="center"><em>Groups I have been added as a member</em></h4>
+					<br/>
+
+
+
+
+
+					<table align="center">
+						@forelse ($grupos[1] as $grupo)
+
+							<tr>
+
+								<td><a href="mygroup/{{ $grupo->id }}" style="...">"{{ $grupo->name }}"&nbsp;&nbsp;</a></td>
+
+
+								<td>&nbsp;&nbsp;&nbsp;<button type="button" id="btnLeaveGroup" data-botonLeave="{{ $grupo->id }}"
+															  class="btn btn-warning"><i class="glyphicon glyphicon-log-out"></i> Leave group </button></td>
+
+							</tr>
+							<tr>
+								<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+							</tr>
+
+						@empty
+							<br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not belong to any group yet &nbsp; :(</h4>
 						@endforelse
 					</table>
 
@@ -148,15 +179,16 @@
 					</div>
 		</div>
 
+
 		<div class='modal fade' id="modalDeleteGrupo" tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>
 			<div class='modal-dialog modal-lg'>
 				<div class='modal-content'>
 					<div class='modal-header' style="background-color:dimgrey">
 						<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-						<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Eliminar Grupo</h4>
+						<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Delete Group</h4>
 					</div>
 					<div class='modal-body'>
-	                   <h3>Esta seguro de eliminar el grupo ??</h3>
+	                   <h3>Are you sure to delete this group ??</h3>
 						<form action="DeleteGroup" method="post">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<input type="hidden" name="grupoidd">
@@ -165,6 +197,35 @@
 								<div class="input-group">
 									<div class="input-group-btn">
 										<button type="submit" class="btn btn-danger">Delete !!</button>
+									</div><!-- /btn-group -->
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class='modal fade' id="modalLeaveGrupo" tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>
+			<div class='modal-dialog modal-lg'>
+				<div class='modal-content'>
+					<div class='modal-header' style="background-color:dimgrey">
+						<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+						<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Leave Group</h4>
+					</div>
+					<div class='modal-body'>
+						<h3>Are you sure to leave this group ??</h3>
+
+						<form action="LeaveGroup" method="post">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="grupoLeave">
+
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-warning">Leave !!</button>
 									</div><!-- /btn-group -->
 								</div>
 							</div>

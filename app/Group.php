@@ -59,15 +59,25 @@ class Group extends Model
     public static function UpdateGrupo($req){
         Group::where('id', $req->grupoid)
             ->update(['name' => $req->nombre_grupo,'description' => $req->grupo_descripcion]);
-
     }
 
     public static function DeleteGrupo($req){
         //session_start();
         Group::where('id', $req->grupoidd)
         ->delete();
-
     }
+
+    public static function LeaveGrupo($req){
+        //session_start();
+        $user = User::getUserById($_SESSION['key']);
+        $grupo = Group::getGroupById($req->grupoLeave);
+        //dd($grupo->users()->where('user_id',$user->id)
+                          //  ->where('owner',0)
+                          //  ->delete());
+        $grupo->users()->detach($user);
+    }
+
+
 
     public static function GetGruposByOwner($id){
 
@@ -89,6 +99,22 @@ class Group extends Model
     public static function getOwnerByGroup($idgrupo){
         $grupo = Group::getGroupById($idgrupo);
         return $grupo->users()->where('owner',1)->first();
+    }
+
+    public static function getGruposDondeSoyProp(){
+        $user = User::getUserById($_SESSION['key']);
+        $groups = $user->groups()->where('owner', 1)
+            ->where('user_id',$user->id)->get();
+        return $groups;
+
+    }
+
+    public static function getGruposDondeSoyMiem(){
+        $user = User::getUserById($_SESSION['key']);
+        $groups = $user->groups()->where('owner',0)
+            ->where('user_id',$user->id)->get();
+        return $groups;
+
     }
 
   public function scopeGroups($query,$group)
