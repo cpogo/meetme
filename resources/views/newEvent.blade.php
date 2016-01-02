@@ -442,8 +442,39 @@
 
 function parsearDatos() {
 	var Json = '[';
-	var datos = "{{ json_encode($datos) }}";
-	var datosJson = JSON.parse(datos.replace(/&quot;/g,'"'));
+	var datos = "[";// = "{{ json_encode($datos) }}";
+	//var datos = "{{ json_encode($datos) }}";
+	var datosTmp = datos.replace(/&quot;/g,'"');
+	var anio, mes, dia;                //"2013-09-19T11:00:00-05:00";
+	var hora, min, seg;
+	
+	for (var i=0; i<eventos.length; i++){
+		anio = eventos[i].start.dateTime.substring(0, 4);
+		mes =  eventos[i].start.dateTime.substring(5, 7);
+		dia =  eventos[i].start.dateTime.substring(8, 10);
+		hora =  eventos[i].start.dateTime.substring(11, 13);
+		min =  eventos[i].start.dateTime.substring(14, 16);
+		seg =  eventos[i].start.dateTime.substring(17, 19);
+		datos = datos + "{" + '"eventName":' + '"' + eventos[i].summary + '","startEvent":{"anio":"' + anio + '","mes":"'
+				+ mes + '","dia":"' + dia + '","hora":"' + hora + '","minuto":"' + min + '","segundo":"' + seg + '"},';
+
+		anio = eventos[i].end.dateTime.substring(0, 4);
+		mes =  eventos[i].end.dateTime.substring(5, 7);
+		dia =  eventos[i].end.dateTime.substring(8, 10);
+		hora =  eventos[i].end.dateTime.substring(11, 13);
+		min =  eventos[i].end.dateTime.substring(14, 16);
+		seg =  eventos[i].end.dateTime.substring(17, 19);
+
+		datos = datos + '"endEvent":{"anio":"' + anio + '","mes":"'
+				+ mes + '","dia":"' + dia + '","hora":"' + hora + '","minuto":"' + min + '","segundo":"' + seg + '"}}';
+
+		if(i != (eventos.length - 1)){
+			datos = datos + ",";
+		}
+	}
+	datos = datos + "]";
+
+	var datosJson = JSON.parse(datos);
 	for (var i = 0; i < datosJson.length; i++) {
 			Json = Json + '{"title":"'+ datosJson[i].eventName +'",'+
 			                '"start":"",'+
