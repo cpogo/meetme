@@ -23,6 +23,13 @@ $(document).ready(function(){
     });
 
 
+});
+
+$(document).on('click','.delMem',function(){
+    $('#modalDeleteMember').modal('show');
+    var $idUserToLeave=$(this).attr('data-botonLeaveMember');
+    $('input[name=memberLeave]').val($idUserToLeave);
 
 });
+
 

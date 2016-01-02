@@ -52,7 +52,7 @@ class groupController extends Controller
 
     }
 
-    public function delete(Request $req)
+    public function delete(Request $req) //Borra Grupo
     {
         session_start();
         Group::DeleteGrupo($req);
@@ -61,10 +61,37 @@ class groupController extends Controller
 
     }
 
-    public static function leave(Request $req){
+    public static function deleteMember(Request $req) //Permite al admin del grupo Borrar miembro
+    {
+        session_start();
+        Group::DeleteMemberGrupo($req);
+        $user = User::getUserById( $_SESSION[ 'key' ]);
+        //return view('dashboard')->with('user',$user);
+
+
+
+        if ( isset( $_SESSION['key'] ) ) {
+
+            $grupo = Group::getGroupById($_SESSION['group']);
+            $groupWithMembers = Group::GetGruposByMember($_SESSION[ 'key' ],$_SESSION['group']);
+            $groupWithOwner = Group::getOwnerByGroup($_SESSION['group']);
+            $groupInfo = array($grupo, $groupWithMembers, $groupWithOwner);
+
+            return view( 'mygroup' , [ 'user' => $user ],[ 'grupoInformation' => $groupInfo ]);
+
+        }else{
+            return view('index');
+        }
+
+    }
+
+    public static function leave(Request $req)
+    { // Permite a un usuario dejar un grupo
         session_start();
         Group::LeaveGrupo($req);
         $user = User::getUserById( $_SESSION[ 'key' ] );
         return view('dashboard')->with('user',$user);
     }
+
+
 }

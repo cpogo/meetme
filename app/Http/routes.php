@@ -45,6 +45,8 @@ Route::post('UpdateGroup','groupController@update');
 
 Route::post('DeleteGroup','groupController@delete');
 
+Route::post('DeleteMember','groupController@deleteMember');
+
 Route::post('LeaveGroup','groupController@leave');
 
 Route::get('/searching','dashboardController@search');

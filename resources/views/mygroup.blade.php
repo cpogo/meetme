@@ -49,17 +49,51 @@
 												@forelse($grupoInformation[1] as $members)
 														<div class="col-sm-6 col-md-4">
 															<div class="thumbnail">
+																<button style="margin-left: 88%" type="button" class="btn btn-danger delMem" data-botonLeaveMember="{{$members->id}}" ><i class="fa fa-remove"></i></button>
 																<img src="{{asset('images/avatar3.png')}}" class="img-circle img-responsive" alt="owner" width="140" height="140">
+
 																<div class="caption">
 																	<h3 style='text-align: center;'>Member</h3>
 																	<h4 style='text-align: center;'>{{$members->full_name}}</h4>
+
 																</div>
+
 															</div>
 														</div>
+
 												@empty
 														<h4 align="center">There aren't members yet </h4>
 												@endforelse
 										</div>
+							</div>
+
+
+							<div class='modal fade' id="modalDeleteMember" tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'>
+								<div class='modal-dialog modal-lg'>
+									<div class='modal-content'>
+										<div class='modal-header' style="background-color:dimgrey">
+											<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+											<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Delete Member</h4>
+										</div>
+										<div class='modal-body'>
+											<h3>Are you sure to delete this member ??</h3>
+
+											<form method="post" action="/DeleteMember">
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<input type="hidden" name="memberLeave">
+
+												<div class="form-group">
+													<div class="input-group">
+														<div class="input-group-btn">
+															<button type="submit" class="btn btn-warning">Delete Member !!</button>
+														</div><!-- /btn-group -->
+													</div>
+												</div>
+											</form>
+										</div>
+
+									</div>
+								</div>
 							</div>
 							{{--<h3>Members:</h3>--}}
 

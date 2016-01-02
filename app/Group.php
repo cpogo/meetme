@@ -77,6 +77,15 @@ class Group extends Model
         $grupo->users()->detach($user);
     }
 
+    public static function DeleteMemberGrupo($req){
+
+        $user = User::getUserById($req->memberLeave);
+        $grupo = Group::getGroupById($_SESSION['group']);
+
+        $grupo->users()->detach($user);
+    }
+
+
 
 
     public static function GetGruposByOwner($id){
