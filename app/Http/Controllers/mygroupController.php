@@ -98,7 +98,7 @@ class mygroupController extends Controller
 
                 $html .= '<div class="col-sm-6 col-md-4">
                       <div class="thumbnail">
-                          <button style="margin-left: 88%" type="button" class="btn btn-danger delMem" data-botonLeaveMember="{{$members->id}}" ><i class="fa fa-remove"></i></button>
+                          <button style="margin-left: 88%" type="button" class="btn btn-link delMem" data-botonLeaveMember="{{$members->id}}" ><i class="fa fa-remove"></i></button>
                           <img src="' . asset("images/avatar3.png") . '" class="img-circle img-responsive" alt="owner" width="140" height="140">
                           <div class="caption">
                               <h3 style="text-align: center;">Member</h3>

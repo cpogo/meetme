@@ -12,3 +12,6 @@
 		{{--<link rel="stylesheet" href="{{ asset('plugins/timepicker/bootstrap-timepicker.min.css') }}">--}}
 		<!-- Select2 -->
 		<link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
+
+
+

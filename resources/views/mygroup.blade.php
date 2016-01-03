@@ -23,7 +23,9 @@
 					<div class="box">
 						<div class="box box-primary">
 							<div class="box-header with-border">
-									<h1 class="box-title">{{$grupoInformation[0]->name }} , </h1> <h6 style="display: inline"><i>{{$grupoInformation[0]->description }}</i></h6><br>
+									<h1 class="box-title">{{$grupoInformation[0]->name }} , </h1>
+								<h6 style="display: inline"><i>{{$grupoInformation[0]->description }}</i></h6>
+								<br>
 
 									<form class="navbar-form navbar-right" role="search">
 				                		<div class="input-group">
@@ -37,7 +39,8 @@
 							<div class="box-body">
 										<div class="box-header with-border">
 											<div class="thumbnail">
-												<img src="{{asset('images/avatar5.png')}}" class="img-circle img-responsive" alt="owner" width="140" height="140">
+												<img src="{{asset('images/avatar5.png')}}" class="img-circle img-responsive"
+													 alt="owner" width="140" height="140">
 												<div class="caption">
 													<h3 style='text-align: center;'>Owner</h3>
 													<h4 style='text-align: center;'>{{$grupoInformation[2]->full_name}}</h4>
@@ -49,8 +52,13 @@
 												@forelse($grupoInformation[1] as $members)
 														<div class="col-sm-6 col-md-4">
 															<div class="thumbnail">
-																<button style="margin-left: 88%" type="button" class="btn btn-danger delMem" data-botonLeaveMember="{{$members->id}}" ><i class="fa fa-remove"></i></button>
-																<img src="{{asset('images/avatar3.png')}}" class="img-circle img-responsive" alt="owner" width="140" height="140">
+																<button style="margin-left: 90% ;margin-top:-5px"
+																		type="button" class="btn btn-link delMem"
+																		data-botonLeaveMember="{{$members->id}}" ><i class="fa fa-remove"></i></button>
+
+																<img src="{{asset('images/avatar3.png')}}"
+																	 class="img-circle img-responsive"
+																	 alt="owner" width="140" height="140">
 
 																<div class="caption">
 																	<h3 style='text-align: center;'>Member</h3>
@@ -62,7 +70,7 @@
 														</div>
 
 												@empty
-														<h4 align="center">There aren't members yet </h4>
+														<h4 id="nomember" align="center">There aren't members yet </h4>
 												@endforelse
 										</div>
 							</div>

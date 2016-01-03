@@ -78,6 +78,7 @@ $(document).on("click", "#grupo", function(evento){
 				success: function(data)
 				{
 					$(".membersgroup").append(data);// funcion jquery que muestra el div con identificador display, como formato html, tambien puede ser .text
-				}
+				    $('#nomember').remove();
+                }
 		});
 });
