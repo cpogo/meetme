@@ -57,7 +57,7 @@
                                             <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title">
                                         </div>
                                     </div>
-                                    <!-- Event Objective -->
+                                    <!-- Event Objective 
                                     <div class="form-group">
                                         <label>Objetivo</label>
                                         <div class="input-group">
@@ -66,7 +66,7 @@
                                             </div>
                                             <input id="eventObjective" name="event_objective" type="text" class="form-control" placeholder="Event objective">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <!-- Event Description -->
                                     <div class="form-group">
                                         <label>Descripción</label>
@@ -131,19 +131,26 @@
                                             <textarea id="eventSuggestion" name="event_suggestion" class="form-control" rows="3" placeholder="Event Suggestions"></textarea>
                                         </div>
                                     </div>
-
+                                    <!--
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-primary">Crear</button>
-                                            </div><!-- /btn-group -->
+                                                <button onclick="makeApiCall();" class="btn btn-primary">Crear</button>
+                                            </div>
                                         </div>
                                     </div>
+                                    -->
                                     <div class="col-md-2 col-sm-2 col-xs-12">
 										<button id="authorize-button" style="visibility: hidden" class="btn btn-primary">Authorize</button>
 									</div>
                                 </form>
-
+                                <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
+			                        	Create Events</button>
+			                    	<button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
+			                        	Delete Events</button>
+                                
+                    <div id="event-response">
+                    </div>
 								</div><!-- /.box-body -->
 							</div>
 						</div><!-- /.col -->
@@ -180,13 +187,14 @@
                                 Insert Event into Public Calendar&hellip;</p>
                         </div>
                     </div>
-                    <!--  <input id="txtEventDetails" type="text" /> -->
+                    <!--  <input id="txtEventDetails" type="text" /> 
                     <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
                         Create Events</button>
                     <button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
                         Delete Events</button>
                     <div id="event-response">
                     </div>
+                    -->
                     <div id="divifm">
 
                         <iframe id="ifmCalendar" src="https://calendar.google.com/calendar/embed?src=marcoxavibsc%40gmail.com&ctz=America/Guayaquil" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
@@ -346,15 +354,27 @@
 				var mesF = dateEF.substring(0, 2);
 				var anioI = dateEI.substring(6);
 				var anioF = dateEF.substring(6);
+				var horaI = timeEI.substring(0,2);
+				var minI = timeEI.substring(3,5);
+				var horaF = timeEF.substring(0,2);
+				var minF = timeEF.substring(3,5);
+				var ampmI = timeEI.substring(6,8);
+				var ampmF = timeEF.substring(6,8);
+				if(ampmI == "PM"){
+					horaI = parseInt(horaI) + 12;
+				}
+				if(ampmF == "PM"){
+					horaF = parseInt(horaF) + 12;
+				}
 
                 
                 resource = {
                     "summary": tituloE,
                     "start": {
-                        "dateTime": anioI+"-"+mesI+"-"+diaI+"T"+"09:00:00-07:00"   //"2015-12-20T09:00:00-07:00"
+                        "dateTime": anioI+"-"+mesI+"-"+diaI+"T"+horaI+":"+minI+":00-05:00"   //"2015-12-20T09:00:00-07:00"
                     },
                     "end": {
-                        "dateTime": anioF+"-"+mesF+"-"+diaF+"T"+"09:00:00-07:00" //"2015-12-26T17:00:00-10:00"
+                        "dateTime": anioF+"-"+mesF+"-"+diaF+"T"+horaF+":"+minF+":00-05:00" //"2015-12-26T17:00:00-10:00"
                     },
                     "description":descriptionE,
                     "location":"EC",
