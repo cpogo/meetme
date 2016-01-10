@@ -45,110 +45,64 @@
 									<h3 class="box-title">Create Event</h3>
 								</div>
 								<div class="box-body">
-									<form action="createEvent" method="post">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <!-- Event Title -->
-                                    <div class="form-group">
-                                        <label>Título</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-tasks"></i>
-                                            </div>
-                                            <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title">
-                                        </div>
-                                    </div>
-                                    <!-- Event Objective 
-                                    <div class="form-group">
-                                        <label>Objetivo</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-hand-o-right"></i>
-                                            </div>
-                                            <input id="eventObjective" name="event_objective" type="text" class="form-control" placeholder="Event objective">
-                                        </div>
-                                    </div>-->
-                                    <!-- Event Description -->
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-justify"></i>
-                                            </div>
-                                            <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..."></textarea>
-                                        </div>
-                                    </div>
-                                    <!-- Event Date -->
-									<div class="form-group">
-										<label>Start Date</label>
-										<div class='input-group date' id='datetimepickerinicio'>
-						                  	<input type='text' name="fechaInicio" id="fechaInicio" class="form-control"/>
-						                  	<span class="input-group-addon">
-						                      	<span class="glyphicon glyphicon-calendar">
-						                      	</span>
-						                  	</span>
-						            	</div>
-									</div>
+									<!--action="createEvent"-->
+									<form action="#" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <!-- Event Title -->
+                        <div class="form-group">
+                            <label>Título</label>
+                            <div class="input-group">
+                                 <div class="input-group-addon">
+                                		<i class="fa fa-tasks"></i>
+                                 </div>
+                                 <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title">
+                            </div>
+                        </div>
+                        <!-- Event Description -->
+                        <div class="form-group">
+                             <label>Descripción</label>
+                             <div class="input-group">
+                                  <div class="input-group-addon">
+                                       <i class="fa fa-align-justify"></i>
+                                  </div>
+                                  <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..."></textarea>
+                             </div>
+                        </div>
+                        <!-- Event Date -->
+									      <div class="form-group">
+										         <label>Start Date</label>
+										         <div class='input-group date' id='datetimepickerinicio'>
+						                  	  <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaInicio" id="fechaInicio" class="form-control"/>
+						                  	  <span class="input-group-addon">
+						                      	    <span class="glyphicon glyphicon-calendar"></span>
+						                  	  </span>
+						            	   </div>
+									      </div>
 												<!-- Event Date -->
-									<div class="form-group">
-										<label>End Date</label>
-										<div class='input-group date' id='datetimepickerfin'>
-						                	<input type='text' name="fechaFin" id="fechaFin" class="form-control"/>
-							                <span class="input-group-addon">
-							                    <span class="glyphicon glyphicon-calendar">
+									      <div class="form-group">
+										         <label>End Date</label>
+										         <div class='input-group date' id='datetimepickerfin'>
+						                	    <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaFin" id="fechaFin" class="form-control"/>
+							                    <span class="input-group-addon">
+							                          <span class="glyphicon glyphicon-calendar"></span>
 							                    </span>
-							                </span>
-							            </div>
-									</div>
-												<!-- Event Time -->
-												{{--<div class="bootstrap-timepicker"><div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-up"></i></a></td></tr><tr><td><span class="bootstrap-timepicker-hour">02</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>--}}
-												{{--<div class="form-group">--}}
-												{{--<label>Time</label>--}}
-												{{--<div class="input-group">--}}
-												{{--<div class="input-group-addon">--}}
-												{{--<i class="fa fa-clock-o"></i>--}}
-												{{--</div>--}}
-												{{--<input type="text" class="form-control timepicker">--}}
-												{{--</div><!-- /.input group -->--}}
-												{{--</div><!-- /.form group -->--}}
-												{{--</div>--}}
-												<!-- Event Suggestions -->
-												{{--<div class="form-group">
-													<label>Suggestions</label>
-													<div class="input-group">
-														<div class="input-group-addon">
-															<i class="fa fa-commenting-o"></i>
-														</div>
-														<textarea name="event_suggestion" class="form-control" rows="3" placeholder="Event Suggestions"></textarea>
-													</div>
-												</div>--}}
-                                    
-                                    <!--
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-btn">
-                                                <button onclick="makeApiCall();" class="btn btn-primary">Crear</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    -->
-                                    <div class="col-md-2 col-sm-2 col-xs-12">
-										<button id="authorize-button" style="visibility: hidden" class="btn btn-primary">Authorize</button>
-									</div>
-                                </form>
-                                <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
+							               </div>
+									      </div>
+                </form>
+								<div class="form-group">
+										 <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">Create Events</button>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-12">
+										 <button type="button" id="authorize-button" style="visibility: hidden" class="btn btn-primary">Authorize</button>
+								</div>
+                        {{--<button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
 			                        	Create Events</button>
 			                    	<button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
-			                        	Delete Events</button>
-                                
-                    <div id="event-response">
-                    </div>
+			                        	Delete Events</button>--}}
 								</div><!-- /.box-body -->
 							</div>
 						</div><!-- /.col -->
-
-
 						<!-- CALENDARIO RESPONSIVE -->
-
 						<div class="col-md-9">
 							<div class="box box-primary">
 								<div class="box-body no-padding">
@@ -158,15 +112,10 @@
 							</div><!-- /. box -->
 						</div><!-- /.col -->
 
-
 					</div><!-- /.row -->
-
-
-
-
 				</section><!-- /.content -->
 			</div><!-- /.content-wrapper -->
-			
+
 @endsection
 
 @section('scripts')
@@ -179,7 +128,7 @@
             twoHoursLater = twoHoursLater.toISOString();
             var resource;
             var eventos = [];
-            
+
             var apiKey = 'AIzaSyBfJKuCHTCGJWhGjsn6Lvtr0856WJVKU4o';
             var CLIENT_ID = '952399997521-fv95fniurkli0gb3ldahffpfuje34i35.apps.googleusercontent.com';
 
@@ -190,13 +139,10 @@
                 gapi.client.setApiKey(apiKey);
                 window.setTimeout(checkAuth, 1);
             }
-
-            
-
             /**
-	       * Check if current user has authorized this application.
-	       */
-			function checkAuth() {
+	            * Check if current user has authorized this application.
+	           **/
+			      function checkAuth() {
                 gapi.auth.authorize(
                     {
                         'client_id': CLIENT_ID,
@@ -204,7 +150,6 @@
                         'immediate': true
                     }, handleAuthResult);
             }
-
             // show/hide the 'authorize' button, depending on application state
             function handleAuthResult(authResult) {
                 var authorizeButton = document.getElementById('authorize-button');
@@ -232,7 +177,7 @@
 
             function loadCalendarApi() {
                 gapi.client.load('calendar', 'v3', listUpcomingEvents);
-                
+
             }
 
             function listUpcomingEvents() {
@@ -266,7 +211,7 @@
                 	cargarCalendario();
                 });
 
-                
+
             }
 
             // function triggered when user authorizes app
@@ -280,55 +225,67 @@
                 return false;
             }
 
-            function refreshICalendarframe() {
+            /*function refreshICalendarframe() {
                 var iframe = document.getElementById('divifm')
                 iframe.innerHTML = iframe.innerHTML;
-            }
-            
-            
+            }*/
+
+
             function llenarResource(){
                 var tituloE = document.getElementById("eventTittle").value;
-                //var objetiveE = document.getElementById("eventObjective").value;
                 var descriptionE = document.getElementById("eventDescription").value;
-                var dateI = document.getElementById("fechaInicio").value;
-                var dateF = document.getElementById("fechaFin").value;
-                //var timeEI = document.getElementById("eventTimeI").value;
-                //var timeEF = document.getElementById("eventTimeF").value;
-                //var suggestionE = document.getElementById("eventSuggestion").value;
-                var lngFecha = dateI.length;
-				var diaI = dateI.substring(3, 5);     //12/31/2015 1:10 PM
-				var mesI = dateI.substring(0, 2);
-				var anioI = dateI.substring(6,10);
-				if(lngFecha == 19){
-					var horaI = dateI.substring(11,13);
-					var minI = dateI.substring(14,16);
-					var ampmI = dateI.substring(17,19);
-				} else{
-					var horaI = dateI.substring(11,12);
-					var minI = dateI.substring(13,15);
-					var ampmI = dateI.substring(16,18);
-				}
-				lngFecha = dateF.length;
-				var diaF = dateF.substring(3, 5);
-				var mesF = dateF.substring(0, 2);
-				var anioF = dateF.substring(6,10);
-				if(lngFecha == 19){
-					var horaF = dateF.substring(11,13);
-					var minF = dateF.substring(14,16);
-					var ampmF = dateF.substring(17,19);
-				} else{
-					var horaF = dateF.substring(11,12);
-					var minF = dateF.substring(13,15);
-					var ampmF = dateF.substring(16,18);
-				}
-				if(ampmI == "PM"){
-					horaI = parseInt(horaI) + 12;
-				}
-				if(ampmF == "PM"){
-					horaF = parseInt(horaF) + 12;
-				}
+                //var dateI = document.getElementById("fechaInicio").value;
+								var dateI = $("#datetimepickerinicio").data("DateTimePicker").date()._d;
+								//var dateF = document.getElementById("fechaFin").value;
+								var dateF = $("#datetimepickerfin").data("DateTimePicker").date()._d;
+								//var lngFecha = dateI.length;
+								var diaI = dateI.getDate();
+								if( diaI < 10 ){ diaI = "0" + diaI; }
+								var mesI = dateI.getMonth() + 1;
+								if( mesI < 10 ){ mesI = "0" + mesI; }
+								var anioI = dateI.getFullYear();
+								var horaI = dateI.getHours();
+								var minI = dateI.getMinutes();
 
-                
+								var diaF = dateF.getDate();
+								if( diaF < 10 ){ diaF = "0" + diaF; }
+								var mesF = dateF.getMonth() + 1;
+								if( mesF < 10 ){ mesF = "0" + mesF; }
+								var anioF = dateF.getFullYear();
+								var horaF = dateF.getHours();
+								var minF = dateF.getMinutes();
+								//var ampmI = dateI.;
+								/*var diaI = dateI.substring(3, 5);     //12/31/2015 1:10 PM
+								var mesI = dateI.substring(0, 2);
+								var anioI = dateI.substring(6,10);
+								if(lngFecha == 19){
+									var horaI = dateI.substring(11,13);
+									var minI = dateI.substring(14,16);
+									var ampmI = dateI.substring(17,19);
+								} else{
+									var horaI = dateI.substring(11,12);
+									var minI = dateI.substring(13,15);
+									var ampmI = dateI.substring(16,18);
+								}
+								lngFecha = dateF.length;
+								var diaF = dateF.substring(3, 5);
+								var mesF = dateF.substring(0, 2);
+								var anioF = dateF.substring(6,10);
+								if(lngFecha == 19){
+									var horaF = dateF.substring(11,13);
+									var minF = dateF.substring(14,16);
+									var ampmF = dateF.substring(17,19);
+								} else{
+									var horaF = dateF.substring(11,12);
+									var minF = dateF.substring(13,15);
+									var ampmF = dateF.substring(16,18);
+								}
+								if(ampmI == "PM"){
+									horaI = parseInt(horaI) + 12;
+								}
+								if(ampmF == "PM"){
+									horaF = parseInt(horaF) + 12;
+								}*/
                 resource = {
                     "summary": tituloE,
                     "start": {
@@ -341,8 +298,8 @@
                     "location":"EC",
                     "attendees":[
                         {
-                            "email":"mmendozaquelal@gmail.com",
-                            "displayName":"Marco",
+                            "email":"metacris93@gmail.com",
+                            "displayName":"Cristian",
                             "organizer":true,
                             "self":false,
                             "resource":false,
@@ -352,8 +309,8 @@
                             "additionalGuests":3
                         },
                         {
-                            "email":"jaalrome@gmail.com",
-                            "displayName":"Jairo",
+                            "email":"darthcristian93@gmail.com",
+                            "displayName":"Cristian2",
                             "organizer":true,
                             "self":false,
                             "resource":false,
@@ -365,17 +322,13 @@
                     ],
                 };
             }
-
-            
-            
             // function load the calendar api and make the api call
             function makeApiCall() {
-                var eventResponse = document.getElementById('event-response');
-                
+                //var eventResponse = document.getElementById('event-response');
                 llenarResource();
-
+								console.log(resource);
                 gapi.client.load('calendar', 'v3', function () {					// load the calendar api (version 3)
-                    var request = gapi.client.calendar.events.insert
+                var request = gapi.client.calendar.events.insert
                     ({
                         'calendarId': 'primary', // calendar ID
                         "resource": resource							// pass event details with api call
@@ -384,12 +337,14 @@
                     // handle the response from our api call
                     request.execute(function (resp) {
                         if (resp.status == 'confirmed') {
-                            eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
-                            eventResponse.className += ' panel-success';
-                            refreshICalendarframe();
+                            //eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
+                            //eventResponse.className += ' panel-success';
+                            //refreshICalendarframe();
+														console.log("se creo con exito el evento");
                         } else {
-                            document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
-                            eventResponse.className += ' panel-danger';
+                            //document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
+                            //eventResponse.className += ' panel-danger';
+														console.log("no se creo el evento");
                         }
                     });
                 });
@@ -400,7 +355,7 @@
                 var textContent = document.createTextNode(message + '\n');
                 pre.appendChild(textContent);
             }
-            
+
             // FUNCTION TO DELETE EVENT
             function deleteEvent() {
                 gapi.client.load('calendar', 'v3', function() {
@@ -418,7 +373,7 @@
                     });
                 });
    			}
-        
+
 <!-- CALENDARIO RESPONSIVE -->
 
 function parsearDatos() {
@@ -428,7 +383,7 @@ function parsearDatos() {
 	var datosTmp = datos.replace(/&quot;/g,'"');
 	var anio, mes, dia;                //"2013-09-19T11:00:00-05:00";
 	var hora, min, seg;
-	
+
 	for (var i=0; i<eventos.length; i++){
 		anio = eventos[i].start.dateTime.substring(0, 4);
 		mes =  eventos[i].start.dateTime.substring(5, 7);
@@ -498,7 +453,7 @@ function parsearDatos() {
 		},
 		//Random default events
 		events: Json,
-		editable: true,
+		editable: false,
 		droppable: true, // this allows things to be dropped onto the calendar !!!
 		drop: function (date, allDay) { // this function is called when something is dropped
 

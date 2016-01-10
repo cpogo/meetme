@@ -10,7 +10,7 @@
 		<script src="{{ asset('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
 		<!-- date-range-picker -->
 {{--		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>--}}
-		<script src="{{ asset('plugins/momentjs/moment-2.10.2.min.js') }}"></script>
+		<script src="{{ asset('plugins/momentjs/moment.min.js') }}"></script>
 		<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 		<!-- bootstrap color picker -->
 		<script src="{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>

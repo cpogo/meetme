@@ -19,7 +19,7 @@ Route::get('login', 'loginController@index');
 
 Route::post('loginUser', 'loginController@login');
 
-Route::get('login/{email}', ['as' => 'loginSocial', 'uses' => 'loginController@loginSocial']);
+//Route::get('login/{email}', ['as' => 'loginSocial', 'uses' => 'loginController@loginSocial']);
 
 Route::post('registerUser', 'registerController@store');
 

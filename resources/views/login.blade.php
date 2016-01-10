@@ -24,8 +24,9 @@
 				<div class="col-xs-12 col-sm-6 col-lg-3">
 					<div class="box">
 						<a href="{{ url('signIn') }}" class="button fit">Join with Google</a>
+						<button id="authorize-button" style="visibility: hidden" class="btn btn-primary">Authorize</button>			 
 					</div>
-				</div>				
+				</div>
 			</section>
 		</div>
 @endsection

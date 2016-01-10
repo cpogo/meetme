@@ -26,6 +26,7 @@ class registerController extends Controller
     public function googleAuth()
     {
         session_start();
+        //dd(Socialite::driver('google')->user());
         $user = Socialite::driver('google')->user();
         $newUser = User::getUserByEmail($user->email);
         if( !$newUser )
