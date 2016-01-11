@@ -2,8 +2,6 @@
 use Illuminate\Database\Seeder;
 //use Illuminate\Database\Eloquent\Model;
 use Faker\Factory as Faker;
-use \Hash;
-use \DB;
 
 class UserTableSeeder extends Seeder
 {
@@ -20,7 +18,7 @@ class UserTableSeeder extends Seeder
              'full_name'=> $faker->unique()->name,
              'username'=> $faker->firstName,
              'email'=> $faker->email,
-             'password'=>Hash::make('123456')
+             'password'=>\Hash::make('123456')
           ));
         }
 

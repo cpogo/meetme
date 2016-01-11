@@ -222,12 +222,12 @@ class loginController extends Controller
         return redirect('login');
     }
 
-    /*public function loginSocial($email)
+    public function loginSocial($email)
     {
         session_start();
         $user = User::getUserByEmail($email);
         $_SESSION['key'] = $user->id;
         return redirect('dashboard');
-    }*/
+    }
 
 }

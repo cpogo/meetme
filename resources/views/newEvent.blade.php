@@ -46,49 +46,49 @@
 								</div>
 								<div class="box-body">
 									<!--action="createEvent"-->
-									<form action="#" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <!-- Event Title -->
-                        <div class="form-group">
-                            <label>Título</label>
-                            <div class="input-group">
-                                 <div class="input-group-addon">
-                                		<i class="fa fa-tasks"></i>
-                                 </div>
-                                 <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title">
-                            </div>
-                        </div>
-                        <!-- Event Description -->
-                        <div class="form-group">
-                             <label>Descripción</label>
-                             <div class="input-group">
-                                  <div class="input-group-addon">
-                                       <i class="fa fa-align-justify"></i>
-                                  </div>
-                                  <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..."></textarea>
-                             </div>
-                        </div>
-                        <!-- Event Date -->
-									      <div class="form-group">
-										         <label>Start Date</label>
-										         <div class='input-group date' id='datetimepickerinicio'>
-						                  	  <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaInicio" id="fechaInicio" class="form-control"/>
-						                  	  <span class="input-group-addon">
-						                      	    <span class="glyphicon glyphicon-calendar"></span>
-						                  	  </span>
-						            	   </div>
-									      </div>
-												<!-- Event Date -->
-									      <div class="form-group">
-										         <label>End Date</label>
-										         <div class='input-group date' id='datetimepickerfin'>
-						                	    <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaFin" id="fechaFin" class="form-control"/>
-							                    <span class="input-group-addon">
-							                          <span class="glyphicon glyphicon-calendar"></span>
-							                    </span>
-							               </div>
-									      </div>
-                </form>
+						<form action="#" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <!-- Event Title -->
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <div class="input-group">
+                                         <div class="input-group-addon">
+                                        		<i class="fa fa-tasks"></i>
+                                         </div>
+                                         <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title">
+                                    </div>
+                                </div>
+                                <!-- Event Description -->
+                                <div class="form-group">
+                                     <label>Descripción</label>
+                                     <div class="input-group">
+                                          <div class="input-group-addon">
+                                               <i class="fa fa-align-justify"></i>
+                                          </div>
+                                          <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..."></textarea>
+                                     </div>
+                                </div>
+                                <!-- Event Date -->
+								<div class="form-group">
+									<label>Start Date</label>
+									<div class='input-group date' id='datetimepickerinicio'>
+						                 <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaInicio" id="fechaInicio" class="form-control"/>
+						            <span class="input-group-addon">
+						                  <span class="glyphicon glyphicon-calendar"></span>
+						            </span>
+						            </div>
+								</div>
+								<!-- Event Date -->
+								<div class="form-group">
+									<label>End Date</label>
+									<div class='input-group date' id='datetimepickerfin'>
+						                	<input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaFin" id="fechaFin" class="form-control"/>
+							                 <span class="input-group-addon">
+							                     <span class="glyphicon glyphicon-calendar"></span>
+							                 </span>
+							        </div>
+								</div>
+                        </form>
 								<div class="form-group">
 										 <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">Create Events</button>
 								</div>
@@ -254,38 +254,6 @@
 								var anioF = dateF.getFullYear();
 								var horaF = dateF.getHours();
 								var minF = dateF.getMinutes();
-								//var ampmI = dateI.;
-								/*var diaI = dateI.substring(3, 5);     //12/31/2015 1:10 PM
-								var mesI = dateI.substring(0, 2);
-								var anioI = dateI.substring(6,10);
-								if(lngFecha == 19){
-									var horaI = dateI.substring(11,13);
-									var minI = dateI.substring(14,16);
-									var ampmI = dateI.substring(17,19);
-								} else{
-									var horaI = dateI.substring(11,12);
-									var minI = dateI.substring(13,15);
-									var ampmI = dateI.substring(16,18);
-								}
-								lngFecha = dateF.length;
-								var diaF = dateF.substring(3, 5);
-								var mesF = dateF.substring(0, 2);
-								var anioF = dateF.substring(6,10);
-								if(lngFecha == 19){
-									var horaF = dateF.substring(11,13);
-									var minF = dateF.substring(14,16);
-									var ampmF = dateF.substring(17,19);
-								} else{
-									var horaF = dateF.substring(11,12);
-									var minF = dateF.substring(13,15);
-									var ampmF = dateF.substring(16,18);
-								}
-								if(ampmI == "PM"){
-									horaI = parseInt(horaI) + 12;
-								}
-								if(ampmF == "PM"){
-									horaF = parseInt(horaF) + 12;
-								}*/
                 resource = {
                     "summary": tituloE,
                     "start": {
@@ -340,21 +308,21 @@
                             //eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
                             //eventResponse.className += ' panel-success';
                             //refreshICalendarframe();
-														console.log("se creo con exito el evento");
+							console.log("se creo con exito el evento");
                         } else {
                             //document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
                             //eventResponse.className += ' panel-danger';
-														console.log("no se creo el evento");
+							console.log("no se creo el evento");
                         }
                     });
                 });
             }
 
-            function appendPre(message) {
+            /*function appendPre(message) {
                 var pre = document.getElementById('output');
                 var textContent = document.createTextNode(message + '\n');
                 pre.appendChild(textContent);
-            }
+            }*/
 
             // FUNCTION TO DELETE EVENT
             function deleteEvent() {
