@@ -27,21 +27,46 @@
 									<h3 class="profile-username text-center">{{$profile->full_name}}</h3>
 									<p class="text-muted text-center">{{$profile->username}}</p>
 
-{{--
 									<ul class="list-group list-group-unbordered">
 										<li class="list-group-item">
-											<b>Followers</b> <a class="pull-right">1,322</a>
+											<b>Followers</b> <a class="pull-right">{{count($followers)}}</a>
 										</li>
 										<li class="list-group-item">
-											<b>Following</b> <a class="pull-right">543</a>
+											<b>Following</b> <a class="pull-right">{{count($following)}}</a>
 										</li>
+										<li class="list-group-item">
+											<b>Groups</b> <a class="pull-right">{{count($groups)}}</a>
+										</li>
+										<li class="list-group-item">
+											<b>Meetings</b> <a class="pull-right">{{count($meetings)}}</a>
+										</li>
+{{--
 										<li class="list-group-item">
 											<b>Friends</b> <a class="pull-right">13,287</a>
 										</li>
-									</ul>
-
-									<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
 --}}
+									</ul>
+@if ($user->id != $profile->id)
+<?php
+if(!$follow_profile){
+?>
+									<form class="form-horizontal" action="{{ url('profile/'.$profile->username.'/follow') }}" method="post">
+										{{ csrf_field() }}
+										<button type="submit" class="btn btn-primary btn-block"><b>Follow</b></button>
+									</form>
+<?php
+} else {
+?>
+									<form class="form-horizontal" action="{{ url('profile/'.$profile->username.'/unfollow') }}" method="post">
+										{{ csrf_field() }}
+										<button type="submit" class="btn btn-success btn-block followButton"><i class="fa fa-check"></i> <b>Following</b></button>
+									</form>
+<?php
+}
+?>
+@endif
+
+
 								</div><!-- /.box-body -->
 							</div><!-- /.box -->
 
@@ -86,7 +111,9 @@
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
 {{--									<li><a href="#timeline" data-toggle="tab">Timeline</a></li>--}}
-@if ($user->id == $profile->id)
+									<li><a href="#followers" data-toggle="tab">Followers ({{count($followers)}})</a></li>
+									<li><a href="#following" data-toggle="tab">Following ({{count($following)}})</a></li>
+@if ($user->id == $profile->id && false)
 									<li><a href="#settings" data-toggle="tab">Settings</a></li>
 @endif
 								</ul>
@@ -273,7 +300,69 @@
 										</ul>
 									</div><!-- /.tab-pane -->
 --}}
-@if ($user->id == $profile->id)
+
+
+									<div class="tab-pane" id="followers">
+										<div class="box-body no-padding">
+@if(count($followers) == 0)
+<?php if($user->id == $profile->id){ ?>
+											You don't have followers.
+<?php } else { ?>
+											{{ $profile->first_name }} doesn't have followers.
+<?php } ?>
+@else
+											<ul class="users-list clearfix">
+@foreach($followers as $follower)
+<?php
+$follower_data = DB::table('users')
+		->where('id', $follower->follower_id)
+		->select('id', 'first_name', 'last_name', 'full_name', 'email', 'username')
+		->first();
+?>
+												<li>
+													<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $follower_data->id .'.jpg') }}" alt="{{ $follower_data->first_name }} {{ $follower_data->last_name }}">
+													<a class="users-list-name" href="{{ url('profile/'.$follower_data->username) }}">{{ $follower_data->first_name }} {{ $follower_data->last_name }}</a>
+													<span class="users-list-date">{{ $follower_data->username }}</span>
+												</li>
+@endforeach
+											</ul>
+											<!-- /.users-list -->
+@endif
+										</div>
+										<!-- /.box-body -->
+									</div><!-- /.tab-pane -->
+
+									<div class="tab-pane" id="following">
+										<div class="box-body no-padding">
+@if(count($following) == 0)
+<?php if($user->id == $profile->id){ ?>
+											You don't follow anyone.
+<?php } else { ?>
+											{{ $profile->first_name }} doesn't follow anyone.
+<?php } ?>
+@else
+											<ul class="users-list clearfix">
+@foreach($following as $follow)
+<?php
+$follow_data = DB::table('users')
+		->where('id', $follow->user_id)
+		->select('id', 'first_name', 'last_name', 'full_name', 'email', 'username')
+		->first();
+?>
+												<li>
+													<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $follow_data->id .'.jpg') }}" alt="{{ $follow_data->first_name }} {{ $follow_data->last_name }}">
+													<a class="users-list-name" href="{{ url('profile/'.$follow_data->username) }}">{{ $follow_data->first_name }} {{ $follow_data->last_name }}</a>
+													<span class="users-list-date">{{ $follow_data->username }}</span>
+												</li>
+@endforeach
+											</ul>
+											<!-- /.users-list -->
+@endif
+										</div>
+										<!-- /.box-body -->
+									</div><!-- /.tab-pane -->
+
+@if ($user->id == $profile->id && false)
 									<div class="tab-pane" id="settings">
 										<form class="form-horizontal" action="{{ url('profile_settings') }}" method="post">
 											{{ csrf_field() }}
@@ -350,4 +439,5 @@
 @endsection
 @section('scripts')
 		@include('app.scripts_page_')
+		<script src="{{ asset('js/profile.js') }}"></script>
 @endsection
