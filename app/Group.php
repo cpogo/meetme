@@ -130,7 +130,9 @@ class Group extends Model
   {
       if( trim($group) != "" )
       {
-          return $query->where('name','LIKE',"$group%");
+          return $query
+				  ->where('name','LIKE',"$group%")
+				  ->orWhere('name','LIKE',"% $group%");
       }
   }
 

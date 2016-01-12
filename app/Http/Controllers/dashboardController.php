@@ -42,10 +42,18 @@ class dashboardController extends Controller
 		$users = User::members($request->buscar)->get();
 		$groups = Group::groups($request->buscar)->get();
 
+		$users_count = $users->count();
+		$groups_count = count($groups);
+
+		$users_show = 3;
+		$groups_show = 3;
+
 //		$html .= '<li class="headerbox"><a href="#"><span class="textbox">Users</span></a></li>';
 
 		$html .= '<div class="list-group">';
-		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
+		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users_count . '</span><i class="fa fa-user"></i> Users</a>';
+
+		$users = $users->take($users_show);
 
 		foreach ($users as $user) {
 //			$html .= '<li class="user" title="' . $user->full_name . '">';
@@ -54,22 +62,38 @@ class dashboardController extends Controller
 //			$html .= '	</a>';
 //			$html .= '</li>';
 
-			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->first_name . ' ' . $user->last_name . '" class="list-group-item">';
+			$html .= '	<a href="' . url('profile/' . $user->username) . '" title="' . $user->full_name . '" class="list-group-item">';
 			$html .= '		<div class="media">';
 			$html .= '			<div class="media-left media-middle">';
 			$html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
 			$html .= '			</div>';
 			$html .= '			<div class="media-body">';
-			$html .= '				<h4 class="media-heading">' . $user->first_name . ' ' . $user->last_name . '</h4>';
-			$html .= '				<div>' . $user->full_name . '</div>';
+			$html .= '				<h4 class="media-heading">' . $user->full_name . '</h4>';
+			$html .= '				<div>' . $user->username . '</div>';
 			$html .= '			</div>';
 			$html .= '		</div>';
 			$html .= '	</a>';
 		}
 
+		if( $users_count > $users_show ){
+//			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">';
+//			$html .= '		<div>Showing ' . $users_show . ' of ' . $users_count . '.</div>';
+//			$html .= '		<div>Show more <i class="fa fa-search-plus"></i></div>';
+//			$html .= '	</a>';
+
+//			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">';
+//			$html .= '		Showing ' . $users_show . ' of ' . $users_count . '.<br>';
+//			$html .= '		Show more <i class="fa fa-search-plus"></i>';
+//			$html .= '	</a>';
+
+			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">Show more <i class="fa fa-search-plus"></i></a>';
+		}
+
 //		$html .= '<li class="headerbox"><a href="#"><span class="textbox">Groups</span></a></li>';
 
-		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($groups->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . count($groups) . '</span><i class="fa fa-group"></i> Groups</a>';
+		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($groups->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $groups_count . '</span><i class="fa fa-group"></i> Groups</a>';
+
+		$groups = $groups->take($groups_show);
 
 		foreach ($groups as $group) {
 //			$html .= '<li class="group" title="' . $group->name . '">';
@@ -89,6 +113,20 @@ class dashboardController extends Controller
 			$html .= '			</div>';
 			$html .= '		</div>';
 			$html .= '	</a>';
+		}
+
+		if( $groups_count > $groups_show ){
+//			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">';
+//			$html .= '		<div>Showing ' . $groups_show . ' of ' . $groups_count . '.</div>';
+//			$html .= '		<div>Show more <i class="fa fa-search-plus"></i></div>';
+//			$html .= '	</a>';
+
+//			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">';
+//			$html .= '		Showing ' . $groups_show . ' of ' . $groups_count . '.<br>';
+//			$html .= '		Show more <i class="fa fa-search-plus"></i>';
+//			$html .= '	</a>';
+
+			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">Show more <i class="fa fa-search-plus"></i></a>';
 		}
 
 		$html .= '</div>';
