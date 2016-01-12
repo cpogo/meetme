@@ -49,17 +49,29 @@ class ProfileController extends Controller {
 					->get();
 
 			$groups = DB::table('group_user')
-					->where('owner', $profile->id)
+					->where('user_id', $profile->id)
+					->select('group_id')
+					->get();
+
+			$groups_owner = DB::table('group_user')
+					->where('user_id', $profile->id)
+					->where('owner', 1)
 					->select('group_id')
 					->get();
 
 			$meetings = DB::table('meet_user')
-					->where('owner', $profile->id)
+					->where('user_id', $profile->id)
 					->select('meet_id')
 					->get();
 
-//			$_SESSION['usuario'] = $user->id;
-//			$_SESSION['seguidor'] = $profile->id;
+			$meetings_owner = DB::table('meet_user')
+					->where('user_id', $profile->id)
+					->where('owner', 1)
+					->select('meet_id')
+					->get();
+
+//			$_SESSION['usuario'] = $user;
+//			$_SESSION['perfil'] = $profile;
 //			$_SESSION['foll_is'] = $is_follow;
 //			$_SESSION['foll_var'] = $follow_profile;
 //			$_SESSION['followers'] = $followers;
@@ -75,6 +87,8 @@ class ProfileController extends Controller {
 					'following' => $following,
 					'groups' => $groups,
 					'meetings' => $meetings,
+					'groups_owner' => $groups_owner,
+					'meetings_owner' => $meetings_owner,
 						]);
 			}
 		} else {

@@ -5,12 +5,12 @@
 					<!-- Sidebar user panel -->
 					<div class="user-panel">
 						<div class="pull-left image">
-							<img src="{{ asset('img/user'. $user->id .'.jpg') }}" class="img-circle" alt="{{$user->first_name}} {{$user->last_name}}">
+							<img src="{{ asset('img/user'. $user->id .'.jpg') }}" class="img-circle" alt="{{ $user->full_name }}">
 						</div>
 						<div class="pull-left info">
-							<p>{{$user->first_name}} {{$user->last_name}}</p>
+							<p>{{ $user->full_name }}</p>
 {{--							<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
-							<a href="{{ url('profile') }}">{{$user->username}}</a>
+							<a href="{{ url('profile') }}">{{ $user->username }}</a>
 						</div>
 					</div>
 

@@ -210,15 +210,15 @@
 							<li class="dropdown user user-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<img src="{{ asset('img/user'. $user->id .'.jpg') }}" class="user-image" alt="User Image">
-									<span class="hidden-xs">{{$user->full_name}}</span>
+									<span class="hidden-xs">{{ $user->full_name }}</span>
 								</a>
 								<ul class="dropdown-menu">
 									<!-- User image -->
 									<li class="user-header">
 										<img src="{{ asset('img/user'. $user->id .'.jpg') }}" class="img-circle" alt="User Image">
 										<p>
-											{{$user->full_name}}
-											<small>{{$user->username}}</small>
+											{{ $user->full_name }}
+											<small>{{ $user->username }}</small>
 										</p>
 									</li>
 {{--

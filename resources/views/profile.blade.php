@@ -23,7 +23,7 @@
 							<!-- Profile Image -->
 							<div class="box box-primary">
 								<div class="box-body box-profile">
-									<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $profile->id .'.jpg') }}" alt="{{$profile->first_name}} {{$profile->last_name}}">
+									<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $profile->id .'.jpg') }}" alt="{{ $profile->full_name }}">
 									<h3 class="profile-username text-center">{{$profile->full_name}}</h3>
 									<p class="text-muted text-center">{{$profile->username}}</p>
 
@@ -35,10 +35,10 @@
 											<b>Following</b> <a class="pull-right">{{count($following)}}</a>
 										</li>
 										<li class="list-group-item">
-											<b>Groups</b> <a class="pull-right">{{count($groups)}}</a>
+											<b>Groups</b> <a class="pull-right">{{count($groups)}}<?php if( count($groups_owner) > 0 ){ ?> ( Owner of {{count($groups_owner)}} )<?php } ?></a>
 										</li>
 										<li class="list-group-item">
-											<b>Meetings</b> <a class="pull-right">{{count($meetings)}}</a>
+											<b>Meetings</b> <a class="pull-right">{{count($meetings)}}<?php if( count($meetings_owner) > 0 ){ ?> ( Owner of {{count($meetings_owner)}} )<?php } ?></a>
 										</li>
 {{--
 										<li class="list-group-item">
@@ -308,7 +308,7 @@ if(!$follow_profile){
 <?php if($user->id == $profile->id){ ?>
 											You don't have followers.
 <?php } else { ?>
-											{{ $profile->first_name }} doesn't have followers.
+											{{ $profile->full_name }} doesn't have followers.
 <?php } ?>
 @else
 											<ul class="users-list clearfix">
@@ -316,13 +316,17 @@ if(!$follow_profile){
 <?php
 $follower_data = DB::table('users')
 		->where('id', $follower->follower_id)
-		->select('id', 'first_name', 'last_name', 'full_name', 'email', 'username')
+		->select('id', 'full_name', 'email', 'username')
 		->first();
 ?>
 												<li>
-													<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $follower_data->id .'.jpg') }}" alt="{{ $follower_data->first_name }} {{ $follower_data->last_name }}">
-													<a class="users-list-name" href="{{ url('profile/'.$follower_data->username) }}">{{ $follower_data->first_name }} {{ $follower_data->last_name }}</a>
-													<span class="users-list-date">{{ $follower_data->username }}</span>
+													<a href="{{ url('profile/'.$follower_data->username) }}">
+														<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $follower_data->id .'.jpg') }}" alt="{{ $follower_data->full_name }}">
+													</a>
+													<a class="users-list-name" href="{{ url('profile/'.$follower_data->username) }}">{{ $follower_data->full_name }}</a>
+													<a href="{{ url('profile/'.$follower_data->username) }}">
+														<span class="users-list-date">{{ $follower_data->username }}</span>
+													</a>
 												</li>
 @endforeach
 											</ul>
@@ -338,7 +342,7 @@ $follower_data = DB::table('users')
 <?php if($user->id == $profile->id){ ?>
 											You don't follow anyone.
 <?php } else { ?>
-											{{ $profile->first_name }} doesn't follow anyone.
+											{{ $profile->full_name }} doesn't follow anyone.
 <?php } ?>
 @else
 											<ul class="users-list clearfix">
@@ -346,13 +350,17 @@ $follower_data = DB::table('users')
 <?php
 $follow_data = DB::table('users')
 		->where('id', $follow->user_id)
-		->select('id', 'first_name', 'last_name', 'full_name', 'email', 'username')
+		->select('id', 'full_name', 'email', 'username')
 		->first();
 ?>
 												<li>
-													<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $follow_data->id .'.jpg') }}" alt="{{ $follow_data->first_name }} {{ $follow_data->last_name }}">
-													<a class="users-list-name" href="{{ url('profile/'.$follow_data->username) }}">{{ $follow_data->first_name }} {{ $follow_data->last_name }}</a>
-													<span class="users-list-date">{{ $follow_data->username }}</span>
+													<a href="{{ url('profile/'.$follow_data->username) }}">
+														<img class="profile-user-img img-responsive img-circle" src="{{ asset('img/user'. $follow_data->id .'.jpg') }}" alt="{{ $follow_data->full_name }}">
+													</a>
+													<a class="users-list-name" href="{{ url('profile/'.$follow_data->username) }}">{{ $follow_data->full_name }}</a>
+													<a href="{{ url('profile/'.$follow_data->username) }}">
+														<span class="users-list-date">{{ $follow_data->username }}</span>
+													</a>
 												</li>
 @endforeach
 											</ul>
@@ -439,5 +447,5 @@ $follow_data = DB::table('users')
 @endsection
 @section('scripts')
 		@include('app.scripts_page_')
-		<script src="{{ asset('js/profile.js') }}"></script>
+		<script src="{{ asset('js/follow.js') }}"></script>
 @endsection

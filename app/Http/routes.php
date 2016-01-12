@@ -69,5 +69,5 @@ Route::post('profile/{username?}/follow', ['uses' =>'ProfileController@follow'])
 Route::post('profile/{username?}/unfollow', ['uses' =>'ProfileController@unfollow'])
 		->where('username', '[A-Za-z0-9]+');
 
-Route:get('img/user{id}.jpg', 'ProfileController@photo')
+Route::get('img/user{id}.jpg', 'ProfileController@photo')
 		->where('id', '[0-9]+');
