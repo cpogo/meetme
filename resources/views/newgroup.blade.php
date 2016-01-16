@@ -78,16 +78,7 @@
 					<!--<h4 align="center"><em>Groups created by myself</em></h4>
 					<br>-->
 
-					<table style="margin-left: 2%;float:left">
-						<thead align="center">
-							<tr>
-								<th colspan="3" style="text-align:center; font-size:14.5px"><em>Groups I have created</em></th>
-							</tr>
-							<tr>
-								<th colspan="3">&nbsp;</th>
-							</tr>
-						</thead>
-
+					<table style="margin-left: 2%;float:left">						
 						<tbody>
 						@forelse ($grupos[0] as $grupo)
 
@@ -113,27 +104,14 @@
 							</tr>
 
 						@empty
-							<br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>
+							{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>--}}
 						@endforelse
 						</tbody>
 					</table >
 
 					<!--<h4 align="center"><em>Groups I have been added as a member</em></h4>
 					<br/>-->
-
-
-
-
-
-					<table style="margin-right:7%;float:right ">
-						<thead align="center">
-						<tr>
-							<th colspan="3" style="text-align:center; font-size:14.5px"><em>Groups I belong </em></th>
-						</tr>
-						<tr>
-							<th colspan="3">&nbsp;</th>
-						</tr>
-						</thead>
+					<table style="margin-right:7%;float:right ">						
 						<tbody>
 						@forelse ($grupos[1] as $grupo)
 
@@ -156,7 +134,7 @@
 							</tr>
 
 						@empty
-							<br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not belong to any group yet &nbsp; :(</h4>
+							{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not belong to any group yet &nbsp; :(</h4>--}}
 						@endforelse
 						</tbody>
 					</table>

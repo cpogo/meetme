@@ -36,8 +36,8 @@
 							<div id="menu">
 								<ul>
 									<li><a href="{{ url('/') }}">Home</a></li>
-									<li><a href="{{ url('login') }}">Log In</a></li>
-									<li><a href="{{ url('register') }}">Sign Up</a></li>
+									<li><a href="{{ url('signIn') }}">Sign In Google</a></li>
+									{{--  <li><a href="{{ url('register') }}">Sign Up</a></li>--}}
 								</ul>
 							</div>
 						</li>
