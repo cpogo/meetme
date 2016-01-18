@@ -225,10 +225,9 @@
                             if (!when) {
                                 when = event.start.date;
                             }
-                            //appendPre(event.summary + ' (' + when + ')')
                         }
                     } else {
-                        //appendPre('No upcoming events found.');
+                        alert("There isn't events to show");
                     }
 
                     parsearDatos();
@@ -282,7 +281,16 @@
                     "description":descriptionE,
                     "location":"EC",
                     "attendees":[],
-                    //"anyoneCanAddSelf": true,                                      
+                    "reminders": {
+                        "useDefault": false,
+                        "overrides": [
+                          {
+                            "method": "email",
+                            "minutes": 1440
+                          }
+                        ]
+                    },
+                    "anyoneCanAddSelf": true                                      
                 };                
                 $.each($('#nuevoEvento').serializeArray(), function (i, field){
                     if(field.name == "combo"){
@@ -290,7 +298,10 @@
                     }
                 });
                 if( combo == "CG" ){
-                    alert("Choose a group");
+                    alert("Choose a group");                    
+                }else if( combo == "NG" ){
+                    alert("You don't have joined any group, please create one");
+                    return false;
                 }else{
                     $.ajax({
                         type:"POST",
@@ -306,28 +317,21 @@
                         data: {'resource':resource , 'grupo':combo},
                         success: function(data)
                         {
-                            console.log(data);
                             gapi.client.load('calendar', 'v3', function () {// load the calendar api (version 3)
                                 var request = gapi.client.calendar.events.insert
-                                    ({
-                                        'calendarId': 'primary', // calendar ID
-                                        "resource": data                            // pass event details with api call
-                                    });
-
-                                    // handle the response from our api call
-                                    request.execute(function (resp) {
-                                        if (resp.status == 'confirmed') {
-                                            //eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
-                                            //eventResponse.className += ' panel-success';
-                                            //refreshICalendarframe();
-                                            console.log("se creo con exito el evento");
-                                        } else {
-                                            //document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
-                                            //eventResponse.className += ' panel-danger';
-                                            console.log("no se creo el evento");
-                                        }
-                                    });
+                                ({
+                                    'calendarId': 'primary', // calendar ID
+                                    "resource": data // pass event details with api call
                                 });
+                                // handle the response from our api call
+                                request.execute(function (resp) {
+                                    if (resp.status == 'confirmed') {                        
+                                        console.log("se creo con exito el evento");
+                                    } else {                                            
+                                        console.log("no se creo el evento");
+                                    }
+                                });
+                            });
                         }
                     });
                 }
@@ -336,41 +340,7 @@
             $('#nuevoEvento').submit(function (evt){
                 llenarResource();
                 evt.preventDefault();
-            });
-            // function load the calendar api and make the api call
-            function makeApiCall(event) {
-                event.preventDefault;
-                //var eventResponse = document.getElementById('event-response');
-                llenarResource();				
-                /*gapi.client.load('calendar', 'v3', function () {					// load the calendar api (version 3)
-                var request = gapi.client.calendar.events.insert
-                    ({
-                        'calendarId': 'primary', // calendar ID
-                        "resource": resource							// pass event details with api call
-                    });
-
-                    // handle the response from our api call
-                    request.execute(function (resp) {
-                        if (resp.status == 'confirmed') {
-                            //eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
-                            //eventResponse.className += ' panel-success';
-                            //refreshICalendarframe();
-							console.log("se creo con exito el evento");
-                        } else {
-                            //document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
-                            //eventResponse.className += ' panel-danger';
-							console.log("no se creo el evento");
-                        }
-                    });
-                });*/
-            }
-
-            /*function appendPre(message) {
-                var pre = document.getElementById('output');
-                var textContent = document.createTextNode(message + '\n');
-                pre.appendChild(textContent);
-            }*/
-
+            });            
             // FUNCTION TO DELETE EVENT
             function deleteEvent() {
                 gapi.client.load('calendar', 'v3', function() {
