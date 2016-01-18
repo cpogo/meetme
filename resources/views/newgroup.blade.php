@@ -72,6 +72,14 @@
 				
 				<div class="col-md-9">
 					<!--Groups created by myself-->
+					@if ( count( $grupos[ 0 ] ) == 0 && count( $grupos[ 1 ] ) == 0 )
+						<div class="box box-primary">
+							<div class="box-header">
+							     <h3 class="box-title"><em>You don't have joined or created any group :-(</em></h3>
+							</div>
+						</div>
+					@endif
+					@if ( count( $grupos[ 0 ] ) > 0 )
 					<div class="box box-primary">
 						<div class="box-header">
 							<h3 class="box-title"><em>Groups created by myself</em></h3>
@@ -107,8 +115,10 @@
 								</table>
 							</div>
 					    </div>
-					</div><br>
+					</div>
+					@endif<br>
 					<!--Groups I have been added as a member-->
+					@if ( count( $grupos[ 1 ] ) > 0 )				
 					<div class="box box-primary">
 						<div class="box-header">
 							<h3 class="box-title"><em>Groups I have been added as a member</em></h3>
@@ -140,13 +150,13 @@
 										@empty
 											{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>--}}
 										</tr>	
-									    @endforelse
-									    
+									    @endforelse									    
 									</tbody>	  
 								</table>
 							</div>
 					    </div>
 					</div>
+					@endif
 			    </div>
 
 				{{--<div id="Misgrupos">
