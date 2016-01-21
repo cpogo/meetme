@@ -15,7 +15,8 @@
 					</div>
 
 					<!-- search form -->
-					<form action="#" method="get" class="sidebar-form">
+					<form action="/search" method="post" class="sidebar-form">
+						{{ csrf_field() }}
 			            <div class="input-group">
 			              <input type="text" name="buscar" id="busqueda" class="form-control" placeholder="Search...">
 			              <span class="input-group-btn">

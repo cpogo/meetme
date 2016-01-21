@@ -38,7 +38,7 @@
 	overflow: scroll;
 }
 #flotante {
-	z-index: 999; border: 8px solid #fff; margin-top: -756px; margin-left: -153px; top: 50%; left: 50%; 
+	z-index: 999; border: 8px solid #fff; margin-top: -756px; margin-left: -153px; top: 50%; left: 50%;
 	padding: 12px; position: fixed; width: 265px; background-color: #fff; border-radius: 3px;
 
 }
@@ -61,63 +61,79 @@
 
 				<!-- Main content -->
 				<section class="content">
-{{--
+
 					<!-- Small boxes (Stat box) -->
 					<div class="row">
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-aqua">
 								<div class="inner">
-									<h3>150</h3>
-									<p>New Orders</p>
+									<h3><?php
+echo DB::table('followers')->where('user_id', $user->id)->count();
+?></h3>
+									<p>Followers</p>
 								</div>
 								<div class="icon">
-									<i class="ion ion-bag"></i>
+									<i class="ion ion-person-add"></i>
 								</div>
+{{--
 								<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+--}}
 							</div>
 						</div><!-- ./col -->
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-green">
 								<div class="inner">
-									<h3>53<sup style="font-size: 20px">%</sup></h3>
-									<p>Bounce Rate</p>
+									<h3><?php
+echo DB::table('followers')->where('follower_id', $user->id)->count();
+?></h3>
+									<p>Following</p>
 								</div>
 								<div class="icon">
-									<i class="ion ion-stats-bars"></i>
+									<i class="ion ion-person-stalker"></i>
 								</div>
+{{--
 								<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+--}}
 							</div>
 						</div><!-- ./col -->
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-yellow">
 								<div class="inner">
-									<h3>44</h3>
-									<p>User Registrations</p>
+									<h3><?php
+echo DB::table('group_user')->where('user_id', $user->id)->count()
+?></h3>
+									<p>Groups</p>
 								</div>
 								<div class="icon">
-									<i class="ion ion-person-add"></i>
+									<i class="ion ion-ios-people"></i>
 								</div>
+{{--
 								<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+--}}
 							</div>
 						</div><!-- ./col -->
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-red">
 								<div class="inner">
-									<h3>65</h3>
-									<p>Unique Visitors</p>
+									<h3><?php
+echo DB::table('meet_user')->where('user_id', $user->id)->count()
+?></h3>
+									<p>Meetings</p>
 								</div>
 								<div class="icon">
-									<i class="ion ion-pie-graph"></i>
+									<i class="ion ion-ios-calendar-outline"></i>
 								</div>
+{{--
 								<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+--}}
 							</div>
 						</div><!-- ./col -->
 					</div><!-- /.row -->
---}}
+
 					<!-- Main row -->
 					<div class="row">
 						<!-- Left col -->
@@ -427,7 +443,7 @@
 					<h1>Ventana flotante</h1>
 					<h3><a onClick="flotante(2)">Cerrar ventana</a></h3>
 
-					
+
 				</div>  --}}
 				{{--  <div id="contenedor" style="display:none"></div>
 				<div id="fondo"></div>--}}

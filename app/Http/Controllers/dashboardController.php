@@ -51,7 +51,7 @@ class dashboardController extends Controller
 //		$html .= '<li class="headerbox"><a href="#"><span class="textbox">Users</span></a></li>';
 
 		$html .= '<div class="list-group">';
-		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users_count . '</span><i class="fa fa-user"></i> Users</a>';
+		$html .= '	<a href="/search/' . urlencode($request->buscar) . '" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users_count . '</span><i class="fa fa-user"></i> Users</a>';
 
 		$users = $users->take($users_show);
 
@@ -86,12 +86,12 @@ class dashboardController extends Controller
 //			$html .= '		Show more <i class="fa fa-search-plus"></i>';
 //			$html .= '	</a>';
 
-			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">Show more <i class="fa fa-search-plus"></i></a>';
+			$html .= '	<a href="/search/' . urlencode($request->buscar) . '" class="list-group-item list-group-item-info text-center">Show more <i class="fa fa-search-plus"></i></a>';
 		}
 
 //		$html .= '<li class="headerbox"><a href="#"><span class="textbox">Groups</span></a></li>';
 
-		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($groups->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $groups_count . '</span><i class="fa fa-group"></i> Groups</a>';
+		$html .= '	<a href="/search/' . urlencode($request->buscar) . '" class="list-group-item list-group-item-' . ($groups->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $groups_count . '</span><i class="fa fa-group"></i> Groups</a>';
 
 		$groups = $groups->take($groups_show);
 
@@ -126,7 +126,7 @@ class dashboardController extends Controller
 //			$html .= '		Show more <i class="fa fa-search-plus"></i>';
 //			$html .= '	</a>';
 
-			$html .= '	<a href="#" class="list-group-item list-group-item-info text-center">Show more <i class="fa fa-search-plus"></i></a>';
+			$html .= '	<a href="/search/' . urlencode($request->buscar) . '" class="list-group-item list-group-item-info text-center">Show more <i class="fa fa-search-plus"></i></a>';
 		}
 
 		$html .= '</div>';

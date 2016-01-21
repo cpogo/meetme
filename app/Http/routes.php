@@ -62,10 +62,14 @@ Route::get('profile/{username?}', ['uses' =>'ProfileController@index'])
 
 Route::post('profile_settings', 'ProfileController@settings');
 
-Route::post('profile/{username?}/follow', ['uses' =>'ProfileController@follow'])
+Route::post('profile/{username}/follow', ['uses' =>'ProfileController@follow'])
 		->where('username', '[A-Za-z0-9]+');
-Route::post('profile/{username?}/unfollow', ['uses' =>'ProfileController@unfollow'])
+Route::post('profile/{username}/unfollow', ['uses' =>'ProfileController@unfollow'])
 		->where('username', '[A-Za-z0-9]+');
+
+Route::post('search', 'SearchController@search');
+Route::get('search/{query}', 'SearchController@index')->where('query', '[A-Za-z0-9/+]+');
+//Route::get('search/{query}', 'SearchController@index')->where('query', '[A-Za-z0-9]+');
 
 Route::get('img/user{id}.jpg', 'ProfileController@photo')
 		->where('id', '[0-9]+');
