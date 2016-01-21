@@ -46,7 +46,7 @@
 											<div class="input-group-addon">
 												<i class="fa fa-tasks"></i>
 											</div>
-											<input name="nombre_grupo" type="text" class="form-control" placeholder="Your group's name">
+											<input name="nombre_grupo" type="text" maxlength="50" required class="form-control" placeholder="Your group's name">
 										</div>
 									</div>
 									<div class="form-group">
@@ -55,7 +55,7 @@
 											<div class="input-group-addon">
 												<i class="fa fa-align-justify"></i>
 											</div>
-											<textarea name="grupo_descripcion" class="form-control" rows="3" placeholder="Short description of your group ..."></textarea>
+											<textarea name="grupo_descripcion" class="form-control" rows="3" placeholder="Short description of your group ..." required></textarea>
 										</div>
 									</div>
 									<div class="form-group">
@@ -248,7 +248,7 @@
 											<div class="input-group-addon">
 												<i class="fa fa-tasks"></i>
 											</div>
-											<input name="nombre_grupo" type="text" class="form-control" placeholder="Your group's name">
+											<input name="nombre_grupo" type="text" class="form-control" placeholder="Your group's name" maxlength="50" required>
 										</div>
 									</div>
 
@@ -259,7 +259,7 @@
 											<div class="input-group-addon">
 												<i class="fa fa-align-justify"></i>
 											</div>
-											<textarea name="grupo_descripcion" class="form-control" rows="3" placeholder="Short description of your group ..."></textarea>
+											<textarea name="grupo_descripcion" class="form-control" rows="3" placeholder="Short description of your group ..." required></textarea>
 										</div>
 
 									</div>

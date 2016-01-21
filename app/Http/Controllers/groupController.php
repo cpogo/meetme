@@ -49,7 +49,10 @@ class groupController extends Controller
         if(Group::existeGrupo($req->nombre_grupo)!=1)
             Group::UpdateGrupo($req);
         $user = User::getUserById( $_SESSION[ 'key' ] );
-        return view('dashboard')->with('user',$user);
+        $gruposProp = Group::getGruposDondeSoyProp($_SESSION[ 'key' ]);// Envia todos los grupos donde es propietario
+        $gruposMiem = Group::getGruposDondeSoyMiem($_SESSION[ 'key' ]);
+        $grupos=array($gruposProp,$gruposMiem);
+        return view( 'newgroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
 
     }
 
@@ -58,7 +61,10 @@ class groupController extends Controller
         session_start();
         Group::DeleteGrupo($req);
         $user = User::getUserById( $_SESSION[ 'key' ] );
-        return view('dashboard')->with('user',$user);
+        $gruposProp = Group::getGruposDondeSoyProp($_SESSION[ 'key' ]);// Envia todos los grupos donde es propietario
+        $gruposMiem = Group::getGruposDondeSoyMiem($_SESSION[ 'key' ]);
+        $grupos=array($gruposProp,$gruposMiem);
+        return view( 'newgroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
 
     }
 
@@ -109,7 +115,11 @@ class groupController extends Controller
         session_start();
         Group::LeaveGrupo($req);
         $user = User::getUserById( $_SESSION[ 'key' ] );
-        return view('dashboard')->with('user',$user);
+
+        $gruposProp = Group::getGruposDondeSoyProp($_SESSION[ 'key' ]);// Envia todos los grupos donde es propietario
+        $gruposMiem = Group::getGruposDondeSoyMiem($_SESSION[ 'key' ]);
+        $grupos=array($gruposProp,$gruposMiem);
+        return view( 'newgroup' , [ 'user' => $user ],[ 'grupos' => $grupos ] );
     }
 
 
