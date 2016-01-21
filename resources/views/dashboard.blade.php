@@ -15,6 +15,37 @@
 		<link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 @endsection
 @section('main')
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+        <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+	$(function() {
+	$( "#datepicker" ).datepicker();
+	});
+	$(function() {
+	$( "#eventDateI" ).datepicker();
+	});
+	$(function() {
+	$( "#eventDateF" ).datepicker();
+	});
+</script>
+<style>
+#fondo {
+	width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 990;opacity: 0.8;background:#000;
+	overflow: scroll;
+}
+#flotante {
+	z-index: 999; border: 8px solid #fff; margin-top: -756px; margin-left: -153px; top: 50%; left: 50%; 
+	padding: 12px; position: fixed; width: 265px; background-color: #fff; border-radius: 3px;
+
+}
+#contenedor {
+	overflow: scroll;width: 100%; height: 100%;
+}
+</style>
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
 				<!-- Content Header (Page header) -->
@@ -181,110 +212,42 @@
 --}}
 							<!-- TO DO List -->
 							<div class="box box-primary">
-								<div class="box-header">
-									<i class="ion ion-clipboard"></i>
-									<h3 class="box-title">To Do List</h3>
-									<div class="box-tools pull-right">
-										<ul class="pagination pagination-sm inline">
-											<li><a href="#">&laquo;</a></li>
-											<li><a href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">&raquo;</a></li>
-										</ul>
-									</div>
-								</div><!-- /.box-header -->
-								<div class="box-body">
-									<ul class="todo-list">
-										<li>
-											<!-- drag handle -->
-											<span class="handle">
-												<i class="fa fa-ellipsis-v"></i>
-												<i class="fa fa-ellipsis-v"></i>
-											</span>
-											<!-- checkbox -->
-											<input type="checkbox" value="" name="">
-											<!-- todo text -->
-											<span class="text">Design a nice theme</span>
-											<!-- Emphasis label -->
-											<small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-											<!-- General tools such as edit or delete-->
-											<div class="tools">
-												<i class="fa fa-edit"></i>
-												<i class="fa fa-trash-o"></i>
-											</div>
-										</li>
-										<li>
-											<span class="handle">
-												<i class="fa fa-ellipsis-v"></i>
-												<i class="fa fa-ellipsis-v"></i>
-											</span>
-											<input type="checkbox" value="" name="">
-											<span class="text">Make the theme responsive</span>
-											<small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-											<div class="tools">
-												<i class="fa fa-edit"></i>
-												<i class="fa fa-trash-o"></i>
-											</div>
-										</li>
-										<li>
-											<span class="handle">
-												<i class="fa fa-ellipsis-v"></i>
-												<i class="fa fa-ellipsis-v"></i>
-											</span>
-											<input type="checkbox" value="" name="">
-											<span class="text">Let theme shine like a star</span>
-											<small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-											<div class="tools">
-												<i class="fa fa-edit"></i>
-												<i class="fa fa-trash-o"></i>
-											</div>
-										</li>
-										<li>
-											<span class="handle">
-												<i class="fa fa-ellipsis-v"></i>
-												<i class="fa fa-ellipsis-v"></i>
-											</span>
-											<input type="checkbox" value="" name="">
-											<span class="text">Let theme shine like a star</span>
-											<small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-											<div class="tools">
-												<i class="fa fa-edit"></i>
-												<i class="fa fa-trash-o"></i>
-											</div>
-										</li>
-										<li>
-											<span class="handle">
-												<i class="fa fa-ellipsis-v"></i>
-												<i class="fa fa-ellipsis-v"></i>
-											</span>
-											<input type="checkbox" value="" name="">
-											<span class="text">Check your messages and notifications</span>
-											<small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-											<div class="tools">
-												<i class="fa fa-edit"></i>
-												<i class="fa fa-trash-o"></i>
-											</div>
-										</li>
-										<li>
-											<span class="handle">
-												<i class="fa fa-ellipsis-v"></i>
-												<i class="fa fa-ellipsis-v"></i>
-											</span>
-											<input type="checkbox" value="" name="">
-											<span class="text">Let theme shine like a star</span>
-											<small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-											<div class="tools">
-												<i class="fa fa-edit"></i>
-												<i class="fa fa-trash-o"></i>
-											</div>
-										</li>
-									</ul>
-								</div><!-- /.box-body -->
-								<div class="box-footer clearfix no-border">
-									<button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-								</div>
-							</div><!-- /.box -->
+                        <div class="box-header">
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">To Do List</h3>
+                            <div class="box-tools pull-right">
+                                <ul class="pagination pagination-sm inline">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ul id="listaEventos" class="todo-list">
+                            <!--
+                                <li>
+                                    <span class="handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="" name="">
+                                    <span class="text">Design a nice theme</span>
+                                    <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </li>
+                                -->
+                            </ul>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer clearfix no-border">
+                            <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                        </div>
+                    </div>
 {{--
 							<!-- quick email widget -->
 							<div class="box box-info">
@@ -450,11 +413,201 @@
 							</div><!-- /.box -->
 
 						</section><!-- right col -->
+
+						<div class="col-md-2 col-sm-2 col-xs-12">
+								 <button type="button" id="authorize-button" style="visibility: hidden" class="btn btn-primary">Authorize</button>
+						</div>
+
 					</div><!-- /.row (main row) -->
 
 				</section><!-- /.content -->
+
+				<!-- Ventana Flotante -->
+				<div id="flotante">
+					<h1>Ventana flotante</h1>
+					<h3><a onClick="flotante(2)">Cerrar ventana</a></h3>
+
+					
+				</div>
+				<div id="contenedor" style="display:none">
+				<div id="fondo"></div>
+
+
 			</div><!-- /.content-wrapper -->
 @endsection
 @section('scripts')
-		@include('app.scripts_dashboard')
+	@include('app.scripts_dashboard')
+	
+    <script type="text/javascript">
+        var now = new Date();
+        today = now.toISOString();
+
+        var twoHoursLater = new Date(now.getTime() + (2 * 1000 * 60 * 60));
+        twoHoursLater = twoHoursLater.toISOString();
+        var resource;
+        var eventos = [];
+
+        var apiKey = 'AIzaSyBfJKuCHTCGJWhGjsn6Lvtr0856WJVKU4o';
+        var CLIENT_ID = '952399997521-fv95fniurkli0gb3ldahffpfuje34i35.apps.googleusercontent.com';
+
+        var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+
+        function handleClientLoad() {
+            gapi.client.setApiKey(apiKey);
+            window.setTimeout(checkAuth, 1);
+        }
+        /**
+            * Check if current user has authorized this application.
+           **/
+        function checkAuth() {
+            gapi.auth.authorize(
+                {
+                    'client_id': CLIENT_ID,
+                    'scope': SCOPES.join(' '),
+                    'immediate': true
+                }, handleAuthResult);
+        }
+        // show/hide the 'authorize' button, depending on application state
+        function handleAuthResult(authResult) {
+            var authorizeButton = document.getElementById('authorize-button');
+            var eventButton = document.getElementById('btnCreateEvents');
+            var resultPanel = document.getElementById('result-panel');
+            var resultTitle = document.getElementById('result-title');
+
+            if (authResult && !authResult.error) {
+                authorizeButton.style.visibility = 'hidden'; 		// if authorized, hide button
+                //resultPanel.className = resultPanel.className.replace(/(?:^|\s)panel-danger(?!\S)/g, '')	// remove red class
+                //resultPanel.className += ' panel-success'; 			// add green class
+                //resultTitle.innerHTML = 'Application Authorized'		// display 'authorized' text
+                //eventButton.style.visibility = 'visible';
+                $("#txtEventDetails").attr("visibility", "visible");
+                //alert("aqui estoy");
+                loadCalendarApi();
+            } else {													// otherwise, show button
+                authorizeButton.style.visibility = 'visible';
+                $("#txtEventDetails").attr("visibility", "hidden");
+                //eventButton.style.visibility = 'hidden';
+                //resultPanel.className += ' panel-danger'; 			// make panel red
+                authorizeButton.onclick = handleAuthClick; 			// setup function to handle button click
+            }
+        }
+
+        function loadCalendarApi() {
+            gapi.client.load('calendar', 'v3', listUpcomingEvents);
+
+        }
+
+        function listUpcomingEvents() {
+            var request = gapi.client.calendar.events.list({
+                'calendarId': 'primary',
+                //'timeMin': (new Date()).toISOString(),
+                'showDeleted': false,
+                'singleEvents': true,
+                //'maxResults': 10,
+                'orderBy': 'startTime'
+            });
+            request.execute(function(resp) {
+                var events = resp.items;
+                eventos = resp.items;
+                //appendPre('Upcoming events:');
+
+                if (events.length > 0) {
+                    for (i = 0; i < events.length; i++) {
+                        var event = events[i];
+                        var when = event.start.dateTime;
+                        if (!when) {
+                            when = event.start.date;
+                        }
+                        //appendPre(event.summary + ' (' + when + ')')
+                    }
+                } else {
+                    //appendPre('No upcoming events found.');
+                }
+                mostrarLista();
+            });
+
+
+        }
+
+        // function triggered when user authorizes app
+        function handleAuthClick(event) {
+            gapi.auth.authorize(
+                {
+                    'client_id': CLIENT_ID,
+                    'scope': SCOPES,
+                    'immediate': false
+                }, handleAuthResult);
+            return false;
+        }
+        function mostrarLista(){
+		    var ulEv = document.getElementById("listaEventos");
+		    
+		    for (var i=0; i < eventos.length; i++) {
+		        //Crear elementos
+		        var liEv = document.createElement("li");
+		        var spanEv = document.createElement("span");
+		        var iEv = document.createElement("i");
+		        var inputEv = document.createElement("input");
+		        var spanTextEv = document.createElement("span");
+		        var smallEv = document.createElement("small");
+		        var divEv = document.createElement("div");
+		        var iEdEv = document.createElement("i");
+		        var iTrEv = document.createElement("i");
+		        spanEv.className = "handle";
+		        iEv.className = "fa fa-ellipsis-v";
+		        inputEv.type = "checkbox";
+		        spanTextEv.className = "text";
+		        divEv.className = "tools";
+		        iEdEv.className = "fa fa-edit";
+		        iTrEv.className = "fa fa-trash-o";
+		        iEdEv.setAttribute("onclick","flotante(1);");
+		        //Ingresar Evento
+		        var texto = document.createTextNode(eventos[i].summary);
+		        spanTextEv.appendChild(texto);
+
+		        //Insertar elementos en ul
+		        //spanEv.appendChild(iEv);
+		        divEv.appendChild(iEdEv);
+		        divEv.appendChild(iTrEv);
+		        liEv.appendChild(spanEv);
+		        liEv.appendChild(inputEv);
+		        liEv.appendChild(spanTextEv);
+		        //liEv.appendChild(smallEv);
+		        liEv.appendChild(divEv);
+
+		        ulEv.appendChild(liEv);
+		    };
+		}
+
+		//Efecto Flotante
+		function flotante(tipo){
+	
+			if (tipo==1){
+				//Si hacemos clic en abrir mostramos el fondo negro y el flotante
+				$('#contenedor').show();
+			    $('#flotante').animate({
+			      marginTop: "-200px"
+			    });
+			    var fondo = document.getElementById("fondo");
+			    var contenedor = document.getElementById("contenedor");
+			    var alto = $(window).height();
+			    fondo.setAttribute("height",alto);
+			    contenedor.setAttribute("height",alto);
+			}
+			if (tipo==2){
+				//Si hacemos clic en cerrar, deslizamos el flotante hacia arriba
+			    $('#flotante').animate({
+			      marginTop: "-900px"
+			    });
+				//Una vez ocultado el flotante cerramos el fondo negro
+				setTimeout(function(){
+				$('#contenedor').hide();
+					
+				},500)
+			}
+
+		}
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
 @endsection
