@@ -5,8 +5,8 @@
 @endsection
 @section('main')
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="https://apis.google.com/js/client:platform.js" async defer></script>
-<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+        <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+        <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -46,79 +46,56 @@
 								</div>
 								<div class="box-body">
 									<!--action="createEvent"-->
-						<form id="nuevoEvento" method="post">
+						<form action="#" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <!-- Event Title -->
                                 <div class="form-group">
-                                    <label>Title</label>
+                                    <label>Título</label>
                                     <div class="input-group">
                                          <div class="input-group-addon">
                                         		<i class="fa fa-tasks"></i>
                                          </div>
-                                         <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title" required>
+                                         <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title">
                                     </div>
                                 </div>
                                 <!-- Event Description -->
                                 <div class="form-group">
-                                     <label>Description</label>
+                                     <label>Descripción</label>
                                      <div class="input-group">
                                           <div class="input-group-addon">
                                                <i class="fa fa-align-justify"></i>
                                           </div>
-                                          <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..." required></textarea>
+                                          <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..."></textarea>
                                      </div>
-                                </div>
-                                <!--Groups by combo box-->
-                                <div class="form-group">
-                                    <label>Groups</label>
-                                    <select name="combo" class="form-control">                                
-                                        @if ( count( $grupos[ 0 ] )  == 0 && count( $grupos[ 1 ] ) == 0 )
-                                            <option value="NG">No groups :-(</option>
-                                        @endif
-                                        @if ( count( $grupos[ 0 ] ) > 0 )
-                                            <option value="CG">-Choose one group-</option>
-                                            @foreach ( $grupos[ 0 ] as $grupo )
-                                               <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
-                                            @endforeach
-                                            
-                                        @endif
-                                        @if ( count( $grupos[ 1 ] ) > 0 )
-                                            <option value="CG">-Choose one group-</option>
-                                            @foreach ( $grupos[ 1 ] as $grupo )
-                                               <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
-                                            @endforeach
-                                        @endif                                        
-                                    </select>
-
                                 </div>
                                 <!-- Event Date -->
 								<div class="form-group">
 									<label>Start Date</label>
 									<div class='input-group date' id='datetimepickerinicio'>
-						                 <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaInicio" id="fechaInicio" class="form-control" required/>
+						                 <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaInicio" id="fechaInicio" class="form-control"/>
 						            <span class="input-group-addon">
 						                  <span class="glyphicon glyphicon-calendar"></span>
 						            </span>
 						            </div>
 								</div>
 								<!-- Event Date -->
-								<div class="form-group">
+						
+                        		<div class="form-group">
 									<label>End Date</label>
 									<div class='input-group date' id='datetimepickerfin'>
-						                	<input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaFin" id="fechaFin" class="form-control" required/>
+						                	<input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaFin" id="fechaFin" class="form-control"/>
 							                 <span class="input-group-addon">
 							                     <span class="glyphicon glyphicon-calendar"></span>
 							                 </span>
 							        </div>
 								</div>
-                                <div class="form-group">
-                                    <button type="submit" id="btnCreateEvents" class="btn btn-primary" >Create Events</button>
-                                </div>
                         </form>
-								
 								<div class="form-group">
+										 <button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">Create Events</button>
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-12">
 										 <button type="button" id="authorize-button" style="visibility: hidden" class="btn btn-primary">Authorize</button>
-								</div>                                
+								</div>
                         {{--<button id="btnCreateEvents" class="btn btn-primary" onclick="makeApiCall();">
 			                        	Create Events</button>
 			                    	<button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
@@ -137,6 +114,45 @@
 						</div><!-- /.col -->
 
 					</div><!-- /.row -->
+
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">To Do List</h3>
+                            <div class="box-tools pull-right">
+                                <ul class="pagination pagination-sm inline">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ul id="listaEventos" class="todo-list">
+                            <!--
+                                <li>
+                                    <span class="handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="" name="">
+                                    <span class="text">Design a nice theme</span>
+                                    <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </li>
+                                -->
+                            </ul>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer clearfix no-border">
+                            <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                        </div>
+                    </div>
+
 				</section><!-- /.content -->
 			</div><!-- /.content-wrapper -->
 
@@ -166,7 +182,7 @@
             /**
 	            * Check if current user has authorized this application.
 	           **/
-			      function checkAuth() {
+            function checkAuth() {
                 gapi.auth.authorize(
                     {
                         'client_id': CLIENT_ID,
@@ -225,13 +241,15 @@
                             if (!when) {
                                 when = event.start.date;
                             }
+                            //appendPre(event.summary + ' (' + when + ')')
                         }
                     } else {
-                        alert("There isn't events to show");
+                        //appendPre('No upcoming events found.');
                     }
 
                     parsearDatos();
                 	cargarCalendario();
+                    
                 });
 
 
@@ -248,12 +266,20 @@
                 return false;
             }
 
+            /*function refreshICalendarframe() {
+                var iframe = document.getElementById('divifm')
+                iframe.innerHTML = iframe.innerHTML;
+            }*/
+
+
             function llenarResource(){
-                var combo = null;
                 var tituloE = document.getElementById("eventTittle").value;
                 var descriptionE = document.getElementById("eventDescription").value;
+                //var dateI = document.getElementById("fechaInicio").value;
 				var dateI = $("#datetimepickerinicio").data("DateTimePicker").date()._d;
+				//var dateF = document.getElementById("fechaFin").value;
 				var dateF = $("#datetimepickerfin").data("DateTimePicker").date()._d;
+				//var lngFecha = dateI.length;
 				var diaI = dateI.getDate();
 				if( diaI < 10 ){ diaI = "0" + diaI; }
 				var mesI = dateI.getMonth() + 1;
@@ -272,75 +298,73 @@
                 resource = {
                     "summary": tituloE,
                     "start": {
-                        "dateTime": anioI+"-"+mesI+"-"+diaI+"T"+horaI+":"+minI+":00-05:00"//"2015-12-20T09:00:00-07:00"
+                        "dateTime": anioI+"-"+mesI+"-"+diaI+"T"+horaI+":"+minI+":00-05:00"   //"2015-12-20T09:00:00-07:00"
                     },
                     "end": {
-                        "dateTime": anioF+"-"+mesF+"-"+diaF+"T"+horaF+":"+minF+":00-05:00"//"2015-12-26T17:00:00-10:00"
+                        "dateTime": anioF+"-"+mesF+"-"+diaF+"T"+horaF+":"+minF+":00-05:00" //"2015-12-26T17:00:00-10:00"
                     },
-                    "creator":{},
                     "description":descriptionE,
                     "location":"EC",
-                    "attendees":[],
-                    "reminders": {
-                        "useDefault": false,
-                        "overrides": [
-                          {
-                            "method": "email",
-                            "minutes": 1440
-                          }
-                        ]
-                    },
-                    "anyoneCanAddSelf": true                                      
-                };                
-                $.each($('#nuevoEvento').serializeArray(), function (i, field){
-                    if(field.name == "combo"){
-                        combo = field.value;
-                    }
-                });
-                if( combo == "CG" ){
-                    alert("Choose a group");                    
-                }else if( combo == "NG" ){
-                    alert("You don't have joined any group, please create one");
-                    return false;
-                }else{
-                    $.ajax({
-                        type:"POST",
-                        url: "{{ url('/event') }}",
-                        cache: false,
-                        dataType: 'JSON',
-                        beforeSend: function (xhr) {
-                            var token = $('meta[name="csrf-token"]').attr('content');
-                            if (token) {
-                                return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-                            }
-                        },
-                        data: {'resource':resource , 'grupo':combo},
-                        success: function(data)
+                    "attendees":[
                         {
-                            gapi.client.load('calendar', 'v3', function () {// load the calendar api (version 3)
-                                var request = gapi.client.calendar.events.insert
-                                ({
-                                    'calendarId': 'primary', // calendar ID
-                                    "resource": data // pass event details with api call
-                                });
-                                // handle the response from our api call
-                                request.execute(function (resp) {
-                                    if (resp.status == 'confirmed') {                        
-                                        console.log("se creo con exito el evento");
-                                    } else {                                            
-                                        console.log("no se creo el evento");
-                                    }
-                                });
-                            });
+                            "email":"metacris93@gmail.com",
+                            "displayName":"Cristian",
+                            "organizer":true,
+                            "self":false,
+                            "resource":false,
+                            "optional":false,
+                            "responseStatus":"needsAction",
+                            "comment":"This is event first",
+                            "additionalGuests":3
+                        },
+                        {
+                            "email":"darthcristian93@gmail.com",
+                            "displayName":"Cristian2",
+                            "organizer":true,
+                            "self":false,
+                            "resource":false,
+                            "optional":false,
+                            "responseStatus":"needsAction",
+                            "comment":"This is event first",
+                            "additionalGuests":3
+                        }
+                    ],
+                };
+            }
+            // function load the calendar api and make the api call
+            function makeApiCall() {
+                //var eventResponse = document.getElementById('event-response');
+                llenarResource();
+								console.log(resource);
+                gapi.client.load('calendar', 'v3', function () {					// load the calendar api (version 3)
+                var request = gapi.client.calendar.events.insert
+                    ({
+                        'calendarId': 'primary', // calendar ID
+                        "resource": resource							// pass event details with api call
+                    });
+
+                    // handle the response from our api call
+                    request.execute(function (resp) {
+                        if (resp.status == 'confirmed') {
+                            //eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
+                            //eventResponse.className += ' panel-success';
+                            //refreshICalendarframe();
+							console.log("se creo con exito el evento");
+                        } else {
+                            //document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
+                            //eventResponse.className += ' panel-danger';
+							console.log("no se creo el evento");
                         }
                     });
-                }
-                
+                });
             }
-            $('#nuevoEvento').submit(function (evt){
-                llenarResource();
-                evt.preventDefault();
-            });            
+
+            /*function appendPre(message) {
+                var pre = document.getElementById('output');
+                var textContent = document.createTextNode(message + '\n');
+                pre.appendChild(textContent);
+            }*/
+
             // FUNCTION TO DELETE EVENT
             function deleteEvent() {
                 gapi.client.load('calendar', 'v3', function() {
@@ -363,8 +387,9 @@
 
 function parsearDatos() {
 	var Json = '[';
-	var datos = "[";
-	//var datosTmp = datos.replace(/&quot;/g,'"');
+	var datos = "[";// = "{{ json_encode($datos) }}";
+	//var datos = "{{ json_encode($datos) }}";
+	var datosTmp = datos.replace(/&quot;/g,'"');
 	var anio, mes, dia;                //"2013-09-19T11:00:00-05:00";
 	var hora, min, seg;
 
@@ -562,6 +587,49 @@ function cargarCalendario() {
 	$('#datetimepickerinicio,#datetimepickerfin').datetimepicker({
 			viewMode: 'days'
 	});
+
+    mostrarLista();
+}
+
+
+//Mostrar Lista de eventos
+function mostrarLista(){
+    var ulEv = document.getElementById("listaEventos");
+    
+    for (var i=0; i < eventos.length; i++) {
+        //Crear elementos
+        var liEv = document.createElement("li");
+        var spanEv = document.createElement("span");
+        var iEv = document.createElement("i");
+        var inputEv = document.createElement("input");
+        var spanTextEv = document.createElement("span");
+        var smallEv = document.createElement("small");
+        var divEv = document.createElement("div");
+        var iEdEv = document.createElement("i");
+        var iTrEv = document.createElement("i");
+        spanEv.className = "handle";
+        iEv.className = "fa fa-ellipsis-v";
+        inputEv.type = "checkbox";
+        spanTextEv.className = "text";
+        divEv.className = "tools";
+        iEdEv.className = "fa fa-edit";
+        iTrEv.className = "fa fa-trash-o";
+        //Ingresar Evento
+        var texto = document.createTextNode(eventos[i].summary);
+        spanTextEv.appendChild(texto);
+
+        //Insertar elementos en ul
+        //spanEv.appendChild(iEv);
+        divEv.appendChild(iEdEv);
+        divEv.appendChild(iTrEv);
+        liEv.appendChild(spanEv);
+        liEv.appendChild(inputEv);
+        liEv.appendChild(spanTextEv);
+        //liEv.appendChild(smallEv);
+        liEv.appendChild(divEv);
+
+        ulEv.appendChild(liEv);
+    };
 }
 		</script>
 
