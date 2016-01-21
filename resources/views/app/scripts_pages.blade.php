@@ -36,3 +36,4 @@
 {{--		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>--}}
 		<script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 		<!-- Page specific script -->
+		

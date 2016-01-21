@@ -90,6 +90,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
                 var combo = null;
                 var tituloE = document.getElementById("eventTittle").value;
                 var descriptionE = document.getElementById("eventDescription").value;
+                var location = document.getElementById("autocomplete").value;
                 var dateI = $("#datetimepickerinicio").data("DateTimePicker").date()._d;
                 var dateF = $("#datetimepickerfin").data("DateTimePicker").date()._d;
                 var diaI = dateI.getDate();
@@ -142,7 +143,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
                 }else{
                     $.ajax({
                         type:"POST",
-                        url: "{{ url('/event') }}",
+                        url: '/event',
                         cache: false,
                         dataType: 'JSON',
                         beforeSend: function (xhr) {

@@ -68,6 +68,16 @@
                                           <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..." required></textarea>
                                      </div>
                                 </div>
+                                <!--Location-->
+                                <div class="form-group">
+                                    <label>Location</label>                                    
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                                <i class="fa fa-tasks"></i>
+                                         </div>
+                                        <input id="autocomplete" class="form-control" placeholder="Enter your address" type="text" required></input>
+                                    </div>                                   
+                                </div>
                                 <!--Groups by combo box-->
                                 <div class="form-group">
                                     <label>Groups</label>
@@ -143,7 +153,10 @@
 @endsection
 
 @section('scripts')
-        @include('app.scripts_pages')        
-        <script src="{{ asset('js/calendarNewEvent.js') }}"></script>
+        @include('app.scripts_pages')              
+        <script src="{{ asset('js/calendarNewEvent.js') }}" type="text/javascript"></script>
         <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJpcHQH2zFckykgY9BTaiaMZ9nJSKnzbI&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete"
+        async defer></script>
+        <script src="{{ asset('js/locationEvent.js') }}"></script>
 @endsection

@@ -423,12 +423,12 @@
 				</section><!-- /.content -->
 
 				<!-- Ventana Flotante -->
-				<div id="flotante">
+				{{--<div id="flotante">
 					<h1>Ventana flotante</h1>
 					<h3><a onClick="flotante(2)">Cerrar ventana</a></h3>
 
 					
-				</div>
+				</div>  --}}
 				{{--  <div id="contenedor" style="display:none"></div>
 				<div id="fondo"></div>--}}
 

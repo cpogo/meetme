@@ -144,7 +144,7 @@ var now = new Date();
 		}
 
         $("#listaEventos").on("click","li",function (){
-            // FUNCTION TO DELETE EVENT            
+            // FUNCTION TO DELETE EVENT
                 var id = parseInt( $(this).attr('id') );
                 gapi.client.load('calendar', 'v3', function() {
                     var request = gapi.client.calendar.events.delete({
@@ -157,9 +157,11 @@ var now = new Date();
                         }
                         else{
                             console.log('An error occurred, please try again later.');
+                            
                         }
                     });
                 });
                 $(this).slideToggle("slow");
                 $(this).remove();
+$('<div class="row"><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Great!</h4>You have deleted an event</div></div>').prependTo('section.content');        
         });
