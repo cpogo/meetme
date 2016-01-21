@@ -79,6 +79,7 @@ var now = new Date();
 		    for (var i=0; i < eventos.length; i++) {
 		        //Crear elementos
 		        var liEv = document.createElement("li");
+                liEv.id = ""+i;
 		        var spanEv = document.createElement("span");
 		        var iEv = document.createElement("i");
 		        var inputEv = document.createElement("input");
@@ -141,3 +142,22 @@ var now = new Date();
 			}
 
 		}
+
+        $("#listaEventos").on("click","li",function (){
+            // FUNCTION TO DELETE EVENT
+                var id = parseInt( $(this).attr('id') );
+                gapi.client.load('calendar', 'v3', function() {
+                    var request = gapi.client.calendar.events.delete({
+                        'calendarId': 'primary',
+                        'eventId': eventos[id].id
+                    });
+                    request.execute(function(resp) {
+                        if (resp.status == 'confirmed') {
+                            console.log("Event was successfully removed from the calendar!");
+                        }
+                        else{
+                            console.log('An error occurred, please try again later.')
+                        }
+                    });
+                });
+        });

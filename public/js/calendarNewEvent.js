@@ -177,24 +177,8 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
             $('#nuevoEvento').submit(function (evt){
                 llenarResource();
                 evt.preventDefault();
-            });            
-            // FUNCTION TO DELETE EVENT
-            function deleteEvent() {
-                gapi.client.load('calendar', 'v3', function() {
-                    var request = gapi.client.calendar.events.delete({
-                        'calendarId': 'primary',
-                        'eventId': eventos[0].id
-                    });
-                    request.execute(function(resp) {
-                        if (resp.status == 'confirmed') {
-                            alert("Event was successfully removed from the calendar!");
-                        }
-                        else{
-                            alert('An error occurred, please try again later.')
-                        }
-                    });
-                });
-            }
+            });           
+            
 
 <!-- CALENDARIO RESPONSIVE -->
 function parsearDatos() {
