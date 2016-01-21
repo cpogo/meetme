@@ -130,8 +130,8 @@
 									  	<tr>
 										  	<th>ID</th>
 										  	<th>Group Name</th>
-											<th>Edit</th>
-											<th>Remove</th>
+
+											<th>Leave</th>
 									  	</tr>
 									</thead>
 									<tbody>
@@ -141,11 +141,8 @@
 										    <td>{{ $key + 1 }}</td>
 								        	<td><a href="mygroup/{{ $grupo->id }}"><p class="text-primary">{{ $grupo->name }}		</p ></a>
 								        	</td>
-									        <td><a href="#" id="btnEdit" data-target="#modalAventon"
-												data-botonEdit="{{ $grupo->id }}"><i class="fa fa-edit">	
-												</i></a>
-											</td>
-										    <td><a href="#" id="btnDelete" data-botonDel="{{ $grupo->id }}"	   ><i class="fa fa-remove"></i></a>
+									        <td><a href="#" id="btnLeaveGroup" data-botonLeave="{{ $grupo->id }}" ><i class="glyphicon glyphicon-log-out"></i></a>
+
 										    </td>
 										@empty
 											{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>--}}
@@ -242,7 +239,7 @@
 							<div class='modal-body'>
 
 								<form action="UpdateGroup" method="post">
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 									<input type="hidden" name="grupoid">
 									<!-- Event Title -->
 									<div class="form-group">
@@ -297,7 +294,7 @@
 					<div class='modal-body'>
 	                   <h3>Are you sure to delete this group ??</h3>
 						<form action="DeleteGroup" method="post">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 							<input type="hidden" name="grupoidd">
 
 							<div class="form-group">
@@ -326,7 +323,7 @@
 						<h3>Are you sure to leave this group ??</h3>
 
 						<form action="LeaveGroup" method="post">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 							<input type="hidden" name="grupoLeave">
 
 							<div class="form-group">
