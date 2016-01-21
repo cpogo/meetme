@@ -32,13 +32,6 @@
 	</head>
 	<body class="hold-transition skin-blue sidebar-mini">
 
-<!--
-{{ var_dump(session()->all()) }}
-@if(isset($_SESSION))
-{{ var_dump($_SESSION) }}
-@endif
--->
-
 		<div class="wrapper">
 
 			@include('app.header')
