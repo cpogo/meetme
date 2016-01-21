@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Group;
 use google\apiclient\src\Google\Client;
 use google\apiclient\src\Google\Service\Calendar;
 use File;
@@ -21,142 +22,16 @@ class newEventController extends Controller
     public function index()
     {
         session_start();
-        $datos = array();
         if ( isset( $_SESSION['key'] ) ) {
             $user = User::getUserById( $_SESSION[ 'key' ] );
-
-            if( isset( $user ) ){
-                // Get the API client and construct the service object.
-                $client = self::getClient();
-                $service = new \Google_Service_Calendar($client);
-
-                // Print the next 10 events on the user's calendar.
-                $calendarId = 'primary';
-                $optParams = array(
-                    'maxResults' => 10,
-                    'orderBy' => 'startTime',
-                    'singleEvents' => TRUE,
-                    'timeMin' => date('c'),
-                );
-                $results = $service->events->listEvents($calendarId, $optParams);
-                $resultados = $service->calendarList->get($calendarId);
-
-                if (count($results->getItems()) == 0) {
-                    //print "No upcoming events found.\n";
-                } else {
-                    //print "Upcoming events:\n";
-                    foreach ($results->getItems() as $event) {
-                      $start = $event->start->dateTime;
-                      $end = $event->end->dateTime;
-                      if (empty($start)) {
-                        $start = $event->start->date;
-                      }
-                      elseif (empty($end)) {
-                        $end = $event->end->date;
-                      }
-                      list($fechaInicio, $zonaHorariaInicio) = array_pad( explode('T', $start) , 2, null);
-                      list($anioInicio, $mesInicio, $diaInicio) = explode("-", $fechaInicio);
-                      list($horarioInicio, $timeZone) = explode("-", $zonaHorariaInicio);
-                      list($horaInicio, $minutoInicio, $segundoInicio) = explode(":", $horarioInicio);
-
-                      list($fechaFin, $zonaHorariaFin) = array_pad( explode('T', $end) , 2, null);
-                      list($anioFin, $mesFin, $diaFin) = explode("-", $fechaFin);
-                      list($horarioFin, $timeZone) = explode("-", $zonaHorariaFin);
-                      list($horaFin, $minutoFin, $segundoFin) = explode(":", $horarioFin);
-
-                      array_push($datos , array(
-                          "eventName"  => $event->getSummary(),
-                          "startEvent" => array(
-                                                "anio"=>$anioInicio,
-                                                "mes"=>$mesInicio,
-                                                "dia"=>$diaInicio,
-                                                "hora"=>$horaInicio,
-                                                "minuto"=>$minutoInicio,
-                                                "segundo"=>$segundoInicio
-                          ),
-                          "endEvent"   => array(
-                                                "anio"=>$anioFin,
-                                                "mes"=>$mesFin,
-                                                "dia"=>$diaFin,
-                                                "hora"=>$horaFin,
-                                                "minuto"=>$minutoFin,
-                                                "segundo"=>$segundoFin
-                          ),
-                      ) );
-
-                    }
-                }
-                return view( 'newEvent' , [ 'user' => $user , 'datos' => $datos] );
-            }else{
-                return view('errors/503' , [ 'error' => 'no se encontro el usuario en newEventController@index' ] );
-            }
+            $gruposProp = Group::getGruposDondeSoyProp($_SESSION[ 'key' ]);// Envia todos los grupos donde es propietario
+            $gruposMiem = Group::getGruposDondeSoyMiem($_SESSION[ 'key' ]);
+            $grupos = array($gruposProp,$gruposMiem);
+            return view( 'newEvent' , [ 'user' => $user , 'grupos' => $grupos] );
         }else{
-            return view('index');
+            return view('errors/503' , [ 'error' => 'no se encontro el usuario en newEventController@index' ] );
         }
     }
-
-    private static function getClient() {
-        $client = new \Google_Client();
-        $client->setApplicationName('Meet me');
-        $client->setScopes(implode(' ', array(\Google_Service_Calendar::CALENDAR) ) );
-        $client->setAuthConfigFile(__DIR__.'/client_secret.json');
-        $client->setAccessType('online');
-
-        // Load previously authorized credentials from a file.
-        $credentialsPath = self::expandHomeDirectory(__DIR__.'/calendar-php-quickstart.json');
-        if (file_exists($credentialsPath)) {
-          $accessToken = file_get_contents($credentialsPath);
-        } else {
-          // Request authorization from the user.
-          $authUrl = $client->createAuthUrl();
-          //printf("Open the following link in your browser:\n%s\n", $authUrl);
-          //print 'Enter verification code: ';
-          $authCode = '4/S5dwdC4c3jNEvpAXZ6dhqGbAWoRjT94gtW1NJ72Gx9U#';
-
-          // Exchange authorization code for an access token.
-          $accessToken = $client->authenticate($authCode);
-
-          // Store the credentials to disk.
-          if(!file_exists(dirname($credentialsPath))) {
-            mkdir(dirname($credentialsPath), 0700, true);
-          }
-          file_put_contents($credentialsPath, $accessToken);
-          //printf("Credentials saved to %s\n", $credentialsPath);
-        }
-        $client->setAccessToken($accessToken);
-
-        // Refresh the token if it's expired.
-        if ($client->isAccessTokenExpired()) {
-          $client->refreshToken($client->getRefreshToken());
-          file_put_contents($credentialsPath, $client->getAccessToken());
-        }
-        return $client;
-      }
-
-      /**
-       * Expands the home directory alias '~' to the full path.
-       * @param string $path the path to expand.
-       * @return string the expanded path.
-       */
-      private static function expandHomeDirectory($path) {
-          $homeDirectory = getenv('HOME');
-          if (empty($homeDirectory)) {
-            $homeDirectory = getenv("HOMEDRIVE") . getenv("HOMEPATH");
-          }
-            return str_replace('~', realpath($homeDirectory), $path);
-      }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -164,10 +39,63 @@ class newEventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function nuevoEvento(Request $request)
     {
-        Reunion::crearReunion($request);
-        return redirect('new_event');
+        session_start();
+        if ( isset( $_SESSION['key'] ) ) {
+            $user = User::getUserById( $_SESSION[ 'key' ] );
+            $jsonData = $request["resource"];
+            $groupId = $request["grupo"];
+            $grupo = Group::getMembersOwnerGroup($groupId);                        
+            /*
+              "attendees": [
+                {
+                  "id": string,
+                  "email": string,
+                  "displayName": string,
+                  "organizer": boolean,
+                  "self": boolean,
+                  "resource": boolean,
+                  "optional": boolean,
+                  "responseStatus": string,
+                  "comment": string,
+                  "additionalGuests": integer
+                }
+              ],  
+
+              "creator": {
+                "id": string,
+                "email": string,
+                "displayName": string,
+                "self": boolean
+              },
+            */
+
+            foreach ($grupo as $member) {
+                if( strcmp( $user->email , $member["email"] ) == 0 ){
+                    $creator = new \stdClass();
+                    $creator->email = $user->email;
+                    $creator->displayName = $user->full_name;
+                    $creator->self = true;                    
+                    $jsonData["creator"] = $creator;
+                }else{
+                    $attendees = new \stdClass();
+                    $attendees->email = $member["email"];
+                    $attendees->displayName = $member["full_name"];
+                    $attendees->organizer = true;
+                    $attendees->self = false;
+                    $attendees->resource = false;
+                    $attendees->optional = false;
+                    $attendees->comment = ""; 
+                    $attendees->responseStatus = "needsAction";
+                    $attendees->additionalGuests = 1;
+                    $jsonData["attendees"] = array($attendees);
+                }                      
+            }
+            return $jsonData;
+        }else{
+            return view('errors/503' , [ 'error' => 'no se encontro el usuario en newEventController@nuevoEvento' ] );
+        }
     }
 
     /**

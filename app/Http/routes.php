@@ -37,8 +37,6 @@ Route::get('new_group', 'groupController@index');
 
 Route::get('mygroup/{id}', ['uses' =>'mygroupController@index'])->where('id', '[0-9]+');
 
-Route::post('createEvent', 'newEventController@store');
-
 Route::post('createGroup','groupController@store');
 
 Route::post('UpdateGroup','groupController@update');
@@ -71,3 +69,5 @@ Route::post('profile/{username?}/unfollow', ['uses' =>'ProfileController@unfollo
 
 Route::get('img/user{id}.jpg', 'ProfileController@photo')
 		->where('id', '[0-9]+');
+
+Route::post( '/event' , 'newEventController@nuevoEvento' );

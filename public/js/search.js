@@ -69,11 +69,11 @@ $(document).on("click", "#grupo", function(evento){
 				url: '/addmember',//la url adonde se va a mandar la cadena a buscar
 				cache: false,
 				beforeSend: function (xhr) {
-            var token = $('meta[name="csrf-token"]').attr('content');
-            if (token) {
-                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-            }
-        },
+                    var token = $('meta[name="csrf-token"]').attr('content');
+                    if (token) {
+                          return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                    }
+                },
 				data: { "usuario": $(evento.target).attr('data-id') },
 				success: function(data)
 				{

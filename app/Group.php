@@ -136,6 +136,10 @@ class Group extends Model
       }
   }
 
+  public static function getMembersOwnerGroup($groupId){
+    $grupo = Group::getGroupById($groupId);
+    return $grupo->users()->get();
+  }
   public static function getGroupById($id)
     {
         return Group::find($id);

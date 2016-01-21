@@ -35,8 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'google' => [
-        'client_id' => '404653044604-b8l65dkb29t0l7bsdaf5trv4enb99t99.apps.googleusercontent.com',
-        'client_secret' => 'sItkYwQprVpI1GtrQIGvB8Xe',
+        'client_id' => '986961185965-7mc0q1cttb1kuplf0jpb4omcj2hmle8l.apps.googleusercontent.com',
+        'client_secret' => 'z_u_m4U6qpjI7OyN-z3dRSbd',
         'redirect' => 'http://localhost:8000/registerGoogle',
     ],
 

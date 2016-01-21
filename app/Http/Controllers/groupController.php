@@ -39,7 +39,8 @@ class groupController extends Controller
         if(Group::existeGrupo($request->nombre_grupo)!=1)
             Group::crearGrupo($request);
         $user = User::getUserById( $_SESSION[ 'key' ] );
-        return view('dashboard')->with('user',$user);
+        return redirect('new_group');
+        //return view('dashboard')->with('user',$user);
     }
 
     public function update(Request $req)

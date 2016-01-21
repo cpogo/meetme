@@ -66,28 +66,106 @@
 										</div>
 									</div>
 							</form>
-
 						</div><!-- /.box-body -->
 					</div>
 				</div><!-- /.col -->
+				
+				<div class="col-md-9">
+					<!--Groups created by myself-->
+					@if ( count( $grupos[ 0 ] ) == 0 && count( $grupos[ 1 ] ) == 0 )
+						<div class="box box-primary">
+							<div class="box-header">
+							     <h3 class="box-title"><em>You don't have joined or created any group :-(</em></h3>
+							</div>
+						</div>
+					@endif
+					@if ( count( $grupos[ 0 ] ) > 0 )
+					<div class="box box-primary">
+						<div class="box-header">
+							<h3 class="box-title"><em>Groups created by myself</em></h3>
+						</div>
+						<div class="box-body">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+									  	<tr>
+										  	<th>ID</th>
+										  	<th>Group Name</th>
+											<th>Edit</th>
+											<th>Remove</th>
+									  	</tr>
+									</thead>
+									<tbody>										
+										@forelse ($grupos[0] as $key => $grupo)
+										<tr>
+										    <td>{{ $key + 1 }}</td>
+								        	<td><a href="mygroup/{{ $grupo->id }}"><p class="text-primary">{{ $grupo->name }}		</p ></a>
+								        	</td>
+									        <td><a href="#" id="btnEdit" data-target="#modalAventon"
+												data-botonEdit="{{ $grupo->id }}"><i class="fa fa-edit">	
+												</i></a>
+											</td>
+										    <td><a href="#" id="btnDelete" data-botonDel="{{ $grupo->id }}"	   ><i class="fa fa-remove"></i></a>
+										    </td>
+										@empty
+											{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>--}}
+										</tr>
+									    @endforelse									    
+									</tbody>	  
+								</table>
+							</div>
+					    </div>
+					</div>
+					@endif<br>
+					<!--Groups I have been added as a member-->
+					@if ( count( $grupos[ 1 ] ) > 0 )				
+					<div class="box box-primary">
+						<div class="box-header">
+							<h3 class="box-title"><em>Groups I have been added as a member</em></h3>
+						</div>
+						<div class="box-body">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+									  	<tr>
+										  	<th>ID</th>
+										  	<th>Group Name</th>
+											<th>Edit</th>
+											<th>Remove</th>
+									  	</tr>
+									</thead>
+									<tbody>
+									    
+										@forelse ($grupos[1] as $key => $grupo)
+										<tr>
+										    <td>{{ $key + 1 }}</td>
+								        	<td><a href="mygroup/{{ $grupo->id }}"><p class="text-primary">{{ $grupo->name }}		</p ></a>
+								        	</td>
+									        <td><a href="#" id="btnEdit" data-target="#modalAventon"
+												data-botonEdit="{{ $grupo->id }}"><i class="fa fa-edit">	
+												</i></a>
+											</td>
+										    <td><a href="#" id="btnDelete" data-botonDel="{{ $grupo->id }}"	   ><i class="fa fa-remove"></i></a>
+										    </td>
+										@empty
+											{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>--}}
+										</tr>	
+									    @endforelse									    
+									</tbody>	  
+								</table>
+							</div>
+					    </div>
+					</div>
+					@endif
+			    </div>
 
-
-				<div id="Misgrupos">
+				{{--<div id="Misgrupos">
 					<h4 align="center"><strong>Your groups are bellow:</strong></h4><br/>
 
 					<!--<h4 align="center"><em>Groups created by myself</em></h4>
-					<br>-->
+					<br>-->			
 
-					<table style="margin-left: 2%;float:left">
-						<thead align="center">
-							<tr>
-								<th colspan="3" style="text-align:center; font-size:14.5px"><em>Groups I have created</em></th>
-							</tr>
-							<tr>
-								<th colspan="3">&nbsp;</th>
-							</tr>
-						</thead>
-
+					<table style="margin-left: 2%;float:left">						
 						<tbody>
 						@forelse ($grupos[0] as $grupo)
 
@@ -113,27 +191,14 @@
 							</tr>
 
 						@empty
-							<br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>
-						@endforelse
+							{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not have groups created yet  :(</h4>--}}
+						{{-- @endforelse
 						</tbody>
 					</table >
 
 					<!--<h4 align="center"><em>Groups I have been added as a member</em></h4>
 					<br/>-->
-
-
-
-
-
-					<table style="margin-right:7%;float:right ">
-						<thead align="center">
-						<tr>
-							<th colspan="3" style="text-align:center; font-size:14.5px"><em>Groups I belong </em></th>
-						</tr>
-						<tr>
-							<th colspan="3">&nbsp;</th>
-						</tr>
-						</thead>
+					<table style="margin-right:7%;float:right ">						
 						<tbody>
 						@forelse ($grupos[1] as $grupo)
 
@@ -156,12 +221,12 @@
 							</tr>
 
 						@empty
-							<br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not belong to any group yet &nbsp; :(</h4>
-						@endforelse
+							{{--  <br><h4 style="color:#9f191f" align="center"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp; You do not belong to any group yet &nbsp; :(</h4>--}}
+						{{-- @endforelse
 						</tbody>
 					</table>
 
-				</div>
+				</div>--}}
 			</div>
 
 		</section>
