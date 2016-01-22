@@ -1,6 +1,6 @@
 @extends('app.layout')
 @section('title', 'Dashboard')
-@section('stylesheet_dashboard')        
+@section('stylesheet_dashboard')
 		<!-- iCheck -->
 		<link rel="stylesheet" href="{{ asset('plugins/iCheck/flat/blue.css') }}">
 			<!-- Morris chart -->
@@ -57,7 +57,7 @@
 				<section class="content">
 
 					<!-- Small boxes (Stat box) -->
-					<div class="row">						
+					<div class="row">
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-aqua">
@@ -129,7 +129,7 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 					<!-- Main row -->
 					<div class="row">
 						<!-- Left col -->
-						<section class="col-lg-7 connectedSortable">
+						<section class="col-lg-12 connectedSortable">
 {{--
 							<!-- Custom tabs (Charts with tabs)-->
 							<div class="nav-tabs-custom">
@@ -251,7 +251,7 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
                                 </li>
                                 -->
                             </ul>
-                        </div><!-- /.box-body -->                        
+                        </div><!-- /.box-body -->
                     </div>
 {{--
 							<!-- quick email widget -->
@@ -352,6 +352,8 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 								</div><!-- /.box-footer -->
 							</div><!-- /.box -->
 --}}
+
+{{--
 							<!-- Calendar -->
 							<div class="box box-solid bg-green-gradient">
 								<div class="box-header">
@@ -376,8 +378,9 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 								<div class="box-body no-padding">
 									<!--The calendar -->
 									<div id="calendar" style="width: 100%"></div>
-								</div><!-- /.box-body -->								
+								</div><!-- /.box-body -->
 							</div><!-- /.box -->
+--}}
 
 						</section><!-- right col -->
 
@@ -419,13 +422,13 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
                                      </div>
                                 <!--Location-->
                                     <div class="form-group">
-                                    <label>Location</label>                                    
+                                    <label>Location</label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                                 <i class="fa fa-tasks"></i>
                                          </div>
                                         <input name="location" id="autocomplete" class="form-control" placeholder="Enter your address" type="text" required></input>
-                                    </div>                                   
+                                    </div>
                                     </div>
                                 <!--Groups by combo box-->
                                     <!--<div class="form-group">
@@ -434,14 +437,14 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
                                     	<div class="input-group-addon">
                                             <i class="fa fa-search"></i>
                                         </div>
-				                        <input type="text" name="agregarMiembro" id="addMemberEvent" class="form-control" placeholder="Invite an user..." required>	                   
+				                        <input type="text" name="agregarMiembro" id="addMemberEvent" class="form-control" placeholder="Invite an user..." required>
 				                    </div>
-										<div class="displaygroupEvent"></div>                 
+										<div class="displaygroupEvent"></div>
 								    </div>-->
 								    <!--Groups by combo box-->
                                     <div class="form-group">
 	                                    <label>Groups</label>
-	                                    <select id="gruposs" name="combo" class="form-control">                                
+	                                    <select id="gruposs" name="combo" class="form-control">
 	                                        @if ( count( $grupos[ 0 ] )  == 0 && count( $grupos[ 1 ] ) == 0 )
 	                                            <option value="NG">No groups :-(</option>
 	                                        @endif
@@ -450,20 +453,20 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 	                                            @foreach ( $grupos[ 0 ] as $grupo )
 	                                               <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
 	                                            @endforeach
-	                                            
+
 	                                        @endif
 	                                        @if ( count( $grupos[ 1 ] ) > 0 )
 	                                            <option value="CG">-Choose one group-</option>
 	                                            @foreach ( $grupos[ 1 ] as $grupo )
 	                                               <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
 	                                            @endforeach
-	                                        @endif                                        
+	                                        @endif
 	                                    </select>
 
                                     </div>
 								    <div class="form-group">
 								    	<ul class="list-users list-group">
-								    		
+
 								    	</ul>
 								    </div>
                                 <!-- Event Date -->
@@ -490,7 +493,7 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
                                         <button type="submit" id="btnEditEvents" class="btn btn-primary" >Edit Event</button>
                                     </div>
 								</form>
-							</div>							
+							</div>
 						</div>
 					</div>
 		        </div>
@@ -507,7 +510,7 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 
 			</div><!-- /.content-wrapper -->
 @endsection
-@section('scripts') 
+@section('scripts')
 	@include('app.scripts_dashboard')
 	<script src="{{ asset('js/calendarDashboard.js') }}"></script>
 	<script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>

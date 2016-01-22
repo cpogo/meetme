@@ -31,5 +31,5 @@ return [
     | This is the location of the .p12 file from the Laravel root directory
     |
     */
-    'scopes' => ['https://www.googleapis.com/auth/calendar'],
+    'scopes' => ['https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/userinfo.email'],
 ];

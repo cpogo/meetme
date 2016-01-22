@@ -23,7 +23,7 @@ class loginController extends Controller
     {
         return view('login');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -85,7 +85,8 @@ class loginController extends Controller
         if( isset( $_SESSION['key'] ) ){
             session_unset();
             session_destroy();
-            return view('index');
+            //return view('index');
+			return redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8000/');
         }else{
             return view('index');
         }

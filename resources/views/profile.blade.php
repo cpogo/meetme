@@ -37,9 +37,11 @@
 										<li class="list-group-item">
 											<b>Groups</b> <a class="pull-right">{{count($groups)}}<?php if( count($groups_owner) > 0 ){ ?> ( Owner of {{count($groups_owner)}} )<?php } ?></a>
 										</li>
+<!--
 										<li class="list-group-item">
 											<b>Meetings</b> <a class="pull-right">{{count($meetings)}}<?php if( count($meetings_owner) > 0 ){ ?> ( Owner of {{count($meetings_owner)}} )<?php } ?></a>
 										</li>
+-->
 {{--
 										<li class="list-group-item">
 											<b>Friends</b> <a class="pull-right">13,287</a>
@@ -70,13 +72,14 @@ if(!$follow_profile){
 								</div><!-- /.box-body -->
 							</div><!-- /.box -->
 
+{{--
 							<!-- About Me Box -->
 							<div class="box box-primary">
 								<div class="box-header with-border">
 									<h3 class="box-title">About Me</h3>
 								</div><!-- /.box-header -->
 								<div class="box-body">
-{{--
+
 									<strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
 									<p class="text-muted">
 										B.S. in Computer Science from the University of Tennessee at Knoxville
@@ -102,24 +105,26 @@ if(!$follow_profile){
 
 									<strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
---}}
+
 								</div><!-- /.box-body -->
 							</div><!-- /.box -->
+--}}
 						</div><!-- /.col -->
 						<div class="col-md-9">
 							<div class="nav-tabs-custom">
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+{{--									<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>--}}
 {{--									<li><a href="#timeline" data-toggle="tab">Timeline</a></li>--}}
-									<li><a href="#followers" data-toggle="tab">Followers ({{count($followers)}})</a></li>
+									<li class="active"><a href="#followers" data-toggle="tab">Followers ({{count($followers)}})</a></li>
 									<li><a href="#following" data-toggle="tab">Following ({{count($following)}})</a></li>
 @if ($user->id == $profile->id && false)
 									<li><a href="#settings" data-toggle="tab">Settings</a></li>
 @endif
 								</ul>
 								<div class="tab-content">
-									<div class="active tab-pane" id="activity">
 {{--
+									<div class="active tab-pane" id="activity">
+
 										<!-- Post -->
 										<div class="post">
 											<div class="user-block">
@@ -214,8 +219,10 @@ if(!$follow_profile){
 
 											<input class="form-control input-sm" type="text" placeholder="Type a comment">
 										</div><!-- /.post -->
---}}
+
 									</div><!-- /.tab-pane -->
+--}}
+
 {{--
 									<div class="tab-pane" id="timeline">
 										<!-- The timeline -->
@@ -302,7 +309,7 @@ if(!$follow_profile){
 --}}
 
 
-									<div class="tab-pane" id="followers">
+									<div class="active tab-pane" id="followers">
 										<div class="box-body no-padding">
 @if(count($followers) == 0)
 <?php if($user->id == $profile->id){ ?>
