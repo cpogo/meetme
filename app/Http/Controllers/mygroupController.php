@@ -39,18 +39,20 @@ class mygroupController extends Controller
 		$html = '';
 
 		$users = User::members( $request->agregarMiembro )->get();
+    $id = $request->editEvent == 0 ? "grupo":"members";
 
-
-		$html .= '<div class="list-group" id="grupo">';
+		$html .= '<div class="list-group" id="'.$id.'">';
 		$html .= '	<a href="#" class="list-group-item list-group-item-' . ($users->isEmpty() ? 'danger' : 'success') . '"><span class="badge">' . $users->count() . '</span><i class="fa fa-user"></i> Users</a>';
 
 		foreach ($users as $user) {
             $html .= '		<div>';
 
             $html .= '	<h5 class="list-group-item usergroup" >';
-
-            $html .= '	<a href="' . url('profile/' . $user->username) . ' " title=" ' . $user->full_name . '">';
-
+            if( strcmp($id,"members") == 0 ){
+              $html .= '  <a href="#" title="' . $user->email . '">';
+            }else{
+              $html .= '	<a href="' . url('profile/' . $user->username) . ' " title=" ' . $user->full_name . '">';
+            }
             $html .= '				<img class="media-object img-circle img-sm" src="' . asset('img/user' . $user->id . '.jpg') . '">';
 
             $html .= '			</a>';
@@ -58,9 +60,15 @@ class mygroupController extends Controller
 			$html .= '			<div class="media-body">';
 			$html .= '				<strong> '.'&nbsp;&nbsp;' . $user->full_name . '</strong>';
 			$html .= '				<div> ' . '&nbsp;&nbsp;&nbsp;&nbsp;'. $user->username . '</div>';
-            $html .= '         <div class="media-right">
+      if( strcmp($id,"members") == 0 ){
+          $html .= '         <div class="media-right">
+              <button type="button" class="btn btn-info btn-xs" data-id="' . $user->email . '"> Add <i data-id="' . $user->email . '" class="glyphicon glyphicon-plus-sign"></i></button><br/>
+                                </div>';
+      }else{
+          $html .= '         <div class="media-right">
               <button type="button" class="btn btn-info btn-xs" data-id="' . $user->id . '"> Add <i data-id="' . $user->id . '" class="glyphicon glyphicon-plus-sign"></i></button><br/>
                                 </div>';
+      }
 			$html .= '			</div>';
             $html .= '		</div>';
 			$html .= '	</h5>';

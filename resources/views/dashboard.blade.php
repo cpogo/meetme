@@ -1,6 +1,6 @@
 @extends('app.layout')
 @section('title', 'Dashboard')
-@section('stylesheet_dashboard')
+@section('stylesheet_dashboard')        
 		<!-- iCheck -->
 		<link rel="stylesheet" href="{{ asset('plugins/iCheck/flat/blue.css') }}">
 			<!-- Morris chart -->
@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}">
 			<!-- bootstrap wysihtml5 - text editor -->
 		<link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+		<!-- Bootstrap datetime Picker -->
+		<link rel="stylesheet" href="{{ asset('plugins/datetimepicker/css/bootstrap-datetimepicker.min.css') }}" >
 @endsection
 @section('main')
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -21,6 +23,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 <script>
 	$(function() {
 	$( "#datepicker" ).datepicker();
@@ -32,20 +35,11 @@
 	$( "#eventDateF" ).datepicker();
 	});
 </script>
-{{--<style>
-#fondo {
-	width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 990;opacity: 0.8;background:#000;
-	overflow: scroll;
-}
-#flotante {
-	z-index: 999; border: 8px solid #fff; margin-top: -756px; margin-left: -153px; top: 50%; left: 50%;
-	padding: 12px; position: fixed; width: 265px; background-color: #fff; border-radius: 3px;
-
-}
-#contenedor {
-	overflow: scroll;width: 100%; height: 100%;
-}
-</style>  --}}
+<style type="text/css">
+	.pac-container {
+         z-index: 2000 !important;
+    }
+</style>
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
 				<!-- Content Header (Page header) -->
@@ -63,7 +57,7 @@
 				<section class="content">
 
 					<!-- Small boxes (Stat box) -->
-					<div class="row">
+					<div class="row">						
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-aqua">
@@ -259,10 +253,7 @@ echo DB::table('meet_user')->where('user_id', $user->id)->count()
                                 </li>
                                 -->
                             </ul>
-                        </div><!-- /.box-body -->
-                        <div class="box-footer clearfix no-border">
-                            <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-                        </div>
+                        </div><!-- /.box-body -->                        
                     </div>
 {{--
 							<!-- quick email widget -->
@@ -438,6 +429,111 @@ echo DB::table('meet_user')->where('user_id', $user->id)->count()
 
 				</section><!-- /.content -->
 
+				<div class='modal fade' id="modalEditEvent" tabindex='0' role='dialog' aria-labelledby='myLargeModalLabel'>
+					<div class='modal-dialog modal-lg'>
+						<div class='modal-content'>
+							<div class='modal-header' style="background-color:dimgrey">
+								<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+								<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Edit event</h4>
+							</div>
+							<div class='modal-body'>
+								<form id="editarEvento" method="post">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}"><div class="form-group">
+                                    <label>Title</label>
+                                    <div class="input-group">
+                                         <div class="input-group-addon">
+                                                <i class="fa fa-tasks"></i>
+                                         </div>
+                                         <input id="eventTittle" name="event_title" type="text" class="form-control" placeholder="Event Title" required>
+                                    </div>
+                                    </div>
+                                <!-- Event Description -->
+                                     <div class="form-group">
+                                     <label>Description</label>
+                                     <div class="input-group">
+                                          <div class="input-group-addon">
+                                               <i class="fa fa-align-justify"></i>
+                                          </div>
+                                          <textarea id="eventDescription" name="event_description" class="form-control" rows="3" placeholder="Description ..." required></textarea>
+                                     </div>
+                                     </div>
+                                <!--Location-->
+                                    <div class="form-group">
+                                    <label>Location</label>                                    
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                                <i class="fa fa-tasks"></i>
+                                         </div>
+                                        <input name="location" id="autocomplete" class="form-control" placeholder="Enter your address" type="text" required></input>
+                                    </div>                                   
+                                    </div>
+                                <!--Groups by combo box-->
+                                    <!--<div class="form-group">
+                                    <label>Invite users</label>
+                                    <div class="input-group">
+                                    	<div class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+				                        <input type="text" name="agregarMiembro" id="addMemberEvent" class="form-control" placeholder="Invite an user..." required>	                   
+				                    </div>
+										<div class="displaygroupEvent"></div>                 
+								    </div>-->
+								    <!--Groups by combo box-->
+                                    <div class="form-group">
+	                                    <label>Groups</label>
+	                                    <select id="gruposs" name="combo" class="form-control">                                
+	                                        @if ( count( $grupos[ 0 ] )  == 0 && count( $grupos[ 1 ] ) == 0 )
+	                                            <option value="NG">No groups :-(</option>
+	                                        @endif
+	                                        @if ( count( $grupos[ 0 ] ) > 0 )
+	                                            <option value="CG">-Choose one group-</option>
+	                                            @foreach ( $grupos[ 0 ] as $grupo )
+	                                               <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+	                                            @endforeach
+	                                            
+	                                        @endif
+	                                        @if ( count( $grupos[ 1 ] ) > 0 )
+	                                            <option value="CG">-Choose one group-</option>
+	                                            @foreach ( $grupos[ 1 ] as $grupo )
+	                                               <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+	                                            @endforeach
+	                                        @endif                                        
+	                                    </select>
+
+                                    </div>
+								    <div class="form-group">
+								    	<ul class="list-users list-group">
+								    		
+								    	</ul>
+								    </div>
+                                <!-- Event Date -->
+                                    <div class="form-group">
+                                    <label>Start Date</label>
+                                    <div class='input-group date' id='datetimepickerinicio'>
+                                         <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaInicio" id="fechaInicio" class="form-control" required/>
+                                    <span class="input-group-addon">
+                                          <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    </div>
+                                    </div>
+                                <!-- Event Date -->
+                                    <div class="form-group">
+                                    <label>End Date</label>
+                                    <div class='input-group date' id='datetimepickerfin'>
+                                            <input data-format="dd-MM-yyyy hh:mm:ss" type='text' name="fechaFin" id="fechaFin" class="form-control" required/>
+                                             <span class="input-group-addon">
+                                                 <span class="glyphicon glyphicon-calendar"></span>
+                                             </span>
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" id="btnEditEvents" class="btn btn-primary" >Edit Event</button>
+                                    </div>
+								</form>
+							</div>							
+						</div>
+					</div>
+		        </div>
 				<!-- Ventana Flotante -->
 				{{--<div id="flotante">
 					<h1>Ventana flotante</h1>
@@ -451,8 +547,12 @@ echo DB::table('meet_user')->where('user_id', $user->id)->count()
 
 			</div><!-- /.content-wrapper -->
 @endsection
-@section('scripts')
+@section('scripts') 
 	@include('app.scripts_dashboard')
+	<script src="{{ asset('js/attrchange.js') }}"></script>
 	<script src="{{ asset('js/calendarDashboard.js') }}"></script>
 	<script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJpcHQH2zFckykgY9BTaiaMZ9nJSKnzbI&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete"
+        async defer></script>
+    <script src="{{ asset('js/locationEvent.js') }}"></script>
 @endsection

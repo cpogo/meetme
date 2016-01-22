@@ -22,10 +22,13 @@
 		<script src="{{ asset('plugins/knob/jquery.knob.js') }}"></script>
 		<!-- daterangepicker -->
 {{--		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>--}}
-		<script src="{{ asset('plugins/momentjs/moment-2.10.2.min.js') }}"></script>
+		<script src="{{ asset('plugins/momentjs/moment.min.js') }}"></script>
 		<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 		<!-- datepicker -->
+		<script src="{{ asset('plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
 		<script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+		<!-- bootstrap datetime picker -->
+		<script src="{{ asset('plugins/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 		<!-- Bootstrap WYSIHTML5 -->
 		<script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 		<!-- Slimscroll -->

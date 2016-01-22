@@ -31,7 +31,7 @@ $('input').keyup(function (){
             $.ajax({//metodo ajax
                 type: "GET",//aqui puede  ser get o post
                 url: '/lfmember',//la url adonde se va a mandar la cadena a buscar
-                data: { 'agregarMiembro' : dataString },
+                data: { 'agregarMiembro' : dataString, 'editEvent':0 },
                 cache: false,
                 success: function(data)//funcion que se activa al recibir un dato
                 {   //console.log(data);

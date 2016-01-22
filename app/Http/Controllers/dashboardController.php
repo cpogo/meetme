@@ -24,9 +24,11 @@ class dashboardController extends Controller
         if ( isset( $_SESSION['key'] ) )
         {
             $user = User::getUserById( $_SESSION[ 'key' ] );
-
+            $gruposProp = Group::getGruposDondeSoyProp($_SESSION[ 'key' ]);// Envia todos los grupos donde es propietario
+            $gruposMiem = Group::getGruposDondeSoyMiem($_SESSION[ 'key' ]);
+            $grupos = array($gruposProp,$gruposMiem);
             if( isset( $user ) ){
-                return view( 'dashboard' , [ 'user' => $user ] );
+                return view( 'dashboard' , [ 'user' => $user , 'grupos' => $grupos] );
             }else{
                 return view('errors/503' , [ 'error' => 'no se encontro el usuario en dashboardController@index' ]);
             }

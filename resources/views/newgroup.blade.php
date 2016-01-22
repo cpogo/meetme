@@ -234,7 +234,7 @@
 						<div class='modal-content'>
 							<div class='modal-header' style="background-color:dimgrey">
 								<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-								<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Editar Grupo</h4>
+								<h4 class='modal-title' id='gridSystemModalLabel' style="font-family:'Kaushan Script', cursive;color:white;">Edit group</h4>
 							</div>
 							<div class='modal-body'>
 

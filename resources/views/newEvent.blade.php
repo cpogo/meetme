@@ -73,7 +73,7 @@
                                     <label>Location</label>                                    
                                     <div class="input-group">
                                         <div class="input-group-addon">
-                                                <i class="fa fa-tasks"></i>
+                                                <i class="fa fa-search"></i>
                                          </div>
                                         <input id="autocomplete" class="form-control" placeholder="Enter your address" type="text" required></input>
                                     </div>                                   
