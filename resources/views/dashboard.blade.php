@@ -113,7 +113,7 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 							<!-- small box -->
 							<div class="small-box bg-red">
 								<div id="meetingHeader" class="inner">
-									<h3></h3>
+									<h3>0</h3>
 									<p>Meetings</p>
 								</div>
 								<div class="icon">
