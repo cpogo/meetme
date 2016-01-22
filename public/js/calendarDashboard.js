@@ -62,6 +62,7 @@ var now = new Date();
                         }
                     }
                 }
+                $("#meetingHeader > h3").text(""+eventos.length);
                 mostrarLista();
             });
         }
@@ -77,8 +78,7 @@ var now = new Date();
             return false;
         }
         function mostrarLista(){
-		    var ulEv = document.getElementById("listaEventos");
-		    
+		    var ulEv = document.getElementById("listaEventos");		    
 		    for (var i=0; i < eventos.length; i++) {
 		        //Crear elementos
 		        var liEv = document.createElement("li");
@@ -158,15 +158,16 @@ var now = new Date();
                     request.execute(function(resp) {
                         if (resp.status == 'confirmed') {
                             console.log("Event was successfully removed from the calendar!");
+                            $('<div class="row"><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Fail!</h4>An error occurred, please try again later.</div></div>').prependTo('section.content');                                    
                         }
                         else{
-                            console.log('An error occurred, please try again later.');                            
+                            console.log('An error occurred, please try again later.');
+                            $('<div class="row"><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Great!</h4>You have deleted an event</div></div>').prependTo('section.content');                                    
                         }
                     });
                 });
-                $(this).slideToggle("slow");
-                $(this).remove();
-$('<div class="row"><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Great!</h4>You have deleted an event</div></div>').prependTo('section.content');        
+                $(this).parents('li').slideToggle("slow");
+                $(this).parents('li').remove();
         });
 
         $("#listaEventos").on("click","li div.tools i.fa-edit",function (){
@@ -330,6 +331,7 @@ Best check yo self, you're not looking too good. </div>
                                 request.execute(function (resp) {
                                     if (resp.status == 'confirmed') {                        
                                         console.log("se actualizo con exito el evento");
+                                        $('#modalEditEvent').modal('hide');
                                         //$('<div class="row"><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Great!</h4>You have created an event</div></div>').prependTo('section.content');        
                                     } else {                                            
                                         console.log("no se creo el evento");
@@ -345,25 +347,4 @@ Best check yo self, you're not looking too good. </div>
         evt.preventDefault();
     });  
     
-    function updateEvent(){
-        var evento = eventos[4];
-        //console.log(evento);
-        console.log(evento.end.dateTime);
-        evento.end.dateTime = "2016-01-12T21:00:00-05:00";
-        //PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-        gapi.client.load('calendar', 'v3', function() {
-        var request = gapi.client.calendar.events.update({
-        'calendarId': 'primary',
-        'eventId':evento.id,
-        'resource': evento
-        });
-        request.execute(function(resp) {
-        if (resp.status == 'confirmed') {
-        console.log("Event was successfully updated from the calendar!");
-        }
-        else{
-        console.log('An error occurred, please try again later.')
-        }
-        });
-        });
-}
+    

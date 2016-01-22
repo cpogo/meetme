@@ -166,6 +166,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
                                     if (resp.status == 'confirmed') {                        
                                         console.log("se creo con exito el evento");
                                         $('<div class="row"><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Great!</h4>You have created an event</div></div>').prependTo('section.content');        
+                                        handleClientLoad();
                                     } else {                                            
                                         console.log("no se creo el evento");
                                     }

@@ -112,10 +112,8 @@ echo DB::table('group_user')->where('user_id', $user->id)->count()
 						<div class="col-lg-3 col-xs-6">
 							<!-- small box -->
 							<div class="small-box bg-red">
-								<div class="inner">
-									<h3><?php
-echo DB::table('meet_user')->where('user_id', $user->id)->count()
-?></h3>
+								<div id="meetingHeader" class="inner">
+									<h3></h3>
 									<p>Meetings</p>
 								</div>
 								<div class="icon">
@@ -378,45 +376,7 @@ echo DB::table('meet_user')->where('user_id', $user->id)->count()
 								<div class="box-body no-padding">
 									<!--The calendar -->
 									<div id="calendar" style="width: 100%"></div>
-								</div><!-- /.box-body -->
-								<div class="box-footer text-black">
-									<div class="row">
-										<div class="col-sm-6">
-											<!-- Progress bars -->
-											<div class="clearfix">
-												<span class="pull-left">Task #1</span>
-												<small class="pull-right">90%</small>
-											</div>
-											<div class="progress xs">
-												<div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-											</div>
-											<div class="clearfix">
-												<span class="pull-left">Task #2</span>
-												<small class="pull-right">70%</small>
-											</div>
-											<div class="progress xs">
-												<div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-											</div>
-										</div><!-- /.col -->
-										<div class="col-sm-6">
-											<div class="clearfix">
-												<span class="pull-left">Task #3</span>
-												<small class="pull-right">60%</small>
-											</div>
-											<div class="progress xs">
-												<div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-											</div>
-
-											<div class="clearfix">
-												<span class="pull-left">Task #4</span>
-												<small class="pull-right">40%</small>
-											</div>
-											<div class="progress xs">
-												<div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-											</div>
-										</div><!-- /.col -->
-									</div><!-- /.row -->
-								</div>
+								</div><!-- /.box-body -->								
 							</div><!-- /.box -->
 
 						</section><!-- right col -->
@@ -549,7 +509,6 @@ echo DB::table('meet_user')->where('user_id', $user->id)->count()
 @endsection
 @section('scripts') 
 	@include('app.scripts_dashboard')
-	<script src="{{ asset('js/attrchange.js') }}"></script>
 	<script src="{{ asset('js/calendarDashboard.js') }}"></script>
 	<script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJpcHQH2zFckykgY9BTaiaMZ9nJSKnzbI&amp;signed_in=true&amp;libraries=places&amp;callback=initAutocomplete"
